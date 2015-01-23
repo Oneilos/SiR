@@ -37,6 +37,7 @@ src/*/Workflow/*Bundle/Model/om/*
 
 # Composer
 composer.phar
+composer.lock
 
 # Uploads
 data/*
