@@ -1,0 +1,26 @@
+{
+  "name": "linkr",
+  "version": "0.1.0",
+  "description": "",
+  "main": "Gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LinkValue/SiR"
+  },
+  "author": "LinkValue",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LinkValue/SiR/issues"
+  },
+  "homepage": "https://github.com/LinkValue/SiR",
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "jasmine-core": "^2.1.3",
+    "karma": "^0.12.31",
+    "karma-jasmine": "^0.3.5",
+    "karma-phantomjs-launcher": "^0.1.4"
+  }
+}
