@@ -7,7 +7,7 @@ class SkillDomain
     public function create(Skill $skill)
     {
         $skill->setFullname(sprintf('%s %s',
-            ucwords(strtolower($skill->getFirstName()),
+            ucwords(strtolower($skill->getFirstName())),
             $skill->getLastName()
         ));
     }

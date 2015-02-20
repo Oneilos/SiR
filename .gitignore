@@ -6,27 +6,37 @@
 .settings
 *.sublime-*
 .idea/*
+.DS_*
+/nbproject/*
 
-# Symfony directories
-bin/*
-vendor/*
-build/*
-app/bin/*
-app/logs/*
-app/cache/*
-app/config/deploy/*
-app/bootstrap.php.cache
-web/uploads/*
-web/bundles/*
-web/css/*
-web/js/*
-web/font/*
-web/asset_*/*
-web/assetic
+# symfony
+/web/bundles/
+/web/css/*
+/web/js/*
+!/web/css/.gitkeep
+!/web/js/.gitkeep
+/app/bootstrap.php.cache
+/app/cache/*
+/app/config/parameters.yml
+/app/config/parameters.ini
+/app/logs/*
+!app/cache/.gitkeep
+!app/logs/.gitkeep
+/build/
+/bin/
+*~
 
-# Configuration files
-app/config/parameters.ini
-app/config/parameters.yml
+# dependencies
+/vendor/
+/composer.phar
+/node_modules/
+/npm-debug.log
+/web/vendor/
+
+# capfiles
+.bundle/*
+Gemfile.lock
+.cap_tasks~
 
 # Propel directories
 */propel/sql/*
@@ -34,12 +44,3 @@ src/*/Bundle/*Bundle/Model/map/*
 src/*/Bundle/*Bundle/Model/om/*
 src/*/Workflow/*Bundle/Model/map/*
 src/*/Workflow/*Bundle/Model/om/*
-
-# Composer
-composer.phar
-composer.lock
-
-# Uploads
-data/*
-web/images/avatars/*
-/nbproject/*

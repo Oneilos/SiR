@@ -1,10 +1,3 @@
-<<<<<<< Updated upstream
-linkr_agency:
-    resource: "@ExtiaAgencyBundle/Resources/config/routing.yml"
-    prefix:   /
-
-=======
->>>>>>> Stashed changes
 # ---------------------------------------
 # localized routes
 # ---------------------------------------
@@ -16,7 +9,7 @@ localized_routing:
 # Others
 # ---------------------------------------
 home_redirection:
-    pattern:  /
+    path:  /
     defaults:
         _controller: FrameworkBundle:Redirect:urlRedirect
         path: /%locale%
