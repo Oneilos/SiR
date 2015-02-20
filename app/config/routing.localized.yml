@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 # ---------------------------------------
 # Authentication
 # ---------------------------------------
@@ -88,3 +89,5 @@ Rhea_homepage:
         _controller: ExtiaTaskBundle:Dashboard:userDashboard
         _format: html
         _menu: dashboard
+=======
+>>>>>>> Stashed changes

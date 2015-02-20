@@ -1,7 +1,0 @@
-SearchBundle_search:
-    pattern: /
-    defaults:
-        _controller: 'LinkRSearchBundle:Search:query'
-        _format: json|html
-    requirements:
-        q: \w+

@@ -1,3 +1,0 @@
-LinkR_ceo_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: LinkRCEOBundle:Default:index }

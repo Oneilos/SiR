@@ -1,5 +1,0 @@
-ActivityBundle_recent:
-    pattern: /recent
-    defaults:
-        _controller: 'LinkRActivityBundle:Activity:recent'
-        _format: html

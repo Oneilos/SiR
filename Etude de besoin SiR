@@ -1,0 +1,183 @@
+Etude de besoin SiR
+
+Stack :
+    - CRUD Candidat / Partner (Raphael)
+    - Process embauche (Simon)
+    - CRUD Compte (Henri)
+    - CRUD Prospect (Oliver)
+
+Modules :
+- RH
+    - Candidats
+        - nom
+        - prénom
+        - téléphone
+        - email
+        - numéro de sécu
+        - adresse
+        - date / lieu de naissance
+        - nationalité
+        - école
+        - année de diplome
+        - hobbie
+        - références du candidat (collection)
+            - champs prospect
+            - évaluation par référence (Bon Moyen Mauvais)
+        - métier (liste ouverte des métiers)
+        - compétence principale (liste ouverte compétences principales)
+        - compétence libre
+        - plateforme de sourcing
+        - date de dispo
+        - mobilité géo (liste ouverte)
+        - salaire actuel
+        - prétention salariale
+        - note test (champ libre)
+        - communauté (oui / non)
+        - created_at
+        - statut_process
+            - interne_rencontré
+            - date
+            - eval
+            - commentaire
+            - interne suivant
+        - fil de commentaires
+            - commentaires type notif'
+    - Tests techniques
+    - Contrats de travail
+    - Relation écoles
+    - Synchro Agenda
+    - PSS
+- Partners
+    - Fiche
+        - Candidat
+        - Salaire
+            - Coef
+            - Position
+            - Salaire brut
+            - Frais
+            - %tage carte transport
+    - CRA
+    - Frais
+    - Absences
+    - PSS
+    - Staffing
+- Internes
+    - Suivi / graphs
+- Comptes client / prospects
+    - Fiche Compte
+        - nom
+        - addresses
+            - numéro de tel
+        - arbre entités filles (ex TF1 / eTF1)
+            - nom
+    - Fiche Prospect
+        - nom
+        - prenom
+        - fonction
+        - tel fixe
+        - tel mobile
+        - email
+        - école
+        - journal d'évènement
+        - fil de commentaires
+        - liste des technos / profils / compétences (= candidat)
+        - @mission -> Client
+
+    - Organigramme
+    - Facturation
+    - Missions
+        - Fiche
+        - Suivi
+    - Concurrents
+    - Référencements
+    - Reste à produire
+    - Synchro Agenda PFP
+- ACL
+    - Authentification
+    - SSO Google
+- Evènements
+- Bibliothèque
+    - Liens, trucs astuces, gists
+    - Partage des supports
+
+----------------------------------------------------------
+
+Partner :
+- salarié LV
+- types :
+    - techniques : "consultants"
+        - compte dédié liable Google (perso)
+    - rh
+        - compte Google LV
+    - business
+        - compte Google LV
+    - com'
+
+Candidat :
+- profil de partner potentiel
+- pas de compte, liens jetables
+
+Ecole :
+- fournit des candidats
+- filtre possible pour les partners / candidats
+- relation avec des évènements, formations
+
+Test technique :
+- suite de questions sur un ou plusieurs technos dans le cadre du process de recrutement LV
+
+Compte :
+- organisation / entreprise type FTV / NRF
+- personne morale
+
+Client :
+- personne physique avec qui on travaille, ou travaillé
+- missions courantes ou terminées
+
+Prospect :
+- personne physique avec qui on ne travaille pas encore
+- contact dans le compte
+
+Référencement :
+- groupement de sociétées autorisées à travailler avec un compte
+- durée dans le temps
+
+Mission :
+- contrat à durée déterminé avec client concernant l'activité d'un partner technique
+
+
+----------------------------------------------------------
+
+
+
+- Base candidats indexé par critères multiples
+- Rechercher selon critères
+- Matérialiser et suivre le process de recrutement
+- Faire passer aux candidats un test technique en ligne
+- Plusieurs technos doivent être disponibles dans le catalogue de tests
+- Les résultats du test sont à relier aux candidats
+- Les entretiens doivent être synchro avec un Google Agenda
+- Implémenter un SSO avec les comptes Google
+- Base client et prospects indexés par critères multiples
+- Des ACL doivent protéger les données
+- Un graphe de contacts au sein d'une entitée cliente prospect
+- Un partner doit pouvoir saisir son CRA en ligne
+- Un partner doit pouvoir saisir ses demandes d'absence en ligne
+- Un partner doit pouvoir upload ses titres de transport et ses justificatifs de frais
+- Les clients doivent pouvoir valider les CRA saisis par les consultants (échanges de mails, outil de signature numérique)
+- Des factures doivent pouvoir être éditées à partir des données d'activité des partners
+- Des ordres de mission doivent pouvoir être éditées
+- Editer et imprimer un contrat de travail
+- Générateur du PSS des candidats et partners
+- Interface de suivi des partners
+- Appli iPad pour les entretiens qui envoient les données dans le système
+- Suivi RH (nombre de sourcing, entretien etc...)
+- Suivi Manager (prospection, rt etc...)
+- Entrer les informations des points de mission dans le système
+- Visualiser les points de mission en timeline
+- On veut pouvoir saisir des ia concurrents pour un client / prospect donné
+- On veut pouvoir prédir les besoins clients en fonction du profil des sociétés rencontrées par les candidats
+- Base d'articles et de références
+- Organigramme de staffing des partners
+- Ajouter des astreintes à un CRA
+- Journal d'évènements twitt, début de missions, prochaines contrib etc...
+- Gestion des écoles

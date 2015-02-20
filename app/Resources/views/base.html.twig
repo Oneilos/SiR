@@ -5,7 +5,7 @@
         <!-- Always force latest IE rendering engine or request Chrome Frame -->
         <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-        <title>{% block title %}Rhea{% endblock %}</title>
+        <title>{% block title %}LinkR{% endblock %}</title>
         {% block stylesheets %}
             {% stylesheets
                 'css/compiled.css'
@@ -30,12 +30,12 @@
             {% javascripts
                 'js/compiled.js'
                 '%kernel.root_dir%/Resources/public/js/main.js'
-                '@ExtiaCommentBundle/Resources/public/js/comments.js'
-                '@ExtiaMenuBundle/Resources/public/js/menu.js'
-                '@ExtiaDocumentBundle/Resources/public/js/form.js'
-                '@ExtiaTaskBundle/Resources/public/js/tasks.js'
-                '@ExtiaMissionBundle/Resources/public/js/mission.js'
-                '@ExtiaUserBundle/Resources/public/js/*'
+                '@LinkRCommentBundle/Resources/public/js/comments.js'
+                '@LinkRMenuBundle/Resources/public/js/menu.js'
+                '@LinkRDocumentBundle/Resources/public/js/form.js'
+                '@LinkRTaskBundle/Resources/public/js/tasks.js'
+                '@LinkRMissionBundle/Resources/public/js/mission.js'
+                '@LinkRUserBundle/Resources/public/js/*'
                 %}
                 <script type="text/javascript" src="{{ asset_url }}"></script>
             {% endjavascripts %}
@@ -88,14 +88,14 @@
         <div class="navbar navbar-inverse">
             <div class="navbar-inner">
                 <div class="container">
-                    <a href="{{ path('Rhea_homepage') }}" class="brand">Rhea</a>
+                    <a href="{{ path('Rhea_homepage') }}" class="brand">LinkR</a>
                 </div>
             </div>
         </div>
 
         {# Left menu bar #}
         <div class="menu-bar pull-left">
-            {% include 'ExtiaMenuBundle:Menu:main_nav.html.twig' %}
+            {% include 'LinkRMenuBundle:Menu:main_nav.html.twig' %}
         </div>
 
         {# Main content #}
@@ -136,14 +136,14 @@
             {% block footer %}
             <div class="row-fluid">
                 <div class="span12">
-                    <div class="footer">2013 &copy; Extia</div>
+                    <div class="footer">2013 &copy; LinkR</div>
                 </div>
             </div>
             {% endblock %}
         </section>
 
         {% block notifications %}
-            {{ render(controller('ExtiaNotificationBundle:Notification:display')) }}
+            {{ render(controller('LinkRNotificationBundle:Notification:display')) }}
         {% endblock %}
 
         {% block ajaxWaiter %}

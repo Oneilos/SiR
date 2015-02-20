@@ -1,7 +1,10 @@
+<<<<<<< Updated upstream
 linkr_agency:
     resource: "@ExtiaAgencyBundle/Resources/config/routing.yml"
     prefix:   /
 
+=======
+>>>>>>> Stashed changes
 # ---------------------------------------
 # localized routes
 # ---------------------------------------

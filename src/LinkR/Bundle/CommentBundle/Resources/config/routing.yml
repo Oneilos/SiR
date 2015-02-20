@@ -1,5 +1,0 @@
-CommentBundle_create_comment:
-    pattern: /create/{task_id}
-    defaults:
-        _controller: LinkRCommentBundle:Comment:form
-        _format: html

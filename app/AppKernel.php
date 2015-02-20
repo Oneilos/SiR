@@ -13,43 +13,13 @@ class AppKernel extends Kernel
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
-            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
-            // Propel
-            new Propel\PropelBundle\PropelBundle(),
-            new Glorpen\Propel\PropelBundle\GlorpenPropelBundle(),
+            new Majora\Bundle\GeneratorBundle\MajoraGeneratorBundle(),
 
-            // Tools bundles
-            new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
-            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
-            new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
-
-            // Workflow
-            new EasyTask\Bundle\WorkflowBundle\EasyTaskWorkflowBundle(),
-
-            // Core
-            new LinkR\Bundle\TaskBundle\LinkRTaskBundle(),
-            new LinkR\Bundle\UserBundle\LinkRUserBundle(),
-
-            // Other features
-            new LinkR\Bundle\CommentBundle\LinkRCommentBundle(),
-            new LinkR\Bundle\SearchBundle\LinkRSearchBundle(),
-            new LinkR\Bundle\ActivityBundle\LinkRActivityBundle(),
-            new LinkR\Bundle\MenuBundle\LinkRMenuBundle(),
-            new LinkR\Bundle\NotificationBundle\LinkRNotificationBundle(),
-            new LinkR\Bundle\GroupBundle\LinkRGroupBundle(),
-            new LinkR\Bundle\DocumentBundle\LinkRDocumentBundle(),
-            new LinkR\Bundle\MissionBundle\LinkRMissionBundle(),
-            new LinkR\Bundle\AgencyBundle\LinkRAgencyBundle(),
-            new LinkR\Bundle\CEOBundle\LinkRCEOBundle(),
-
-            // Workflows
-            new LinkR\Workflow\CrhMonitoringBundle\LinkRWorkflowCrhMonitoringBundle(),
-            new LinkR\Workflow\MissionMonitoringBundle\LinkRWorkflowMissionMonitoringBundle(),
-            new LinkR\Workflow\AnnualReviewBundle\LinkRWorkflowAnnualReviewBundle(),
-            new LinkR\Workflow\LunchBundle\LinkRWorkflowLunchBundle()
+            // new Sir\Bundle\SkillBundle\SirSkillBundle(),
+            // new SirSdk\Bundle\SkillBundle\SirSdkSkillBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
@@ -64,5 +34,33 @@ class AppKernel extends Kernel
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
+    }
+
+    /**
+     * @return string
+     */
+    public function getCacheDir()
+    {
+        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+            if (is_dir('/dev/shm')) {
+                return '/dev/shm/' . $this->getName() . '/cache/' . $this->getEnvironment();
+            }
+        }
+
+        return parent::getCacheDir();
+    }
+
+    /**
+     * @return string
+     */
+    public function getLogDir()
+    {
+        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+            $basedir = is_dir('/dev/shm') ? '/dev/shm' : sys_get_temp_dir();
+
+            return $basedir . '/' . $this->getName() . '/logs';
+        }
+
+        return parent::getLogDir();
     }
 }
