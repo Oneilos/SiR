@@ -43,7 +43,6 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles"
         ]
->>>>>>> Stashed changes
     },
     "config": {
         "bin-dir": "bin"
@@ -56,11 +55,7 @@
             "file": "app/config/parameters.yml"
         },
         "branch-alias": {
-<<<<<<< Updated upstream
-            "dev-master": "2.7.x-dev"
-=======
             "dev-master": "2.7-dev"
->>>>>>> Stashed changes
         }
     }
 }
