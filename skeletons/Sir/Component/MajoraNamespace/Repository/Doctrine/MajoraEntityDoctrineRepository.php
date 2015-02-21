@@ -1,19 +1,18 @@
 <?php
 
-namespace SirSdk\Component\MajoraNamespace\Repository\Api;
+namespace Sir\Component\MajoraNamespace\Repository\Doctrine;
 
-use Majora\Framework\Repository\Api\AbstractApiRepository;
-use SirSdk\Component\MajoraNamespace\Model\MajoraEntity;
+use Majora\Framework\Repository\Api\BaseDoctrineRepository;
 use SirSdk\Component\MajoraNamespace\Repository\MajoraEntityRepositoryInterface;
 
 /**
- * MajoraEntity repository implementation using an API
+ * MajoraEntity repository implementation using Doctrine
  *
  * @package majora-namespace
  * @subpackage repository
  */
-class MajoraEntityApiRepository
-    extends AbstractApiRepository
+class MajoraEntityDoctrineRepository
+    extends BaseDoctrineRepository
     implements MajoraEntityRepositoryInterface
 {
     /**
@@ -21,7 +20,10 @@ class MajoraEntityApiRepository
      */
     public function save(MajoraEntity $majoraEntity)
     {
-        return $this->doSave($majoraEntity);
+        $em = $this->getEntityManager();
+        $em->persist($majoraEntity);
+
+        return $majoraEntity;
     }
 
     /**
@@ -29,6 +31,9 @@ class MajoraEntityApiRepository
      */
     public function delete(MajoraEntity $majoraEntity)
     {
-        return $this->doDelete($majoraEntity);
+        $em = $this->getEntityManager();
+        $em->remove($majoraEntity);
+
+        return $majoraEntity;
     }
 }

@@ -1,19 +1,19 @@
 <?php
 
-namespace SirSdk\Component\MajoraNamespace\Repository\Api;
+namespace Sir\Component\MajoraNamespace\Repository\Fixtures;
 
-use Majora\Framework\Repository\Api\AbstractApiRepository;
+use Majora\Framework\Repository\Api\AbstractFixturesRepository;
 use SirSdk\Component\MajoraNamespace\Model\MajoraEntity;
 use SirSdk\Component\MajoraNamespace\Repository\MajoraEntityRepositoryInterface;
 
 /**
- * MajoraEntity repository implementation using an API
+ * MajoraEntity repository implementation using memory fixtures
  *
  * @package majora-namespace
  * @subpackage repository
  */
-class MajoraEntityApiRepository
-    extends AbstractApiRepository
+class MajoraEntityFixturesRepository
+    extends AbstractFixturesRepository
     implements MajoraEntityRepositoryInterface
 {
     /**

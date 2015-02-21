@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <!-- MajoraEntity domain -->
+        <service id="sir.majora_entity.default_domain"
+                 class="Sir\Component\MajoraNamespace\Domain\MajoraEntityDomain"
+                 parent="majora.domain.abstract"
+                 public="false"
+        >
+            <argument type="service" id="sir.majora_entity.repository" />
+        </service>
+
+        <!-- MajoraEntity loader -->
+        <service id="sir.majora_entity.default_loader"
+                 class="Sir\Component\MajoraNamespace\Loader\MajoraEntityLoader"
+                 parent="majora.loader.abstract"
+                 public="false"
+        >
+            <argument type="service" id="sir.majora_entity.repository" />
+        </service>
+
+        <!-- MajoraEntity doctrine repository -->
+        <service id="sir.majora_entity.doctrine_repository"
+                 class="Sir\Component\MajoraNamespace\Repository\Doctrine\MajoraEntityDoctrineRepository"
+                 parent="majora.doctrine_repository.abstract"
+                 factory-service="doctrine" factory-method="getRepository"
+                 public="false"
+        >
+            <argument>Sir:MajoraEntity</argument>
+            <argument>sir</argument>
+        </service>
+
+        <!-- MajoraEntity fixtures repository -->
+        <service id="sir.majora_entity.fixtures_repository"
+                 class="Sir\Component\MajoraNamespace\Repository\Fixtures\MajoraEntityFixturesRepository"
+                 parent="majora.fixtures_repository.abstract"
+                 public="false"
+        >
+            <argument>@SirMajoraNamespaceBundle/Resources/fixtures/majora_entity.yml</argument>
+        </service>
+
+    </services>
+
+</container>

@@ -53,6 +53,7 @@ class FileGenerator
             'MajoraEntity'     => Container::camelize($entity),
             'majoraEntity'     => lcfirst(Container::camelize($entity)),
             'majora_entity'    => Container::underscore($entity),
+            'MAJORA_ENTITY'    => strtoupper($entity),
             'majora-entity'    => str_replace('_', '-', Container::underscore($entity)),
             'MajoraNamespace'  => Container::camelize($namespace),
             'majoraNamespace'  => lcfirst(Container::camelize($namespace)),
@@ -108,10 +109,13 @@ class FileGenerator
 
         // updating files
         $updates = array(
+
+            // separated service file
             array(
-                'finder'   => (new Finder)
+                'finder' => (new Finder)
                     ->in($this->targetPath)
                     ->name(sprintf('*%sExtension.php', $replacements['MajoraNamespace']))
+                    ->notContains(sprintf('$loader->load(\'services/%s.xml\')', $replacements['majora_entity']))
                 ,
                 'callback' => function (SplFileInfo $file) use ($entity, $namespace, $replacements) {
                     return str_replace(
@@ -123,7 +127,117 @@ class FileGenerator
                         $file->getContents()
                     );
                 }
-            )
+            ),
+
+            // configuration
+            array(
+                'finder' => (new Finder)
+                    ->in($this->targetPath.'/Sir')
+                    ->name('Configuration.php')
+                    ->notContains(sprintf('// %s section', $replacements['MajoraEntity']))
+                ,
+                'callback' => function (SplFileInfo $file) use ($entity, $namespace, $replacements) {
+                    return str_replace(
+        '$rootNode
+            ->children()',
+        '$rootNode
+            ->children()
+
+                // '. $replacements['MajoraEntity'] .' section
+                ->append($this->createEntitySection(\''. $replacements['majora_entity'] .'\'))'
+                        ,
+                        $file->getContents()
+                    );
+                }
+            ),
+
+            // aliases
+            array(
+                'finder' => (new Finder)
+                    ->in($this->targetPath)
+                    ->name(sprintf('*%sExtension.php', $replacements['MajoraNamespace']))
+                    ->notContains(sprintf('// %s aliases', $replacements['MajoraEntity']))
+                ,
+                'callback' => function (SplFileInfo $file) use ($entity, $namespace, $replacements) {
+                    return str_replace(
+        '// aliases',
+        '// aliases
+
+        // '. $replacements['MajoraEntity'] .' aliases
+        $this->registerAliases($container, \'sir.'. $replacements['majora_entity'] .'\', $config[\''. $replacements['majora_entity'] .'\']);'
+                        ,
+                        $file->getContents()
+                    );
+                }
+            ),
+
+            // routing
+            array(
+                'finder' => (new Finder)
+                    ->in($this->targetPath)
+                    ->name('routing_api.yml')
+                    ->notContains(sprintf('# %s Api', $replacements['MajoraEntity']))
+                ,
+                'callback' => function (SplFileInfo $file) use ($entity, $namespace, $replacements) {
+                    return $file->getContents().
+                    '
+# '. $replacements['MajoraEntity'] .' Api
+'. $replacements['majora_entity'] . '_rest_api:
+    resource: "@SirSdk'. $replacements['MajoraNamespace'] .'Bundle/Resources/config/routing/'. $replacements['majora_entity'] . '_api.yml"
+    prefix:   /'. $replacements['majora_entity'] . 's
+'
+                    ;
+                }
+            ),
+
+            // kernel
+            array(
+                'finder' => (new Finder)
+                    ->in($this->projectBasePath.'/app')
+                    ->name('AppKernel.php')
+                ,
+                'callback' => function (SplFileInfo $file) use ($entity, $namespace, $replacements) {
+                    return $entity != $namespace ?
+                        $file->getContents() :
+                        str_replace(
+            'new Majora\Bundle\FrameworkExtraBundle\MajoraFrameworkExtraBundle(),',
+            'new Majora\Bundle\FrameworkExtraBundle\MajoraFrameworkExtraBundle(),
+            new SirSdk\Bundle\\'. $replacements['MajoraNamespace'] .'Bundle\SirSdk'. $replacements['MajoraNamespace'] .'Bundle(),'
+                        ,
+                        str_replace(
+                            '
+        );
+
+        if (in_array($this->getEnvironment(), array(\'dev\', \'test\'))) {',
+                            '
+            new Sir\Bundle\\'. $replacements['MajoraNamespace'] .'Bundle\Sir'. $replacements['MajoraNamespace'] .'Bundle(),
+        );
+
+        if (in_array($this->getEnvironment(), array(\'dev\', \'test\'))) {',
+                            $file->getContents()
+                        )
+                    );
+                }
+            ),
+
+            // main routing
+            array(
+                'finder' => (new Finder)
+                    ->in($this->projectBasePath.'/app/config')
+                    ->name('routing_api.yml')
+                ,
+                'callback' => function (SplFileInfo $file) use ($entity, $namespace, $replacements) {
+                    return $entity != $namespace ?
+                        $file->getContents() :
+                        $file->getContents().
+                    '
+# '. $replacements['MajoraNamespace'] .' api routing
+'. $replacements['majora_namespace'] . '_api:
+    resource: "@SirSdk'. $replacements['MajoraNamespace'] .'Bundle/Resources/config/routing_api.yml"
+'
+                    ;
+                }
+            ),
         );
 
         foreach ($updates as $updateData) {

@@ -1,8 +1,15 @@
 # ---------------------------------------
+# Api
+# ---------------------------------------
+api_routing:
+    resource: "routing_api.yml"
+    prefix:   /api/
+
+# ---------------------------------------
 # localized routes
 # ---------------------------------------
 localized_routing:
-    resource: "routing.localized.yml"
+    resource: "routing_localized.yml"
     prefix:   /{_locale}/
 
 # ---------------------------------------

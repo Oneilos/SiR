@@ -1,0 +1,4 @@
+# MajoraEntity Api
+majora_entity_rest_api:
+    resource: "@SirSdkMajoraNamespaceBundle/Resources/config/routing/majora_entity_api.yml"
+    prefix:   /majora_entitys
