@@ -35,8 +35,13 @@
                  class="Majora\Framework\Repository\Fixtures\AbstractFixturesRepository"
                  abstract="true" public="false"
         >
-
+            <call method="setUp">
+                <argument type="service" id="yaml_parser" />
+                <argument type="service" id="file_locator" />
+                <argument type="service" id="serializer" />
+            </call>
         </service>
+        <service id="yaml_parser" class="Symfony\Component\Yaml\Yaml" public="false" />
 
         <!-- Majora base doctrine repository definition -->
         <service id="majora.doctrine_repository.abstract"

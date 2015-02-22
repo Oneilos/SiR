@@ -21,7 +21,11 @@
                  parent="majora.loader.abstract"
                  public="false"
         >
-            <argument type="service" id="sir.majora_entity.repository" />
+            <call method="setUp"> <!-- parent class setUp -->
+                <argument type="service" id="sir.majora_entity.repository" />
+                <argument>SirSdk\Component\MajoraNamespace\Model\MajoraEntity</argument>
+                <argument>SirSdk\Component\MajoraNamespace\Model\MajoraEntityCollection</argument>
+            </call>
         </service>
 
         <!-- MajoraEntity doctrine repository -->
@@ -41,7 +45,9 @@
                  parent="majora.fixtures_repository.abstract"
                  public="false"
         >
-            <argument>@SirMajoraNamespaceBundle/Resources/fixtures/majora_entity.yml</argument>
+            <call method="setSource"> <!-- parent class data source -->
+                <argument>@SirMajoraNamespaceBundle/Resources/fixtures/majora_entity.yml</argument>
+            </call>
         </service>
 
     </services>

@@ -20,16 +20,21 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class RestApiController extends Controller
 {
     /**
-     * Parse filter string list to array
+     * Extract available query filter from request
      *
-     * @param  string $list
+     * @param  Request $request
      * @return array
      */
-    protected function parseFilter($list)
+    protected function extractQueryFilter(Request $request)
     {
-        return array_filter(explode(',', trim($list, ',')), function ($var) {
-            return !empty($var);
-        });
+        return array_map(
+            function($value) {
+                return array_filter(explode(',', trim($value, ',')), function ($var) {
+                    return !empty($var);
+                });
+            },
+            $request->query->all()
+        );
     }
 
     /**

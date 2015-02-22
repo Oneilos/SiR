@@ -21,7 +21,11 @@
                  parent="majora.loader.abstract"
                  public="false"
         >
-            <argument type="service" id="sir.majora_entity.api_repository" />
+            <call method="setUp"> <!-- parent class setUp -->
+                <argument type="service" id="sir.majora_entity.api_repository" />
+                <argument>SirSdk\Component\MajoraNamespace\Model\MajoraEntity</argument>
+                <argument>SirSdk\Component\MajoraNamespace\Model\MajoraEntityCollection</argument>
+            </call>
         </service>
 
         <!-- MajoraEntity api repository -->
@@ -30,7 +34,7 @@
                  parent="majora.api_repository.abstract"
                  public="false"
         >
-
+            <argument>majora_entity</argument>
         </service>
 
     </services>

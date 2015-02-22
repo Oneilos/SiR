@@ -2,7 +2,7 @@
 
 namespace Sir\Component\MajoraNamespace\Repository\Fixtures;
 
-use Majora\Framework\Repository\Api\AbstractFixturesRepository;
+use Majora\Framework\Repository\Fixtures\AbstractFixturesRepository;
 use SirSdk\Component\MajoraNamespace\Model\MajoraEntity;
 use SirSdk\Component\MajoraNamespace\Repository\MajoraEntityRepositoryInterface;
 
@@ -21,7 +21,9 @@ class MajoraEntityFixturesRepository
      */
     public function save(MajoraEntity $majoraEntity)
     {
-        return $this->doSave($majoraEntity);
+        $this->persist($majoraEntity);
+
+        return $majoraEntity;
     }
 
     /**
@@ -29,6 +31,8 @@ class MajoraEntityFixturesRepository
      */
     public function delete(MajoraEntity $majoraEntity)
     {
-        return $this->doDelete($majoraEntity);
+        $this->remove($majoraEntity);
+
+        return $majoraEntity;
     }
 }

@@ -195,6 +195,7 @@ class FileGenerator
                 'finder' => (new Finder)
                     ->in($this->projectBasePath.'/app')
                     ->name('AppKernel.php')
+                    ->notContains($replacements['MajoraNamespace'])
                 ,
                 'callback' => function (SplFileInfo $file) use ($entity, $namespace, $replacements) {
                     return $entity != $namespace ?
@@ -227,9 +228,10 @@ class FileGenerator
                     ->name('routing_api.yml')
                 ,
                 'callback' => function (SplFileInfo $file) use ($entity, $namespace, $replacements) {
-                    return $entity != $namespace ?
-                        $file->getContents() :
-                        $file->getContents().
+                    $fileContents = $file->getContents();
+                    return preg_match('/'.$replacements['MajoraNamespace'].'/', $fileContents) ?
+                        $fileContents :
+                        $fileContents.
                     '
 # '. $replacements['MajoraNamespace'] .' api routing
 '. $replacements['majora_namespace'] . '_api:

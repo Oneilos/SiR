@@ -21,7 +21,9 @@ class MajoraEntityApiRepository
      */
     public function save(MajoraEntity $majoraEntity)
     {
-        return $this->doSave($majoraEntity);
+        $this->persist($majoraEntity);
+
+        return $majoraEntity;
     }
 
     /**
@@ -29,6 +31,8 @@ class MajoraEntityApiRepository
      */
     public function delete(MajoraEntity $majoraEntity)
     {
-        return $this->doDelete($majoraEntity);
+        $this->remove($majoraEntity);
+
+        return $majoraEntity;
     }
 }

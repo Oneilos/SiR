@@ -20,8 +20,7 @@ class MajoraEntityDoctrineRepository
      */
     public function save(MajoraEntity $majoraEntity)
     {
-        $em = $this->getEntityManager();
-        $em->persist($majoraEntity);
+        $this->persist($majoraEntity);
 
         return $majoraEntity;
     }
@@ -31,8 +30,7 @@ class MajoraEntityDoctrineRepository
      */
     public function delete(MajoraEntity $majoraEntity)
     {
-        $em = $this->getEntityManager();
-        $em->remove($majoraEntity);
+        $this->remove($majoraEntity);
 
         return $majoraEntity;
     }

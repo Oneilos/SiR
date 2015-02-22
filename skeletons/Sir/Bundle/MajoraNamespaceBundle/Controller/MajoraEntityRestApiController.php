@@ -39,24 +39,19 @@ class MajoraEntityRestApiController extends RestApiController
      *        403="If method access denied"
      *    }
      * )
-     * @QueryParam(name="ids", strict=false, requirements="([\d+],?)*", description="Comma separated ids to filter on (ie: 42,66)")
+     * @QueryParam(name="scope", strict=false, requirements="\w*", description="Data scope to use on data serialization")
+     * @QueryParam(name="limit", strict=false, requirements="\d*", description="Limit of elements returned")
+     * @QueryParam(name="offset", strict=false, requirements="\d*", description="Offset in dataset returned")
      */
-    public function cgetAction(ParamFetcherInterface $paramFetcher)
+    public function cgetAction(ParamFetcherInterface $paramFetcher, Request $request)
     {
-        $ids = $this->parseFilter($paramFetcher->get('ids'));
-
-        $majoraEntityLoader = $this->get('sir.majora_entity.loader');
-        switch (true) {
-            case !empty($ids):
-                $majoraEntityCollection = $majoraEntityLoader->retrieveAll(array('id' => $ids));
-                break;
-
-            default:
-                $majoraEntityCollection = $majoraEntityLoader->retrieveAll();
-        }
-
         return $this->createJsonResponse(
-            $majoraEntityCollection
+            $this->get('sir.majora_entity.loader')->retrieveAll(
+                $this->extractQueryFilter($request),
+                $paramFetcher->get('limit'),
+                $paramFetcher->get('offset')
+            ),
+            $paramFetcher->get('scope')
         );
     }
 
