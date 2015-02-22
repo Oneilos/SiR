@@ -94,9 +94,7 @@ class RestApiController extends Controller
             $data = is_string($data) ?
                 $data :
                 $this->get('serializer')->serialize(
-                    $data,
-                    'json',
-                    empty($scope) ? null : SerializationContext::create()->setGroups($scope)
+                    $data, 'json', empty($scope) ? array() : array('scope' => $scope)
                 )
             ;
         }
@@ -152,29 +150,6 @@ class RestApiController extends Controller
     }
 
     /**
-     * Decode a json string and check for errors
-     *
-     * @param $json
-     * @param $assoc
-     * @param  int                     $depth
-     * @param  int                     $options
-     * @return mixed
-     * @throws BadRequestHttpException
-     */
-    protected function json_clean_decode($json, $assoc = true, $depth = 512, $options = 0)
-    {
-        $arrayData = json_decode($json, $assoc, $depth, $options);
-
-        if (null === $arrayData) {
-            throw new BadRequestHttpException(
-                sprintf('There is an error in your JSON data: %s-%s', json_last_error(), json_last_error_msg())
-            );
-        }
-
-        return $arrayData;
-    }
-
-    /**
      * Custom method for form submission to handle http method bugs, and extra fields
      * error options
      *
@@ -186,9 +161,9 @@ class RestApiController extends Controller
     protected function submitJsonData(Request $request, FormInterface $form)
     {
         $data = $this->extractFormData(
-            $this->get('lac.normalizer.camel_keys')->normalize(
-                $this->json_clean_decode($request->getContent())
-            ),
+            $this->get('serializer')
+                ->deserialize($request->getContent(), 'array')
+            ,
             $form
         );
 

@@ -8,7 +8,7 @@ use Majora\Framework\Model\SerializableInterface;
 use Majora\Framework\Repository\RepositoryInterface;
 use RuntimeException;
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * Base class for fixtures repository
@@ -21,26 +21,23 @@ abstract class AbstractFixturesRepository implements RepositoryInterface
     protected $data;
 
     protected $sourceFile;
+    protected $collectionClass;
 
     protected $fileLocator;
-    protected $parser;
     protected $serializer;
 
     /**
      * setUp method
      *
-     * @param Yaml                $parser
      * @param FileLocator         $fileLocator
      * @param SerializerInterface $serializer
      */
     public function setUp(
-        Yaml        $parser,
-        FileLocator $fileLocator,
-        $serializer   // not hinted volontary atm (sf, jms, majora wont be have same interface)
+        FileLocator         $fileLocator,
+        SerializerInterface $serializer
     )
     {
         $this->fileLocator = $fileLocator;
-        $this->parser      = $parser;
         $this->serializer  = $serializer;
     }
 
@@ -48,10 +45,19 @@ abstract class AbstractFixturesRepository implements RepositoryInterface
      * define source file for given repository
      *
      * @param string $sourceFile
+     * @param string $collectionClass
      */
-    public function setSource($sourceFile)
+    public function setSource($sourceFile, $collectionClass)
     {
-        $this->sourceFile = $sourceFile;
+        $this->sourceFile      = $sourceFile;
+        $this->collectionClass = $collectionClass;
+
+        if (empty($collectionClass) || !class_exists($collectionClass)) {
+            throw new InvalidArgumentException(sprintf(
+                'You must provide a valid class name, "%s" given.',
+                $collectionClass
+            ));
+        }
 
         return $this;
     }
@@ -63,53 +69,18 @@ abstract class AbstractFixturesRepository implements RepositoryInterface
      */
     private function loadData()
     {
-        if (!$this->fileLocator || !$this->parser || !$this->serializer) {
+        if (!$this->fileLocator || !$this->serializer) {
             throw new RuntimeException(sprintf(
                 '%s methods cannot be used, it hasnt been initialize through setUp() method.',
                 __CLASS__
             ));
         }
 
-        $dataConfig = $this->parser->parse(
-            $this->fileLocator->locate($this->sourceFile)
+        $this->data = $this->serializer->deserialize(
+            $this->fileLocator->locate($this->sourceFile),
+            $this->collectionClass,
+            'yaml'
         );
-
-        if (empty($dataConfig['entity']) || !class_exists($dataConfig['entity'])) {
-            throw new InvalidArgumentException(sprintf(
-                'You must provide a valid class name under "entity" key into "%s" file.',
-                $this->sourceFile
-            ));
-        }
-        if (empty($dataConfig['collection']) || !class_exists($dataConfig['collection'])) {
-            throw new InvalidArgumentException(sprintf(
-                'You must provide a valid class name under "collection" key into "%s" file.',
-                $this->sourceFile
-            ));
-        }
-
-        $entityClass     = $dataConfig['entity'];
-        $collectionClass = $dataConfig['collection'];
-        $data            = empty($dataConfig['data']) ? array() : $dataConfig['data'];
-
-        $this->data = new $collectionClass();
-        if (!$this->data instanceof BaseEntityCollection) {
-            throw new InvalidArgumentException(sprintf(
-                'You must provide a Majora\Framework\Model\BaseEntityCollection class name under "collection" key into "%s" file.',
-                $this->sourceFile
-            ));
-        }
-
-        foreach ($data as $id => $properties) {
-            $entity = new $entityClass();
-            if (!$entity instanceof SerializableInterface) {
-                throw new InvalidArgumentException(sprintf(
-                    'You must provide a Majora\Framework\Model\SerializableInterface class name under "entity" key into "%s" file.',
-                    $this->sourceFile
-                ));
-            }
-            $entity->fromArray($properties);
-            $this->data->set($entity->getId(), $entity);
-        }
     }
 
     /**

@@ -13,5 +13,23 @@ use Majora\Framework\Model\BaseEntityCollection;
 class MajoraEntityCollection
     extends BaseEntityCollection
 {
+    /**
+     * @see SerializableInterface::fromArray()
+     */
+    public function fromArray(array $data)
+    {
+        $this->clear();
+        $entities = array_map(
+            function(array $majoraEntityData) {
+                return (new MajoraEntity())->fromArray($majoraEntityData);
+            },
+            $data
+        );
 
+        foreach ($entities as $entity) {
+            $this->set($entity->getId(), $entity);
+        }
+
+        return $this;
+    }
 }

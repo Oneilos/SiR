@@ -47,6 +47,7 @@
         >
             <call method="setSource"> <!-- parent class data source -->
                 <argument>@SirMajoraNamespaceBundle/Resources/fixtures/majora_entity.yml</argument>
+                <argument>SirSdk\Component\MajoraNamespace\Model\MajoraEntityCollection</argument>
             </call>
         </service>
 

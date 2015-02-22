@@ -3,6 +3,7 @@
 namespace Majora\Framework\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use BadMethodCallException;
 
 /**
  * Base class for entity aggregation collection
@@ -10,8 +11,53 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @package majora-framework
  * @subpackage model
  */
-class BaseEntityCollection extends ArrayCollection
+class BaseEntityCollection
+    extends ArrayCollection
+    implements SerializableInterface
 {
+    /**
+     * return all elements
+     *
+     * @return array
+     */
+    public function all()
+    {
+        return parent::toArray();
+    }
+
+    /**
+     * return all collection to arrays
+     *
+     * @return array
+     */
+    public function toArray($scope = 'default')
+    {
+        return array_values(array_map(
+            function(SerializableInterface $entity) use ($scope) {
+                return $entity->toArray($scope);
+            },
+            $this->all()
+        ));
+    }
+
+    /**
+     * @see SerializableInterface::fromArray()
+     */
+    public function fromArray(array $data)
+    {
+        throw new BadMethodCallException(sprintf('%s() method has to be defined in %s class.',
+            __CLASS__, get_class($this)
+        ));
+    }
+
+    /**
+     * @see ScopableInterface::getScopes()
+     */
+    public function getScopes()
+    {
+        return array();
+    }
+
     /**
      * filter given collection on given fields
      *
@@ -47,7 +93,7 @@ class BaseEntityCollection extends ArrayCollection
      */
     public function chunk($length)
     {
-        $chunkedData = array_chunk($this->toArray(), $length, true);
+        $chunkedData = array_chunk($this->all(), $length, true);
 
         return new self(empty($chunkedData) ? array() : $chunkedData[0]);
     }

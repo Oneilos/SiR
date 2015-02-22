@@ -23,7 +23,7 @@ interface SerializableInterface extends ScopableInterface
      *
      * @return array
      */
-    public function toArray();
+    public function toArray($scope = 'default');
 
     /**
      * hydrate model from an array

@@ -17,7 +17,9 @@ interface ScopableInterface
      * @example
      *    return array(
      *        'default' => array('id', 'code', 'label'),
-     *        'full'    => array('@default', 'created_at', 'updated_at')
+     *        'id'      => 'id',
+     *        'full'    => array('@default', 'related_entity@id', 'created_at', 'updated_at'),
+     *        'extra'   => array('@full', 'related_entity')
      *    );
      *
      * @return array

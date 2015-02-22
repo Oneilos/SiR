@@ -50,13 +50,13 @@ class MajoraEntity
     // *************************************************
 
     /**
-     * @see SerializableInterface::toArray()
+     * @see ScopableInterface::getScopes()
      */
-    public function toArray()
+    public function getScopes()
     {
         return array(
-            'id' => $this->getId(),
-            // adds more here !
+            'default' => array('id'),
+            'id'      => 'id'
         );
     }
 }

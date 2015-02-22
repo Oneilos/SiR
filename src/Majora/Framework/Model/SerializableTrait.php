@@ -3,6 +3,7 @@
 namespace Majora\Framework\Model;
 
 use InvalidArgumentException;
+use Majora\Framework\Model\ScopableInterface;
 
 /**
  * Implements a generic serializable trait
@@ -16,11 +17,56 @@ use InvalidArgumentException;
 trait SerializableTrait
 {
     /**
-     * @see ScopableInterface::getScope()
+     * @see SerializableInterface::toArray()
      */
-    public function getScopes()
+    public function toArray($scope = 'default')
     {
-        return array('default' => array('id'));
+        $scopes = $this->getScopes();
+        if (!isset($scopes[$scope])) {
+            throw new InvalidArgumentException(sprintf(
+                'Invalid scope for %s object, only [%s] supported, "%s" given.',
+                __CLASS__,
+                implode(', ', array_keys($scopes)),
+                $scope
+            ));
+        }
+
+        if (is_string($scopes[$scope])) {
+            $method = sprintf('get%s', ucfirst($scopes[$scope]));
+            return $this->$method();
+        }
+
+        $data  = array();
+        $stack = array($scopes[$scope]);
+        while(true) {
+            $scope = array_shift($stack);
+            foreach ($scope as $fieldConfig) {
+                if (strpos($fieldConfig, '@') === false) {
+                    $method = sprintf('get%s', ucfirst($fieldConfig));
+                    $data[$fieldConfig] = $this->$method();
+                    continue;
+                }
+
+                list($field, $includeScope) = explode('@', $fieldConfig);
+                if (empty($field)) {
+                    array_unshift($stack, $scopes[$includeScope]);
+                    continue;
+                }
+
+                $method        = sprintf('get%s', ucfirst($field));
+                $relatedEntity = $this->$method();
+                $data[$fieldConfig] = $relatedEntity instanceof ScopableInterface ?
+                    $relatedEntity->toArray($includeScope) :
+                    $relatedEntity
+                ;
+            }
+
+            if (empty($stack)) {
+                break;
+            }
+        }
+
+        return $data;
     }
 
     /**
