@@ -2,7 +2,6 @@
 
 namespace SirSdk\Component\MajoraNamespace\Loader\Api;
 
-use Majora\Framework\Loader\Api\BaseApiLoader;
 use SirSdk\Component\MajoraNamespace\Loader\MajoraEntityLoaderInterface;
 
 /**
@@ -12,8 +11,7 @@ use SirSdk\Component\MajoraNamespace\Loader\MajoraEntityLoaderInterface;
  * @subpackage loader
  */
 class MajoraEntityApiLoader
-    extends BaseApiLoader
     implements MajoraEntityLoaderInterface
 {
-
+    use MajoraEntityApiLoaderTrait;
 }

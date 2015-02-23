@@ -3,6 +3,7 @@
 namespace SirSdk\Component\MajoraNamespace\Repository\Api;
 
 use Majora\Framework\Repository\Api\AbstractApiRepository;
+use Majora\Framework\Repository\RepositoryInterface;
 use SirSdk\Component\MajoraNamespace\Model\MajoraEntity;
 use SirSdk\Component\MajoraNamespace\Repository\MajoraEntityRepositoryInterface;
 
@@ -11,28 +12,12 @@ use SirSdk\Component\MajoraNamespace\Repository\MajoraEntityRepositoryInterface;
  *
  * @package majora-namespace
  * @subpackage repository
+ *
+ * @see MajoraEntityApiRepository::save(MajoraEntity $majoraEntity)
+ * @see MajoraEntityApiRepository::delete(MajoraEntity $majoraEntity)
  */
 class MajoraEntityApiRepository
-    extends AbstractApiRepository
-    implements MajoraEntityRepositoryInterface
+    implements MajoraEntityRepositoryInterface, RepositoryInterface
 {
-    /**
-     * @see MajoraEntityRepositoryInterface::save()
-     */
-    public function save(MajoraEntity $majoraEntity)
-    {
-        $this->persist($majoraEntity);
-
-        return $majoraEntity;
-    }
-
-    /**
-     * @see MajoraEntityRepositoryInterface::delete()
-     */
-    public function delete(MajoraEntity $majoraEntity)
-    {
-        $this->remove($majoraEntity);
-
-        return $majoraEntity;
-    }
+    use MajoraEntityApiRepositoryTrait;
 }

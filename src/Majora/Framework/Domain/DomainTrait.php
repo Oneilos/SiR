@@ -3,12 +3,12 @@
 namespace Majora\Framework\Domain;
 
 /**
- * Base class for domains
+ * Base trait for domains
  *
  * @package majora-framework
  * @subpackage domain
  */
-abstract class AbstractDomain
+trait DomainTrait
 {
     /**
      * assert given entity is valid on given scope

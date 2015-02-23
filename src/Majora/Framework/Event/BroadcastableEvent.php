@@ -8,7 +8,7 @@ use Symfony\Component\EventDispatcher\Event;
  * Simple implementation of BroadcastableEventInterface
  *
  * @package majora-framework
- * @subpackage domain
+ * @subpackage event
  */
 class BroadcastableEvent extends Event implements BroadcastableEventInterface
 {

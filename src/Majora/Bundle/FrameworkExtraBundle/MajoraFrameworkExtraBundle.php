@@ -3,6 +3,7 @@
 namespace Majora\Bundle\FrameworkExtraBundle;
 
 use Majora\Bundle\FrameworkExtraBundle\DependencyInjection\Compiler\SerializerCompilerPass;
+use Majora\Bundle\FrameworkExtraBundle\DependencyInjection\Compiler\ValidationCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -13,5 +14,6 @@ class MajoraFrameworkExtraBundle extends Bundle
         parent::build($container);
 
         $container->addCompilerPass(new SerializerCompilerPass());
+        $container->addCompilerPass(new ValidationCompilerPass());
     }
 }

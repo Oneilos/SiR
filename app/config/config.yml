@@ -1,12 +1,7 @@
 imports:
     - { resource: parameters.yml }
+    - { resource: services.yml }
     - { resource: security.yml }
-
-services:
-    twig.extension.text:
-       class: Twig_Extensions_Extension_Text
-       tags:
-           - { name: twig.extension }
 
 framework:
     #esi: ~

@@ -2,7 +2,8 @@
 
 namespace Sir\Component\MajoraNamespace\Repository\Doctrine;
 
-use Majora\Framework\Repository\Api\BaseDoctrineRepository;
+use Doctrine\ORM\EntityRepository;
+use Majora\Framework\Repository\RepositoryInterface;
 use SirSdk\Component\MajoraNamespace\Repository\MajoraEntityRepositoryInterface;
 
 /**
@@ -12,26 +13,8 @@ use SirSdk\Component\MajoraNamespace\Repository\MajoraEntityRepositoryInterface;
  * @subpackage repository
  */
 class MajoraEntityDoctrineRepository
-    extends BaseDoctrineRepository
-    implements MajoraEntityRepositoryInterface
+    extends EntityRepository
+    implements MajoraEntityRepositoryInterface, RepositoryInterface
 {
-    /**
-     * @see MajoraEntityRepositoryInterface::save()
-     */
-    public function save(MajoraEntity $majoraEntity)
-    {
-        $this->persist($majoraEntity);
-
-        return $majoraEntity;
-    }
-
-    /**
-     * @see MajoraEntityRepositoryInterface::delete()
-     */
-    public function delete(MajoraEntity $majoraEntity)
-    {
-        $this->remove($majoraEntity);
-
-        return $majoraEntity;
-    }
+    use MajoraEntityDoctrineRepositoryTrait;
 }

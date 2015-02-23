@@ -2,8 +2,6 @@
 
 namespace Majora\Bundle\FrameworkExtraBundle\Controller;
 
-use JMS\Serializer\SerializationContext;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,12 +10,12 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
- * Base class for REST APIs entity controllers
+ * Base class for REST APIs entity controllers traits
  *
  * @package majora-framework-extra-bundle
  * @subpackage controller
  */
-class RestApiController extends Controller
+trait RestApiControllerTrait
 {
     /**
      * Extract available query filter from request

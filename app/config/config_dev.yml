@@ -15,6 +15,9 @@ monolog:
             type:  stream
             path:  %kernel.logs_dir%/%kernel.environment%.log
             level: debug
+        console:
+            type:   console
+            formatter: console_formatter
         firephp:
             type:  firephp
             level: info

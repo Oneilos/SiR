@@ -12,8 +12,7 @@ use SirSdk\Component\MajoraNamespace\Loader\MajoraEntityLoaderInterface;
  * @subpackage loader
  */
 class MajoraEntityLoader
-    extends BaseLoader
     implements MajoraEntityLoaderInterface
 {
-
+    use MajoraEntityLoaderTrait;
 }

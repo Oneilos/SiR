@@ -19,8 +19,14 @@ class AppKernel extends Kernel
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
-
             new Majora\Bundle\FrameworkExtraBundle\MajoraFrameworkExtraBundle(),
+            new Sir\Bundle\MajoraBridgeBundle\SirMajoraBridgeBundle(),
+
+            // SirSdk
+
+            // Sir
+
+            // Angular boostraps
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

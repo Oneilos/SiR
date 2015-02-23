@@ -10,11 +10,11 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
  * @package majora-framework
  * @subpackage dependency-injection
  */
-class Configuration
+class MajoraConfiguration
 {
-    protected $handledPersistences = array('doctrine', 'fixtures', 'api');
-    protected $handledDomains      = array('default', 'api');
-    protected $handledLoaders      = array('default', 'api');
+    protected $handledPersistences = array('default');
+    protected $handledDomains      = array('default');
+    protected $handledLoaders      = array('default');
 
     /**
      * create and return node section for majora entities

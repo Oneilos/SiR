@@ -2,8 +2,6 @@
 
 namespace SirSdk\Component\MajoraNamespace\Domain\Api;
 
-use Majora\Framework\Domain\AbstractDomain;
-use SirSdk\Component\MajoraNamespace\Domain\MajoraEntityDomainInterface;
 use SirSdk\Component\MajoraNamespace\Repository\Api\MajoraEntityApiRepository;
 
 /**
@@ -11,53 +9,13 @@ use SirSdk\Component\MajoraNamespace\Repository\Api\MajoraEntityApiRepository;
  *
  * @package majora-namespace
  * @subpackage domain
+ *
+ * @see MajoraEntityApiDomainTrait::create(MajoraEntity $majoraEntity)
+ * @see MajoraEntityApiDomainTrait::edit(MajoraEntity $majoraEntity)
+ * @see MajoraEntityApiDomainTrait::delete(MajoraEntity $majoraEntity)
  */
 class MajoraEntityApiDomain
-    extends AbstractDomain
     implements MajoraEntityDomainInterface
 {
-    protected $majoraEntityRepository;
-
-    /**
-     * construct
-     *
-     * @param MajoraEntityApiRepository $majoraEntityRepository
-     */
-    public function __construct(
-        MajoraEntityApiRepository $majoraEntityRepository
-    )
-    {
-        $this->majoraEntityRepository = $majoraEntityRepository;
-    }
-
-    /**
-     * @see MajoraEntityDomainInterface::create()
-     */
-    public function create(MajoraEntity $majoraEntity)
-    {
-        $this->assertEntityIsValid($majoraEntity, 'creation');
-
-        $this->majoraEntityRepository->save($majoraEntity);
-    }
-
-    /**
-     * @see MajoraEntityDomainInterface::edit()
-     */
-    public function edit(MajoraEntity $majoraEntity)
-    {
-        $this->assertEntityIsValid($majoraEntity, 'edition');
-
-        $this->majoraEntityRepository->save($majoraEntity);
-    }
-
-    /**
-     * @see MajoraEntityDomainInterface::delete()
-     */
-    public function delete(MajoraEntity $majoraEntity)
-    {
-        $this->assertEntityIsValid($majoraEntity, 'deletion');
-
-        $this->majoraEntityRepository->delete($majoraEntity);
-    }
-
+    use MajoraEntityApiDomainTrait;
 }

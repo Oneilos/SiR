@@ -6,7 +6,7 @@ namespace Majora\Framework\Event;
  * Interface to implement on broadcastable events
  *
  * @package majora-framework
- * @subpackage domain
+ * @subpackage event
  */
 interface BroadcastableEventInterface
 {

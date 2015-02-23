@@ -6,7 +6,7 @@ namespace Majora\Framework\Loader;
  * Base interface for all loaders
  *
  * @package majora-framework
- * @subpackage domain
+ * @subpackage loader
  */
 interface LoaderInterface
 {

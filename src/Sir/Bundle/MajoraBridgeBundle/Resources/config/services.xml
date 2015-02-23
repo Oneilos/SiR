@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <!-- Service loading modifier -->
+        <service id="majora.generator.loading_modifier" class="Sir\Bundle\MajoraBridgeBundle\Generator\ContentModifier\ServiceLoadingModifier" public="false">
+            <tag name="majora.generator.content_modifier" alias="sir_loading" />
+        </service>
+
+        <!-- Routing modifier -->
+        <service id="majora.generator.routing_modifier" class="Sir\Bundle\MajoraBridgeBundle\Generator\ContentModifier\SdkRoutingModifier" public="false">
+            <tag name="majora.generator.content_modifier" alias="sir_api_routing" />
+        </service>
+
+        <!-- Api routing modifier -->
+        <service id="majora.generator.api_routing_modifier" class="Majora\Bundle\GeneratorBundle\Generator\ContentModifier\UpdateRoutingModifier" public="false">
+            <tag name="majora.generator.content_modifier" alias="sir_update_routing" />
+            <argument>%kernel.root_dir%/config/routing_api.yml</argument>
+            <argument type="service" id="logger" />
+        </service>
+
+    </services>
+
+</container>

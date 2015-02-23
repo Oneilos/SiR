@@ -1,4 +1,6 @@
 <?php
+/* majora_generator.content_modifier: sir_loading */
+/* majora_generator.content_modifier: aliases */
 
 namespace Sir\Bundle\MajoraNamespaceBundle\DependencyInjection;
 
@@ -23,6 +25,7 @@ class SirMajoraNamespaceExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services/gen/majora_entity.xml');
         $loader->load('services/majora_entity.xml');
 
         // aliases

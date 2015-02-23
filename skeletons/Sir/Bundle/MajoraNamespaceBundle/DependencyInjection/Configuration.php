@@ -1,8 +1,9 @@
 <?php
+/* majora_generator.content_modifier: configuration_node */
 
 namespace Sir\Bundle\MajoraNamespaceBundle\DependencyInjection;
 
-use Majora\Framework\DependencyInjection\Configuration as MajoraConfiguration;
+use Sir\Bundle\MajoraBridgeBundle\DependencyInjection\SirMajoraConfiguration;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -11,7 +12,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html#cookbook-bundles-extension-config-class}
  */
-class Configuration extends MajoraConfiguration implements ConfigurationInterface
+class Configuration extends SirMajoraConfiguration implements ConfigurationInterface
 {
     /**
      * {@inheritDoc}
