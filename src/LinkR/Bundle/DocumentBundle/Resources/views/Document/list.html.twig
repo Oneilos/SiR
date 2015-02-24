@@ -1,0 +1,8 @@
+<ul class="document-list">
+{% for document in documents %}
+    <li class="document">
+        {% render(controller('LinkRDocumentBundle:Document:display', { 'document': document, 'options': options|default({}) })) %}
+    </li>
+{% endfor %}
+{% include 'LinkRDocumentBundle:Document:upload_notifications.html.twig' %}
+</ul>

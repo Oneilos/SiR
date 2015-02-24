@@ -1,0 +1,7 @@
+parameters:
+#    LinkR_ceo.example.class: LinkR\Bundle\CEOBundle\Example
+
+services:
+#    LinkR_ceo.example:
+#        class: %LinkR_ceo.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
