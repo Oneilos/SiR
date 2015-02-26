@@ -6,17 +6,14 @@ use Symfony\Component\DependencyInjection\Container;
 
 /**
  * Inflector class which build replacements format
- * from given vars
- *
- * @package majora-generator-bundle
- * @subpackage generator
+ * from given vars.
  */
 class Inflector
 {
     protected $replacements;
 
     /**
-     * construct
+     * construct.
      *
      * @param array $patterns
      */
@@ -33,7 +30,7 @@ class Inflector
     }
 
     /**
-     * return all replacements
+     * return all replacements.
      *
      * @return array
      */
@@ -43,9 +40,10 @@ class Inflector
     }
 
     /**
-     * translate given source string with setted replacement patterns
+     * translate given source string with setted replacement patterns.
      *
-     * @param  string $source
+     * @param string $source
+     *
      * @return string
      */
     public function translate($source)
@@ -54,9 +52,10 @@ class Inflector
     }
 
     /**
-     * format camelCase
+     * format camelCase.
      *
-     * @param  string $string
+     * @param string $string
+     *
      * @return string
      */
     public function camelize($string)
@@ -65,9 +64,10 @@ class Inflector
     }
 
     /**
-     * format PascalCase
+     * format PascalCase.
      *
-     * @param  string $string
+     * @param string $string
+     *
      * @return string
      */
     public function pascalize($string)
@@ -76,9 +76,10 @@ class Inflector
     }
 
     /**
-     * format snake_case
+     * format snake_case.
      *
-     * @param  string $string
+     * @param string $string
+     *
      * @return string
      */
     public function snakelize($string)
@@ -87,9 +88,10 @@ class Inflector
     }
 
     /**
-     * format spinal-case
+     * format spinal-case.
      *
-     * @param  string $string
+     * @param string $string
+     *
      * @return string
      */
     public function spinalize($string)
@@ -98,9 +100,10 @@ class Inflector
     }
 
     /**
-     * format UPPER_CASE
+     * format UPPER_CASE.
      *
-     * @param  string $string
+     * @param string $string
+     *
      * @return string
      */
     public function uppercase($string)

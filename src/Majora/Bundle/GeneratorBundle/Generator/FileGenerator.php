@@ -4,17 +4,13 @@ namespace Majora\Bundle\GeneratorBundle\Generator;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
 /**
  * Class which generate / update / delete code classes
- * according to a whole file structure
- *
- * @package majora-generator-bundle
- * @subpackage generator
+ * according to a whole file structure.
  */
 class FileGenerator
 {
@@ -26,7 +22,7 @@ class FileGenerator
     protected $contentModifiers;
 
     /**
-     * construct
+     * construct.
      *
      * @param string          $projectBasePath
      * @param string          $skeletonsDir
@@ -40,18 +36,17 @@ class FileGenerator
         $targetDir,
         Filesystem      $filesystem,
         LoggerInterface $logger
-    )
-    {
+    ) {
         $this->projectBasePath  = $projectBasePath;
         $this->skeletonsPath    = realpath(sprintf('%s/%s', $projectBasePath, $skeletonsDir));
-        $this->targetPath       = realpath(sprintf('%s/%s', $projectBasePath, $targetDir));;
+        $this->targetPath       = realpath(sprintf('%s/%s', $projectBasePath, $targetDir));
         $this->filesystem       = $filesystem;
         $this->logger           = $logger;
         $this->contentModifiers = new ArrayCollection();
     }
 
     /**
-     * register a content modifier for file generation
+     * register a content modifier for file generation.
      *
      * @param string                   $alias
      * @param ContentModifierInterface $contentModifier
@@ -62,10 +57,11 @@ class FileGenerator
     }
 
     /**
-     * generate targer file path from source path
+     * generate targer file path from source path.
      *
-     * @param  SplFileInfo $fileinfo
-     * @param  Inflector   $inflector
+     * @param SplFileInfo $fileinfo
+     * @param Inflector   $inflector
+     *
      * @return string
      */
     protected function generatePath(SplFileInfo $fileinfo, Inflector $inflector)
@@ -77,9 +73,10 @@ class FileGenerator
     }
 
     /**
-     * parse metadata from given template content
+     * parse metadata from given template content.
      *
-     * @param  string $templateFileContent
+     * @param string $templateFileContent
+     *
      * @return array(alias => array)
      */
     protected function getMetadata($templateFileContent)
@@ -101,8 +98,7 @@ class FileGenerator
             }
 
             $templateFileMetadata[$match[1]][] = is_bool($match[2]) ?
-                ((bool) $match[2]) == true :
-                $match[2]
+                ((bool) $match[2]) === true : $match[2]
             ;
         }
 
@@ -114,12 +110,11 @@ class FileGenerator
         $finder    = new Finder();
         $inflector = new Inflector(array(
             'MajoraEntity'    => $entity,
-            'MajoraNamespace' => $namespace
+            'MajoraNamespace' => $namespace,
         ));
 
         // create file tree
-        foreach($finder->in($this->skeletonsPath) as $templateFile) {
-
+        foreach ($finder->in($this->skeletonsPath) as $templateFile) {
             $fileContent = $templateFile->getContents();
             $metadata    = $this->getMetadata($fileContent);
 
@@ -143,7 +138,6 @@ class FileGenerator
 
             // file
             if ($templateFile->isFile()) {
-
                 $fileContent = $inflector->translate($fileContent);
                 if (!empty($metadata['content_modifier'])) {
                     foreach ($metadata['content_modifier'] as $modifierAlias) {

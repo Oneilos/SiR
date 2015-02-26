@@ -6,10 +6,7 @@ use Majora\Framework\Serializer\Collection\CollectionHandler;
 use Majora\Framework\Serializer\Json\Exception\JsonDeserializationException;
 
 /**
- * Handler implementation creating and using json
- *
- * @package majora-framework
- * @subpackage serializer
+ * Handler implementation creating and using json.
  */
 class JsonHandler
     extends CollectionHandler

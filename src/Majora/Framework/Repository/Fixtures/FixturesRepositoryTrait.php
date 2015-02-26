@@ -3,17 +3,13 @@
 namespace Majora\Framework\Repository\Fixtures;
 
 use InvalidArgumentException;
-use Majora\Framework\Model\BaseEntityCollection;
-use Majora\Framework\Model\SerializableInterface;
+use Majora\Framework\Model\CollectionableInterface;
 use RuntimeException;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
- * Base trait for fixtures repository
- *
- * @package majora-framework
- * @subpackage repository
+ * Base trait for fixtures repository.
  */
 trait FixturesRepositoryTrait
 {
@@ -26,7 +22,7 @@ trait FixturesRepositoryTrait
     protected $serializer;
 
     /**
-     * setUp method
+     * setUp method.
      *
      * @param FileLocator         $fileLocator
      * @param SerializerInterface $serializer
@@ -34,14 +30,13 @@ trait FixturesRepositoryTrait
     public function setUp(
         FileLocator         $fileLocator,
         SerializerInterface $serializer
-    )
-    {
+    ) {
         $this->fileLocator = $fileLocator;
         $this->serializer  = $serializer;
     }
 
     /**
-     * define source file for given repository
+     * define source file for given repository.
      *
      * @param string $sourceFile
      * @param string $collectionClass
@@ -62,7 +57,7 @@ trait FixturesRepositoryTrait
     }
 
     /**
-     * load repository data from source
+     * load repository data from source.
      *
      * @throws RuntimeException If not initialized properly
      */
@@ -110,13 +105,13 @@ trait FixturesRepositoryTrait
     {
         $this->loadData();
 
-        return null;
+        return;
     }
 
     /**
      * @see RepositoryInterface::persist()
      */
-    public function persist($entity)
+    public function persist(CollectionableInterface $entity)
     {
         $this->loadData();
 
@@ -126,7 +121,7 @@ trait FixturesRepositoryTrait
     /**
      * @see RepositoryInterface::remove()
      */
-    public function remove($entity)
+    public function remove(CollectionableInterface $entity)
     {
         $this->loadData();
 

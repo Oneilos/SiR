@@ -2,18 +2,18 @@
 
 namespace Majora\Framework\Repository\Api;
 
+use Majora\Framework\Model\CollectionableInterface;
+
 /**
- * Base trait for doctrine repository
- *
- * @package majora-framework
- * @subpackage repository
+ * Base trait for doctrine repository.
  */
 trait DoctrineRepositoryTrait
 {
     /**
-     * create entity query
+     * create entity query.
      *
-     * @param  string        $alias
+     * @param string $alias
+     *
      * @return QueryBuilder
      */
     protected function createQuery($alias = 'entity')
@@ -22,9 +22,10 @@ trait DoctrineRepositoryTrait
     }
 
     /**
-     * create query an filter it with given data
+     * create query an filter it with given data.
      *
-     * @param  array $filters
+     * @param array $filters
+     *
      * @return Query
      */
     private function createFilteredQuery(array $filters)
@@ -73,7 +74,7 @@ trait DoctrineRepositoryTrait
     /**
      * @see RepositoryInterface::persist()
      */
-    public function persist($entity)
+    public function persist(CollectionableInterface $majoraEntity)
     {
         $em = $this->getEntityManager();
 
@@ -84,7 +85,7 @@ trait DoctrineRepositoryTrait
     /**
      * @see RepositoryInterface::remove()
      */
-    public function remove($entity)
+    public function remove(CollectionableInterface $majoraEntity)
     {
         $em = $this->getEntityManager();
 

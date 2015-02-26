@@ -7,19 +7,16 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension as SymfonyExtensi
 
 /**
  * Extension class used for custom majora related bundle
- * container compilation
- *
- * @package majora-framework
- * @subpackage dependency-injection
+ * container compilation.
  */
 abstract class Extension extends SymfonyExtension
 {
     /**
-     * register base majora service aliases
+     * register base majora service aliases.
      *
-     * @param  ContainerBuilder $containerBuilder
-     * @param  string           $entity
-     * @param  array            $config
+     * @param ContainerBuilder $containerBuilder
+     * @param string           $entity
+     * @param array            $config
      */
     protected function registerAliases(ContainerBuilder $container, $entity, array $config)
     {

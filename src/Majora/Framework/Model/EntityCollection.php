@@ -2,21 +2,18 @@
 
 namespace Majora\Framework\Model;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use BadMethodCallException;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Base class for entity aggregation collection
- *
- * @package majora-framework
- * @subpackage model
+ * Base class for entity aggregation collection.
  */
-class BaseEntityCollection
+class EntityCollection
     extends ArrayCollection
     implements SerializableInterface
 {
     /**
-     * return all elements
+     * return all elements.
      *
      * @return array
      */
@@ -26,14 +23,14 @@ class BaseEntityCollection
     }
 
     /**
-     * return all collection to arrays
+     * return all collection to arrays.
      *
      * @return array
      */
     public function toArray($scope = 'default')
     {
         return array_values(array_map(
-            function(SerializableInterface $entity) use ($scope) {
+            function (SerializableInterface $entity) use ($scope) {
                 return $entity->toArray($scope);
             },
             $this->all()
@@ -59,37 +56,37 @@ class BaseEntityCollection
     }
 
     /**
-     * filter given collection on given fields
+     * filter given collection on given fields.
      *
      * @param array $filters
      *
-     * @return BaseEntityCollection
+     * @return EntityCollection
      */
     public function search(array $filters)
     {
-        return $this->filter(function($entity) use ($filters) {
+        return $this->filter(function (CollectionableInterface $entity) use ($filters) {
             $res = true;
             foreach ($filters as $key => $value) {
                 $method = sprintf('get%s', ucfirst($key));
                 $res = $res
                     && method_exists($entity, $method)
-                    && (
-                        is_array($value) ?
-                            in_array($entity->$method(), $value) :
-                            $entity->$method() == $value
+                    && (is_array($value) ?
+                        in_array($entity->$method(), $value) :
+                        $entity->$method() == $value
                     )
                 ;
             }
+
             return $res;
         });
     }
 
     /**
-     * extract the first $length elements from collection
+     * extract the first $length elements from collection.
      *
      * @param int $length
      *
-     * @return BaseEntityCollection
+     * @return EntityCollection
      */
     public function chunk($length)
     {
@@ -100,7 +97,8 @@ class BaseEntityCollection
 
     /**
      * @see ArrayCollection::slice()
-     * @return BaseEntityCollection
+     *
+     * @return EntityCollection
      */
     public function slice($offset, $length = null)
     {

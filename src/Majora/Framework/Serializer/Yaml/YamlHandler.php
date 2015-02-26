@@ -7,10 +7,7 @@ use Majora\Framework\Serializer\FormatHandlerInterface;
 use Symfony\Component\Yaml\Yaml;
 
 /**
- * Handler implementation creating and using yaml
- *
- * @package majora-framework
- * @subpackage serializer
+ * Handler implementation creating and using yaml.
  */
 class YamlHandler
     extends CollectionHandler
@@ -18,7 +15,7 @@ class YamlHandler
     protected $yamlParser;
 
     /**
-     * construct
+     * construct.
      *
      * @param Yaml $yamlParser
      */

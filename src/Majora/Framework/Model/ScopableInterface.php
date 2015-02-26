@@ -4,15 +4,12 @@ namespace Majora\Framework\Model;
 
 /**
  * Interface to implements on all
- * scopable models
- *
- * @package majora-framework
- * @subpackage model
+ * scopable models.
  */
 interface ScopableInterface
 {
     /**
-     * has to return all properties in scopes
+     * has to return all properties in scopes.
      *
      * @example
      *    return array(

@@ -6,10 +6,7 @@ namespace Sir\Component\MajoraNamespace\Loader;
 use Majora\Framework\Loader\LoaderTrait;
 
 /**
- * Default MajoraEntity loader implementation trait
- *
- * @package majora-namespace
- * @subpackage loader
+ * Default MajoraEntity loader implementation trait.
  */
 trait MajoraEntityLoaderTrait
 {

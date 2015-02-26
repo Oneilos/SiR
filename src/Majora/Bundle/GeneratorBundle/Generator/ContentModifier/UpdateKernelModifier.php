@@ -8,10 +8,7 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\Finder\SplFileInfo;
 
 /**
- * Service for updating kernel from a bundle class
- *
- * @package majora-generator-bundle
- * @subpackage generator
+ * Service for updating kernel from a bundle class.
  */
 class UpdateKernelModifier
     implements ContentModifierInterface
@@ -24,7 +21,7 @@ class UpdateKernelModifier
     protected $currentNamespace;
 
     /**
-     * construct
+     * construct.
      *
      * @param string          $kernelPath
      * @param LoggerInterface $logger

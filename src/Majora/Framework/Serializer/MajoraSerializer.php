@@ -6,10 +6,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 use BadMethodCallException;
 
 /**
- * Base class for fixtures repository
- *
- * @package majora-framework
- * @subpackage serializer
+ * Base class for fixtures repository.
  */
 class MajoraSerializer
     implements SerializerInterface
@@ -17,7 +14,7 @@ class MajoraSerializer
     protected $handlers;
 
     /**
-     * construct
+     * construct.
      *
      * @param array $handlers
      */
@@ -56,5 +53,4 @@ class MajoraSerializer
 
         return $this->handlers[$format]->deserialize($data, $type);
     }
-
 }

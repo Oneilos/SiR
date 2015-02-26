@@ -6,10 +6,8 @@ use Majora\Framework\Repository\Api\ApiRepositoryTrait;
 use SirSdk\Component\MajoraNamespace\Model\MajoraEntity;
 
 /**
- * MajoraEntity repository implementation using an API
+ * MajoraEntity repository implementation using an API.
  *
- * @package majora-namespace
- * @subpackage repository
  *
  * @see ApiRepositoryTrait::retrieveAll(array $filters = array(), $limit = null, $offset = null)
  * @see ApiRepositoryTrait::retrieve($id)

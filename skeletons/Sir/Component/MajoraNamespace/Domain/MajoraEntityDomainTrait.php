@@ -5,34 +5,32 @@ namespace Sir\Component\MajoraNamespace\Domain;
 
 use Majora\Framework\Domain\DomainTrait;
 use SirSdk\Component\MajoraNamespace\Domain\MajoraEntityDomainInterface;
+use SirSdk\Component\MajoraNamespace\Model\MajoraEntity;
 use SirSdk\Component\MajoraNamespace\Repository\MajoraEntityRepositoryInterface;
 use Sir\Component\MajoraNamespace\Event\MajoraEntityEvent;
 use Sir\Component\MajoraNamespace\Event\MajoraEntityEvents;
 
 /**
- * MajoraEntity domain use cases auto generated trait
+ * MajoraEntity domain use cases auto generated trait.
  *
- * @package majora-namespace
- * @subpackage domain
  *
  * @see DomainTrait::assertEntityIsValid()
  * @see DomainTrait::fireEvent()
  */
-class MajoraEntityTrait
+class MajoraEntityDomainTrait
 {
     use DomainTrait;
 
     protected $majoraEntityRepository;
 
     /**
-     * construct
+     * construct.
      *
      * @param MajoraEntityRepositoryInterface $majoraEntityRepository
      */
     public function __construct(
         MajoraEntityRepositoryInterface $majoraEntityRepository
-    )
-    {
+    ) {
         $this->majoraEntityRepository = $majoraEntityRepository;
     }
 

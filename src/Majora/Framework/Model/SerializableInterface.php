@@ -4,15 +4,12 @@ namespace Majora\Framework\Model;
 
 /**
  * Interface to implements on all
- * scopable models
- *
- * @package majora-framework
- * @subpackage model
+ * scopable models.
  */
 interface SerializableInterface extends ScopableInterface
 {
     /**
-     * has to return an array representation of model
+     * has to return an array representation of model.
      *
      * @example
      *    return array(
@@ -26,7 +23,7 @@ interface SerializableInterface extends ScopableInterface
     public function toArray($scope = 'default');
 
     /**
-     * hydrate model from an array
+     * hydrate model from an array.
      *
      * @param array $objectData model fields as array
      *

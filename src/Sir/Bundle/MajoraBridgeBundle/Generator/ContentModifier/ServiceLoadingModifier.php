@@ -7,10 +7,7 @@ use Majora\Bundle\GeneratorBundle\Generator\Inflector;
 use Symfony\Component\Finder\SplFileInfo;
 
 /**
- * Service alias creation content modifier
- *
- * @package majora-bridge-bundle
- * @subpackage generator
+ * Service alias creation content modifier.
  */
 class ServiceLoadingModifier
     implements ContentModifierInterface

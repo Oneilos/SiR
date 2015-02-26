@@ -5,13 +5,9 @@ namespace Majora\Framework\Serializer\Json\Exception;
 use InvalidArgumentException;
 
 /**
- * Exception class for deserialization exceptions
- *
- * @package majora-framework
- * @subpackage serializer
+ * Exception class for deserialization exceptions.
  */
 class JsonDeserializationException
     extends InvalidArgumentException
 {
-
 }
