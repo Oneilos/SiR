@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+
+<!-- majora_generator.force_generation: true -->
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <!-- MajoraEntity domain -->
+        <service id="sir.majora_entity.api_domain"
+                 class="SirSdk\Component\MajoraNamespace\Domain\Api\MajoraEntityApiDomain"
+                 parent="majora.domain.abstract"
+                 public="false"
+        >
+            <argument type="service" id="sir.majora_entity.repository" />
+        </service>
+
+        <!-- MajoraEntity api loader -->
+        <service id="sir.majora_entity.api_loader"
+                 class="SirSdk\Component\MajoraNamespace\Loader\Api\MajoraEntityApiLoader"
+                 parent="majora.loader.abstract"
+                 public="false"
+        >
+            <call method="setUp"> <!-- parent class setUp -->
+                <argument type="service" id="sir.majora_entity.api_repository" />
+                <argument>SirSdk\Component\MajoraNamespace\Model\MajoraEntity</argument>
+                <argument>SirSdk\Component\MajoraNamespace\Model\MajoraEntityCollection</argument>
+            </call>
+        </service>
+
+        <!-- MajoraEntity api repository -->
+        <service id="sir.majora_entity.api_repository"
+                 class="SirSdk\Component\MajoraNamespace\Repository\Api\MajoraEntityApiRepository"
+                 parent="majora.api_repository.abstract"
+                 public="false"
+        >
+            <argument>majora_entity</argument>
+        </service>
+
+    </services>
+
+</container>

@@ -4,17 +4,75 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
-    <parameters>
-        <parameter key="majora_framework_extra.example.class">Majora\Bundle\FrameworkExtraBundle\Example</parameter>
-    </parameters>
-
     <services>
-        <service id="majora_framework_extra.example" class="%majora_framework_extra.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+
+        <!-- Majora base domain definirion -->
+        <service id="majora.domain.abstract"
+                 class="Majora\Framework\Domain\AbstractDomain"
+                 abstract="true" public="false"
+        >
+
         </service>
+
+        <!-- Majora base loader definirion -->
+        <service id="majora.loader.abstract"
+                 class="Majora\Framework\Loader\BaseLoader"
+                 abstract="true" public="false"
+        >
+
+        </service>
+
+        <!-- Majora base api repository definition -->
+        <service id="majora.api_repository.abstract"
+                 class="Majora\Framework\Repository\Api\AbstractApiRepository"
+                 abstract="true" public="false"
+        >
+
+        </service>
+
+        <!-- Majora base fixtures repository definition -->
+        <service id="majora.fixtures_repository.abstract"
+                 class="Majora\Framework\Repository\Fixtures\AbstractFixturesRepository"
+                 abstract="true" public="false"
+        >
+            <call method="setUp">
+                <argument type="service" id="file_locator" />
+                <argument type="service" id="serializer" />
+            </call>
+        </service>
+
+        <!-- Majora base doctrine repository definition -->
+        <service id="majora.doctrine_repository.abstract"
+                 class="Majora\Framework\Repository\Doctrine\BaseDoctrineRepository"
+                 abstract="true" public="false"
+        >
+
+        </service>
+
+        <!-- Serializer -->
+        <service id="majora.serializer" class="Majora\Framework\Serializer\MajoraSerializer">
+            <argument><!-- serialize handlers --></argument>
+        </service>
+        <service id="serializer" alias="majora.serializer" />
+
+        <!-- Json serialization handler -->
+        <service id="majora.serialization_handler.json" class="Majora\Framework\Serializer\Json\JsonHandler" public="false">
+            <tag name="majora.serialization_handler" format="json" />
+        </service>
+
+        <!-- Array serialization handler -->
+        <service id="majora.serialization_handler.array" class="Majora\Framework\Serializer\Collection\CollectionHandler" public="false">
+            <tag name="majora.serialization_handler" format="array" />
+        </service>
+
+        <!-- Yaml serialization handler -->
+        <service id="majora.serialization_handler.yaml" class="Majora\Framework\Serializer\Yaml\YamlHandler" public="false">
+            <tag name="majora.serialization_handler" format="yaml" />
+            <argument type="service" id="yaml_parser" />
+        </service>
+
+        <!-- Yaml parser -->
+        <service id="yaml_parser" class="Symfony\Component\Yaml\Yaml" public="false" />
+
     </services>
-    -->
 </container>

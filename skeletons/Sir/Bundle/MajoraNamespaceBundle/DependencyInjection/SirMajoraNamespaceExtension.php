@@ -1,10 +1,12 @@
 <?php
+/* majora_generator.content_modifier: sir_loading */
+/* majora_generator.content_modifier: aliases */
 
 namespace Sir\Bundle\MajoraNamespaceBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Majora\Framework\DependencyInjection\Extension;
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
 
 /**
@@ -23,6 +25,12 @@ class SirMajoraNamespaceExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        // $loader->load('services/majora_entity.xml');
+        $loader->load('services/gen/majora_entity.xml');
+        $loader->load('services/majora_entity.xml');
+
+        // aliases
+
+        // MajoraEntity aliases
+        $this->registerAliases($container, 'sir.majora_entity', $config['majora_entity']);
     }
 }
