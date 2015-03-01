@@ -1,6 +1,7 @@
 <?php
 // majora_generator.force_generation: true
 
+
 namespace SirSdk\Component\MajoraNamespace\Domain\Api;
 
 use Majora\Framework\Domain\DomainTrait;
@@ -8,10 +9,8 @@ use SirSdk\Component\MajoraNamespace\Model\MajoraEntity;
 use SirSdk\Component\MajoraNamespace\Repository\Api\MajoraEntityApiRepository;
 
 /**
- * MajoraEntity domain API traits
+ * MajoraEntity domain API traits.
  *
- * @package majora-namespace
- * @subpackage domain
  *
  * @see DomainTrait::assertEntityIsValid($entity, $scope = null)
  * @see DomainTrait::fireEvent($eventName, Event $event)
@@ -23,14 +22,13 @@ trait MajoraEntityApiDomainTrait
     protected $majoraEntityRepository;
 
     /**
-     * construct
+     * construct.
      *
      * @param MajoraEntityApiRepository $majoraEntityRepository
      */
     public function __construct(
         MajoraEntityApiRepository $majoraEntityRepository
-    )
-    {
+    ) {
         $this->majoraEntityRepository = $majoraEntityRepository;
     }
 
@@ -63,5 +61,4 @@ trait MajoraEntityApiDomainTrait
 
         $this->majoraEntityRepository->delete($majoraEntity);
     }
-
 }

@@ -7,10 +7,7 @@ use Majora\Framework\Repository\RepositoryInterface;
 use SirSdk\Component\MajoraNamespace\Repository\MajoraEntityRepositoryInterface;
 
 /**
- * MajoraEntity repository implementation using Doctrine
- *
- * @package majora-namespace
- * @subpackage repository
+ * MajoraEntity repository implementation using Doctrine.
  */
 class MajoraEntityDoctrineRepository
     extends EntityRepository

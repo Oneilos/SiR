@@ -2,24 +2,21 @@
 
 namespace SirSdk\Component\MajoraNamespace\Model;
 
-use Majora\Framework\Model\SerializableInterface;
+use Majora\Framework\Model\CollectionableInterface;
 use Majora\Framework\Model\SerializableTrait;
 
 /**
- * MajoraEntity model class
- *
- * @package majora-namespace
- * @subpackage model
+ * MajoraEntity model class.
  */
 class MajoraEntity
-    implements SerializableInterface
+    implements CollectionableInterface
 {
-    use SerializableTrait;
+    use CollectionableTrait, SerializableTrait;
 
     protected $id;
 
     /**
-     * return MajoraEntity id
+     * return MajoraEntity id.
      *
      * @return integer
      */
@@ -29,7 +26,7 @@ class MajoraEntity
     }
 
     /**
-     * define MajoraEntity id
+     * define MajoraEntity id.
      *
      * @param integer $id
      *
@@ -56,7 +53,7 @@ class MajoraEntity
     {
         return array(
             'default' => array('id'),
-            'id'      => 'id'
+            'id'      => 'id',
         );
     }
 }

@@ -9,10 +9,7 @@ use Symfony\Component\Finder\SplFileInfo;
 use Symfony\Component\HttpKernel\Log\LoggerInterface;
 
 /**
- * Service for updating main routing from a bundle routing file
- *
- * @package majora-generator-bundle
- * @subpackage generator
+ * Service for updating main routing from a bundle routing file.
  */
 class UpdateRoutingModifier
     implements ContentModifierInterface
@@ -23,7 +20,7 @@ class UpdateRoutingModifier
     protected $currentBundleClass;
 
     /**
-     * construct
+     * construct.
      *
      * @param string          $routingPath
      * @param LoggerInterface $logger
@@ -76,11 +73,10 @@ class UpdateRoutingModifier
         file_put_contents(
             $this->routingPath,
             '
-# '. $inflector->translate('MajoraNamespace') .' bundle routing
-'. $inflector->translate('majora_namespace') .'_api_routing:
-    resource: "@'. $this->currentBundleClass .'/Resources/config/routing_api.yml"
-'
-            ,
+# '.$inflector->translate('MajoraNamespace').' bundle routing
+'.$inflector->translate('majora_namespace').'_api_routing:
+    resource: "@'.$this->currentBundleClass.'/Resources/config/routing_api.yml"
+',
             FILE_APPEND
         );
 

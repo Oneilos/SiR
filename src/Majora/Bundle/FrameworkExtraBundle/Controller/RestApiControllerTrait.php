@@ -6,27 +6,24 @@ use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
- * Base class for REST APIs entity controllers traits
- *
- * @package majora-framework-extra-bundle
- * @subpackage controller
+ * Base class for REST APIs entity controllers traits.
  */
 trait RestApiControllerTrait
 {
     /**
-     * Extract available query filter from request
+     * Extract available query filter from request.
      *
-     * @param  Request $request
+     * @param Request $request
+     *
      * @return array
      */
     protected function extractQueryFilter(Request $request)
     {
         return array_map(
-            function($value) {
+            function ($value) {
                 return array_filter(explode(',', trim($value, ',')), function ($var) {
                     return !empty($var);
                 });
@@ -36,11 +33,13 @@ trait RestApiControllerTrait
     }
 
     /**
-     * Retrieves entity for given id into given repository service
+     * Retrieves entity for given id into given repository service.
      *
      * @param $entityId
      * @param $loaderId
+     *
      * @return Object
+     *
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
     protected function retrieveOr404($entityId, $loaderId)
@@ -51,7 +50,6 @@ trait RestApiControllerTrait
             ));
         }
 
-        // @todo introduce proper method
         if (!$entity = $this->get($loaderId)->retrieve($entityId)) {
             throw $this->createRest404($entityId, $loaderId);
         }
@@ -60,10 +58,11 @@ trait RestApiControllerTrait
     }
 
     /**
-     * create a formatted http not found exception
+     * create a formatted http not found exception.
      *
-     * @param  string                $entityId
-     * @param  string                $loaderId
+     * @param string $entityId
+     * @param string $loaderId
+     *
      * @return NotFoundHttpException
      */
     protected function createRest404($entityId, $loaderId)
@@ -78,11 +77,11 @@ trait RestApiControllerTrait
 
     /**
      * Create a JsonResponse with given data, if object given, it will be serialize
-     * with registered serializer
+     * with registered serializer.
      *
-     * @param  mixed    $data
-     * @param  string   $scope
-     * @param  int      $status
+     * @param mixed  $data
+     * @param string $scope
+     * @param int    $status
      *
      * @return Response
      */
@@ -104,8 +103,9 @@ trait RestApiControllerTrait
     }
 
     /**
-     * @param  int          $status
-     * @param  array        $headers
+     * @param int   $status
+     * @param array $headers
+     *
      * @return JsonResponse
      */
     protected function createJsonNoContentResponse()
@@ -117,10 +117,11 @@ trait RestApiControllerTrait
     }
 
     /**
-     * create and returns a 400 Bad Request response
+     * create and returns a 400 Bad Request response.
      *
-     * @param  array        $errors
-     * @param  array        $headers
+     * @param array $errors
+     * @param array $headers
+     *
      * @return JsonResponse
      */
     protected function createJsonBadRequestResponse(array $errors = array())
@@ -132,7 +133,7 @@ trait RestApiControllerTrait
             }
             $errors['errors'][$key] = array(
                 'message'    => $error->getMessage(),
-                'parameters' => $error->getMessageParameters()
+                'parameters' => $error->getMessageParameters(),
             );
             unset($errors[$key]);
         }
@@ -149,7 +150,7 @@ trait RestApiControllerTrait
 
     /**
      * Custom method for form submission to handle http method bugs, and extra fields
-     * error options
+     * error options.
      *
      * @param Request       $request
      * @param FormInterface $form
@@ -160,8 +161,7 @@ trait RestApiControllerTrait
     {
         $data = $this->extractFormData(
             $this->get('serializer')
-                ->deserialize($request->getContent(), 'array')
-            ,
+                ->deserialize($request->getContent(), 'array'),
             $form
         );
 
@@ -177,10 +177,11 @@ trait RestApiControllerTrait
     }
 
     /**
-     * Removes additional data that hasn't been defined in the form
+     * Removes additional data that hasn't been defined in the form.
      *
-     * @param  array         $data
-     * @param  FormInterface $form
+     * @param array         $data
+     * @param FormInterface $form
+     *
      * @return array
      */
     protected function extractFormData(array $data, FormInterface $form)
@@ -189,7 +190,6 @@ trait RestApiControllerTrait
         $formChildren = $form->all();
 
         foreach ($formChildren as $formKey => $formChild) {
-
             if (!isset($data[$formKey])) {
                 continue;
             }

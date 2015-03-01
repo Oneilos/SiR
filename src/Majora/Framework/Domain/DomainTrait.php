@@ -2,16 +2,15 @@
 
 namespace Majora\Framework\Domain;
 
+use Symfony\Component\EventDispatcher\Event;
+
 /**
- * Base trait for domains
- *
- * @package majora-framework
- * @subpackage domain
+ * Base trait for domains.
  */
 trait DomainTrait
 {
     /**
-     * assert given entity is valid on given scope
+     * assert given entity is valid on given scope.
      *
      * @param object $entity
      * @param string $scope
@@ -20,17 +19,15 @@ trait DomainTrait
      */
     protected function assertEntityIsValid($entity, $scope = null)
     {
-
     }
 
     /**
-     * fire given event
+     * fire given event.
      *
      * @param string $eventName
      * @param Event  $event
      */
     protected function fireEvent($eventName, Event $event)
     {
-
     }
 }

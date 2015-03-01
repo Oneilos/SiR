@@ -2,16 +2,13 @@
 
 namespace SirSdk\Component\MajoraNamespace\Model;
 
-use Majora\Framework\Model\BaseEntityCollection;
+use Majora\Framework\Model\EntityCollection;
 
 /**
- * MajoraEntity model collection class
- *
- * @package majora-namespace
- * @subpackage model
+ * MajoraEntity model collection class.
  */
 class MajoraEntityCollection
-    extends BaseEntityCollection
+    extends EntityCollection
 {
     /**
      * @see SerializableInterface::fromArray()
@@ -20,7 +17,7 @@ class MajoraEntityCollection
     {
         $this->clear();
         $entities = array_map(
-            function(array $majoraEntityData) {
+            function (array $majoraEntityData) {
                 return (new MajoraEntity())->fromArray($majoraEntityData);
             },
             $data

@@ -3,12 +3,10 @@
 namespace Sir\Component\MajoraNamespace\Event;
 
 use Majora\Framework\Event\BroadcastableEvent;
+use SirSdk\Component\MajoraNamespace\Model\MajoraEntity;
 
 /**
- * MajoraEntity specific event class
- *
- * @package majora-namespace
- * @subpackage event
+ * MajoraEntity specific event class.
  */
 class MajoraEntityEvent
     extends BroadcastableEvent
@@ -16,7 +14,7 @@ class MajoraEntityEvent
     protected $majoraEntity;
 
     /**
-     * construct
+     * construct.
      *
      * @param MajoraEntity $majoraEntity
      */
@@ -26,7 +24,7 @@ class MajoraEntityEvent
     }
 
     /**
-     * return related
+     * return related.
      *
      * @return MajoraEntity
      */
@@ -41,7 +39,7 @@ class MajoraEntityEvent
     public function getData()
     {
         return array(
-            'majora_entity_id' => $this->getMajoraEntity()->getId()
+            'majora_entity_id' => $this->getMajoraEntity()->getId(),
         );
     }
 }

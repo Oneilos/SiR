@@ -3,10 +3,7 @@
 namespace Majora\Framework\Loader;
 
 /**
- * Base class for loaders
- *
- * @package majora-framework
- * @subpackage loader
+ * Base class for loaders.
  */
 abstract class BaseLoader implements LoaderInterface
 {

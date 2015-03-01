@@ -5,10 +5,7 @@ namespace Majora\Framework\DependencyInjection;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 
 /**
- * Configuration class used for majora related bundles
- *
- * @package majora-framework
- * @subpackage dependency-injection
+ * Configuration class used for majora related bundles.
  */
 class MajoraConfiguration
 {
@@ -17,7 +14,7 @@ class MajoraConfiguration
     protected $handledLoaders      = array('default');
 
     /**
-     * create and return node section for majora entities
+     * create and return node section for majora entities.
      *
      * @param string $entity
      *

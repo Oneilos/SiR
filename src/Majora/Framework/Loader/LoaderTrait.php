@@ -9,10 +9,7 @@ use RuntimeException;
 use InvalidArgumentException;
 
 /**
- * Base trait for loaders
- *
- * @package majora-framework
- * @subpackage loader
+ * Base trait for loaders.
  */
 trait LoaderTrait
 {
@@ -21,7 +18,7 @@ trait LoaderTrait
     protected $collectionClass;
 
     /**
-     * setUp method
+     * setUp method.
      *
      * @param RepositoryInterface $entityRepository
      * @param string              $entityClass
@@ -31,13 +28,12 @@ trait LoaderTrait
         RepositoryInterface $entityRepository,
         $entityClass,
         $collectionClass
-    )
-    {
+    ) {
         $this->entityRepository = $entityRepository;
         $this->entityClass      = $entityClass;
         $this->collectionClass  = $collectionClass;
 
-        $entity = new $entityClass;
+        $entity = new $entityClass();
         if (!$entity instanceof SerializableInterface) {
             throw new InvalidArgumentException(
                 'You must provide a Majora\Framework\Model\SerializableInterface class name.'
@@ -46,7 +42,7 @@ trait LoaderTrait
     }
 
     /**
-     * checks if loader is initialized
+     * checks if loader is initialized.
      *
      * @throws RuntimeException if not configured
      */
@@ -63,7 +59,7 @@ trait LoaderTrait
     }
 
     /**
-     * Filter filters, only keep those who match related entity fields
+     * Filter filters, only keep those who match related entity fields.
      *
      * @param array $filters
      *
@@ -73,13 +69,13 @@ trait LoaderTrait
     {
         return array_intersect_key(
             $filters,
-            array_flip(array_keys((new $this->entityClass)->toArray()))
+            array_flip(array_keys((new $this->entityClass())->toArray()))
         );
     }
 
     /**
      * Loads data from repository
-     * then cast it to proper classes if not
+     * then cast it to proper classes if not.
      *
      * @see LoaderInterface::retrieveAll()
      */

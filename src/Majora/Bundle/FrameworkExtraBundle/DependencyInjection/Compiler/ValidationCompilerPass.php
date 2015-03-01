@@ -9,10 +9,7 @@ use Symfony\Component\Finder\Finder;
 
 /**
  * Compiler pass used to guess extra validation
- * files from bundles
- *
- * @package majora-framework-extra-bundle
- * @subpackage dependency-injection
+ * files from bundles.
  */
 class ValidationCompilerPass implements CompilerPassInterface
 {

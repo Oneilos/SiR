@@ -6,10 +6,7 @@ use Doctrine\ORM\EntityRepository;
 use Majora\Framework\Repository\RepositoryInterface;
 
 /**
- * Base class for doctrine repository
- *
- * @package majora-framework
- * @subpackage repository
+ * Base class for doctrine repository.
  */
 class BaseDoctrineRepository
     extends EntityRepository

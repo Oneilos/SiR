@@ -7,10 +7,7 @@ use Majora\Bundle\GeneratorBundle\Generator\Inflector;
 use Symfony\Component\Finder\SplFileInfo;
 
 /**
- * Service alias creation content modifier
- *
- * @package majora-bridge-bundle
- * @subpackage generator
+ * Service alias creation content modifier.
  */
 class SdkRoutingModifier
     implements ContentModifierInterface
@@ -43,15 +40,15 @@ class SdkRoutingModifier
      */
     public function modify($fileContent, Inflector $inflector)
     {
-        return $fileContent. '
-# '. $inflector->translate('MajoraEntity') .' Api
-'. $inflector->translate('majora_entity') . '_rest_api:
-    resource: "@SirSdk'. $inflector->translate('MajoraNamespace') .'Bundle/Resources/config/routing/gen/'. $inflector->translate('majora_entity') . '_api.yml"
-    prefix:   /'. $inflector->translate('majora_entity') . 's
-# '. $inflector->translate('MajoraEntity') .' Api
-'. $inflector->translate('majora_entity') . '_rest_api:
-    resource: "@SirSdk'. $inflector->translate('MajoraNamespace') .'Bundle/Resources/config/routing/'. $inflector->translate('majora_entity') . '_api.yml"
-    prefix:   /'. $inflector->translate('majora_entity') . 's
+        return $fileContent.'
+# '.$inflector->translate('MajoraEntity').' Api
+'.$inflector->translate('majora_entity').'_rest_api:
+    resource: "@SirSdk'.$inflector->translate('MajoraNamespace').'Bundle/Resources/config/routing/gen/'.$inflector->translate('majora_entity').'_api.yml"
+    prefix:   /'.$inflector->translate('majora_entity').'s
+# '.$inflector->translate('MajoraEntity').' Api
+'.$inflector->translate('majora_entity').'_rest_api:
+    resource: "@SirSdk'.$inflector->translate('MajoraNamespace').'Bundle/Resources/config/routing/'.$inflector->translate('majora_entity').'_api.yml"
+    prefix:   /'.$inflector->translate('majora_entity').'s
 '
         ;
     }

@@ -6,10 +6,7 @@ use Majora\Framework\Model\SerializableInterface;
 use Majora\Framework\Serializer\FormatHandlerInterface;
 
 /**
- * Handler implementation creating and using arrays
- *
- * @package majora-framework
- * @subpackage serializer
+ * Handler implementation creating and using arrays.
  */
 class CollectionHandler
     implements FormatHandlerInterface

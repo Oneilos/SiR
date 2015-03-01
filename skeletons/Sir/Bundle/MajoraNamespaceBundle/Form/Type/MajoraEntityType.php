@@ -7,10 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Form type for MajoraEntity entity
- *
- * @package majora-namespace-bundle
- * @subpackage form
+ * Form type for MajoraEntity entity.
  */
 class MajoraEntityType extends AbstractType
 {
@@ -30,7 +27,7 @@ class MajoraEntityType extends AbstractType
         $resolver->setDefaults([
             'data_class'         => 'SirSdk\Component\MajoraNamespace\Model\MajoraEntity',
             'csrf_protection'    => false,
-            'allow_extra_fields' => true
+            'allow_extra_fields' => true,
         ]);
     }
 
@@ -46,7 +43,5 @@ class MajoraEntityType extends AbstractType
         // Implement your own logic here !
         //
         // *************************************************
-
     }
-
 }

@@ -7,10 +7,7 @@ use Majora\Framework\Repository\Fixtures\FixturesRepositoryTrait;
 use SirSdk\Component\MajoraNamespace\Model\MajoraEntity;
 
 /**
- * MajoraEntity repository memory fixtures trait
- *
- * @package majora-namespace
- * @subpackage repository
+ * MajoraEntity repository memory fixtures trait.
  */
 trait MajoraEntityFixturesRepositoryTrait
 {

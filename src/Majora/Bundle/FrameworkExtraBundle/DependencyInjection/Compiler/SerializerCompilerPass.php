@@ -7,10 +7,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
 /**
- * Compiler pass to guess all serializer formats
- *
- * @package majora-framework-extra-bundle
- * @subpackage dependency-injection
+ * Compiler pass to guess all serializer formats.
  */
 class SerializerCompilerPass implements CompilerPassInterface
 {

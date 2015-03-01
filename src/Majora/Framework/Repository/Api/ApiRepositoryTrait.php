@@ -2,11 +2,10 @@
 
 namespace Majora\Framework\Repository\Api;
 
+use Majora\Framework\Model\CollectionableInterface;
+
 /**
- * Base trait for api repository
- *
- * @package majora-framework
- * @subpackage repository
+ * Base trait for api repository.
  */
 trait ApiRepositoryTrait
 {
@@ -23,13 +22,13 @@ trait ApiRepositoryTrait
      */
     public function retrieve($id)
     {
-        return null;
+        return;
     }
 
     /**
      * @see RepositoryInterface::persist()
      */
-    public function persist($entity)
+    public function persist(CollectionableInterface $entity)
     {
         return;
     }
@@ -37,7 +36,7 @@ trait ApiRepositoryTrait
     /**
      * @see RepositoryInterface::remove()
      */
-    public function remove($entity)
+    public function remove(CollectionableInterface $entity)
     {
         return;
     }

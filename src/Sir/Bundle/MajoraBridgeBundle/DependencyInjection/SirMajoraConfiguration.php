@@ -3,13 +3,9 @@
 namespace Sir\Bundle\MajoraBridgeBundle\DependencyInjection;
 
 use Majora\Framework\DependencyInjection\MajoraConfiguration;
-use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 
 /**
- * Configuration class used for sir majora related bundles
- *
- * @package majora-bridge-bundle
- * @subpackage dependency-injection
+ * Configuration class used for sir majora related bundles.
  */
 class SirMajoraConfiguration extends MajoraConfiguration
 {

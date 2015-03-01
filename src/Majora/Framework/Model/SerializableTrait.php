@@ -3,16 +3,12 @@
 namespace Majora\Framework\Model;
 
 use InvalidArgumentException;
-use Majora\Framework\Model\ScopableInterface;
 
 /**
- * Implements a generic serializable trait
+ * Implements a generic serializable trait.
  *
  * @see SerializableInterface
  * @see ScopableInterface
- *
- * @package majora-framework
- * @subpackage model
  */
 trait SerializableTrait
 {
@@ -33,12 +29,13 @@ trait SerializableTrait
 
         if (is_string($scopes[$scope])) {
             $method = sprintf('get%s', ucfirst($scopes[$scope]));
+
             return $this->$method();
         }
 
         $data  = array();
         $stack = array($scopes[$scope]);
-        while(true) {
+        while (true) {
             $scope = array_shift($stack);
             foreach ($scope as $fieldConfig) {
                 if (strpos($fieldConfig, '@') === false) {
@@ -86,8 +83,7 @@ trait SerializableTrait
             $setter = sprintf('set%s', ucfirst($property));
             if (method_exists($this, $setter)) {
                 $this->$setter($value);
-            }
-            else {
+            } else {
                 $this->$property = $value;
             }
         }

@@ -3,17 +3,13 @@
 namespace Majora\Bundle\GeneratorBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Generator command, boots generator from CLI
- *
- * @package majora-generator-bundle
- * @subpackage command
+ * Generator command, boots generator from CLI.
  */
 class GeneratorCommand extends ContainerAwareCommand
 {

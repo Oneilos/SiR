@@ -13,4 +13,5 @@ parameters:
 
     locale:            fr
     managed_locales:   [fr]
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    secret:            SirADistribOfAllLinkValueComponents
+    session_dir:       /dev/shm/session

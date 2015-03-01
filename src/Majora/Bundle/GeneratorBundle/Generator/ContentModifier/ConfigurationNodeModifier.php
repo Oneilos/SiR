@@ -7,10 +7,7 @@ use Majora\Bundle\GeneratorBundle\Generator\Inflector;
 use Symfony\Component\Finder\SplFileInfo;
 
 /**
- * Service alias creation content modifier
- *
- * @package majora-generator-bundle
- * @subpackage generator
+ * Service alias creation content modifier.
  */
 class ConfigurationNodeModifier
     implements ContentModifierInterface
@@ -49,9 +46,8 @@ class ConfigurationNodeModifier
         '$rootNode
             ->children()
 
-                // '. $inflector->translate('MajoraEntity') .' section
-                ->append($this->createEntitySection(\''. $inflector->translate('majora_entity') .'\'))'
-            ,
+                // '.$inflector->translate('MajoraEntity').' section
+                ->append($this->createEntitySection(\''.$inflector->translate('majora_entity').'\'))',
             $fileContent
         );
     }

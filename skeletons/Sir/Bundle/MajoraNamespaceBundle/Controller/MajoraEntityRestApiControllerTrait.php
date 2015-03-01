@@ -3,9 +3,7 @@
 
 namespace Sir\Bundle\MajoraNamespaceBundle\Controller;
 
-use FOS\RestBundle\Controller\Annotations\NamePrefix;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
-use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 use Majora\Bundle\FrameworkExtraBundle\Controller\RestApiControllerTrait;
@@ -15,10 +13,8 @@ use Sir\Bundle\MajoraNamespaceBundle\Form\Type\MajoraEntityType;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Auto generated controller trait for MajoraEntity entity
+ * Auto generated controller trait for MajoraEntity entity.
  *
- * @package majora-namespace-bundle
- * @subpackage controller
  *
  * @see RestApiControllerTrait::extractQueryFilter(Request $request)
  * @see RestApiControllerTrait::retrieveOr404($entityId, $loaderId)

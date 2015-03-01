@@ -38,7 +38,7 @@ class BroadcastableEvent extends Event implements BroadcastableEventInterface
      */
     public function setBroadcasted($broadcasted)
     {
-        $this->broadcasted = !empty($broadcasted);
+        $this->isBroadcasted = !empty($broadcasted);
     }
 
     /**
@@ -46,7 +46,7 @@ class BroadcastableEvent extends Event implements BroadcastableEventInterface
      */
     public function isBroadcasted()
     {
-        return !empty($isBroadcasted);
+        return !empty($this->isBroadcasted);
     }
 
     /**
