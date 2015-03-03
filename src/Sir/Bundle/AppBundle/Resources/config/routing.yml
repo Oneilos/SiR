@@ -1,0 +1,33 @@
+# Api
+sir_rest_api:
+    resource: "@SirAppBundle/Resources/config/routing/api.yml"
+    prefix:   /api
+    host: %sir.api_host%
+    defaults:
+        _format: json
+
+# DextR
+sir_dextr:
+    resource: "@SirAppBundle/Resources/config/routing/dextr.yml"
+    host: %sir.dextr_host%
+    prefix:   /{_locale}/
+
+# LinkR
+sir_linkr:
+    resource: "@SirAppBundle/Resources/config/routing/linkr.yml"
+    host: %sir.linkr_host%
+    prefix:   /{_locale}/
+
+# HuntR
+sir_huntr:
+    resource: "@SirAppBundle/Resources/config/routing/huntr.yml"
+    host: %sir.huntr_host%
+    prefix:   /{_locale}/
+
+# Home
+home_redirection:
+    path:  /
+    defaults:
+        _controller: FrameworkBundle:Redirect:urlRedirect
+        path: /%locale%
+        permanent: true

@@ -1,0 +1,5 @@
+linkr_homepage:
+    path: /
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: 'LinkrAngularBundle::layout.html.twig'

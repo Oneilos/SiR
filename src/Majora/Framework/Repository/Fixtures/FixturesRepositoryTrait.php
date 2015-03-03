@@ -78,6 +78,7 @@ trait FixturesRepositoryTrait
     }
 
     /**
+     * {@inheritDoc}
      * @see LoaderInterface::retrieveAll()
      */
     public function retrieveAll(array $filters = array(), $limit = null, $offset = null)
@@ -99,6 +100,7 @@ trait FixturesRepositoryTrait
     }
 
     /**
+     * {@inheritDoc}
      * @see LoaderInterface::retrieve()
      */
     public function retrieve($id)
@@ -109,6 +111,7 @@ trait FixturesRepositoryTrait
     }
 
     /**
+     * {@inheritDoc}
      * @see RepositoryInterface::persist()
      */
     public function persist(CollectionableInterface $entity)
@@ -119,6 +122,7 @@ trait FixturesRepositoryTrait
     }
 
     /**
+     * {@inheritDoc}
      * @see RepositoryInterface::remove()
      */
     public function remove(CollectionableInterface $entity)

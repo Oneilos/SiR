@@ -22,13 +22,11 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new Majora\Bundle\FrameworkExtraBundle\MajoraFrameworkExtraBundle(),
             new Sir\Bundle\MajoraBridgeBundle\SirMajoraBridgeBundle(),
-
-            // SirSdk
-
-            // Sir
-
-            // Angular boostraps
+            new Sir\Bundle\AppBundle\SirAppBundle(),
         );
+
+        // register SiR distribution
+        Sir\Bundle\AppBundle\SirAppBundle::registerBundles($bundles);
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
