@@ -1,0 +1,5 @@
+dextr_homepage:
+    path: /
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: 'DextrAngularBundle::layout.html.twig'

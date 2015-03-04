@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>{% block title 'SiR platform' %}</title>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>{% block header 'Sir platform' %}</h1>
+                <nav>{% block main_nav '' %}</nav>
+            </header>
+            <div class="content">
+                {% block content '' %}
+            </div>
+            <footer>
+                {% block footer '' %}
+            </footer>
+        </div>
+    </body>
+</html>

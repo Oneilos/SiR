@@ -15,3 +15,7 @@ parameters:
     managed_locales:   [fr]
     secret:            SirADistribOfAllLinkValueComponents
     session_dir:       /dev/shm/session
+    api_host:          api.sir.dev
+    huntr_host:        huntr.sir.dev
+    dextr_host:        dextr.sir.dev
+    linkr_host:        linkr.sir.dev

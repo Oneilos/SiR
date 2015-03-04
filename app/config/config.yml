@@ -3,6 +3,13 @@ imports:
     - { resource: services.yml }
     - { resource: security.yml }
 
+sir_app:
+    hosts:
+        api: %api_host%
+        huntr: %huntr_host%
+        dextr: %dextr_host%
+        linkr: %linkr_host%
+
 framework:
     #esi: ~
     translator: { fallback: %locale% }

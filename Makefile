@@ -27,7 +27,15 @@ fixer:
 #
 # Tests, travis
 #
-test:
+install-test:
+	./bin/composer install --prefer-dist --no-scripts
+	cp app/config/parameters.yml.dist app/config/parameters.yml
+	./bin/composer dump-autoload
+	./bin/composer run-script setup-bootstrap -vv
+
+test: install-test install-dextr install-huntr install-linkr build
+
+run-test:
 	phpunit -c app
 
 #
@@ -42,7 +50,7 @@ install-sir:
 clean-sir:
 	rm -rf app/cache/*
 	rm -rf app/logs/*
-	test -d /dev/shm/sir && rm -rf /dev/shm/sir
+	test -d /dev/shm/sir && rm -rf /dev/shm/sir || echo "" > /dev/null
 	rm -rf vendor/composer/autoload*
 	rm app/bootstrap.php.cache
 	./bin/composer dump-autoload

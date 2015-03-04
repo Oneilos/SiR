@@ -1,0 +1,5 @@
+huntr_homepage:
+    path: /
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: 'HuntrAngularBundle::layout.html.twig'
