@@ -10,7 +10,25 @@ use Majora\Framework\Model\CollectionableInterface;
 trait DoctrineRepositoryTrait
 {
     /**
+     * return application entity manager.
+     *
+     * @return EntityManager
+     */
+    abstract protected function getEntityManager();
+
+    /**
+     * create a query builder.
+     *
+     * @param string $alias
+     *
+     * @return QueryBuilder
+     */
+    abstract public function createQueryBuilder($alias);
+
+    /**
      * create entity query.
+     * proxy to base query builder method to use to custom all
+     * queries from using repository.
      *
      * @param string $alias
      *

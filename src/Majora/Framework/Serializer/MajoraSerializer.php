@@ -25,6 +25,7 @@ class MajoraSerializer
 
     /**
      * {@inheritDoc}
+     *
      * @see SerializerInterface::serialize()
      */
     public function serialize($data, $format, array $context = array())
@@ -43,6 +44,7 @@ class MajoraSerializer
 
     /**
      * {@inheritDoc}
+     *
      * @see SerializerInterface::deserialize()
      */
     public function deserialize($data, $type, $format, array $context = array())

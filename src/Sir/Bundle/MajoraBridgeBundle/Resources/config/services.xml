@@ -18,7 +18,7 @@
 
         <!-- App bundle modifier -->
         <service id="majora.generator.app_bundle_modifier" class="Sir\Bundle\MajoraBridgeBundle\Generator\ContentModifier\AppBundleModifier" public="false">
-            <tag name="majora.generator.content_modifier" alias="sir_update_app_bundle" />
+            <tag name="majora.generator.content_modifier" alias="sir_register_bundle" />
             <argument>%kernel.root_dir%/../src/Sir/Bundle/AppBundle/SirAppBundle.php</argument>
             <argument type="service" id="logger" />
         </service>

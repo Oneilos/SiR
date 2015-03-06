@@ -10,7 +10,7 @@ use Symfony\Component\Finder\SplFileInfo;
 /**
  * Service for updating kernel from a bundle class.
  */
-class UpdateKernelModifier
+class RegisterBundleModifier
     implements ContentModifierInterface
 {
     protected $kernelPath;
@@ -66,7 +66,7 @@ class UpdateKernelModifier
             // is bundle not already registered
             strpos(
                 file_get_contents($this->kernelPath),
-                sprintf('new %s\%s()', $this->currentBundleNamespace, $this->currentBundleClass)
+                sprintf('%s\%s()', $this->currentBundleNamespace, $this->currentBundleClass)
             ) === false
         ;
     }

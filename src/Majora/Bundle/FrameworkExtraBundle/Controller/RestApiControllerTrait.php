@@ -14,6 +14,17 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 trait RestApiControllerTrait
 {
     /**
+     * @return Symfony\Component\DependencyInjection\ContainerInterface
+     */
+    public function getContainer()
+    {
+        return property_exists($this, 'container') ?
+            $this->container :
+            null
+        ;
+    }
+
+    /**
      * Extract available query filter from request.
      *
      * @param Request $request
@@ -44,13 +55,13 @@ trait RestApiControllerTrait
      */
     protected function retrieveOr404($entityId, $loaderId)
     {
-        if (!$this->container->has($loaderId)) {
+        if (!$this->getContainer()->has($loaderId)) {
             throw new NotFoundHttpException(sprintf('Unknow required loader : "%s"',
                 $loaderId
             ));
         }
 
-        if (!$entity = $this->get($loaderId)->retrieve($entityId)) {
+        if (!$entity = $this->getContainer()->get($loaderId)->retrieve($entityId)) {
             throw $this->createRest404($entityId, $loaderId);
         }
 
@@ -69,7 +80,7 @@ trait RestApiControllerTrait
     {
         return new NotFoundHttpException(sprintf('Entity with id "%s" not found%s.',
             $entityId,
-            $this->get('service_container')->getParameter('kernel.debug') ?
+            $this->getContainer()->get('service_container')->getParameter('kernel.debug') ?
                 sprintf(' : (looked into "%s")', $loaderId) :
                 ''
         ));
@@ -90,7 +101,7 @@ trait RestApiControllerTrait
         if ($data !== null) {
             $data = is_string($data) ?
                 $data :
-                $this->get('serializer')->serialize(
+                $this->getContainer()->get('serializer')->serialize(
                     $data, 'json', empty($scope) ? array() : array('scope' => $scope)
                 )
             ;
@@ -103,8 +114,7 @@ trait RestApiControllerTrait
     }
 
     /**
-     * @param int   $status
-     * @param array $headers
+     * build and return a non content response.
      *
      * @return JsonResponse
      */
@@ -120,7 +130,6 @@ trait RestApiControllerTrait
      * create and returns a 400 Bad Request response.
      *
      * @param array $errors
-     * @param array $headers
      *
      * @return JsonResponse
      */
@@ -160,14 +169,14 @@ trait RestApiControllerTrait
     protected function submitJsonData(Request $request, FormInterface $form)
     {
         $data = $this->extractFormData(
-            $this->get('serializer')
+            $this->getContainer()->get('serializer')
                 ->deserialize($request->getContent(), 'array'),
             $form
         );
 
         $form->submit($data);
         if (!$valid = $form->isValid()) {
-            $this->get('logger')->notice(
+            $this->getContainer()->get('logger')->notice(
                 'Invalid form submitted',
                 ['errors' => $form->getErrors(), 'data' => $data]
             );

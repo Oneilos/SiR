@@ -4,9 +4,10 @@ namespace Majora\Framework\Repository\Fixtures;
 
 use InvalidArgumentException;
 use Majora\Framework\Model\CollectionableInterface;
+use Majora\Framework\Model\EntityCollection;
 use RuntimeException;
-use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Serializer\SerializerInterface;
+use ReflectionClass;
 
 /**
  * Base trait for fixtures repository.
@@ -15,37 +16,19 @@ trait FixturesRepositoryTrait
 {
     protected $data;
 
-    protected $sourceFile;
-    protected $collectionClass;
-
-    protected $fileLocator;
-    protected $serializer;
-
     /**
      * setUp method.
+     * define data source, and parse it to given collection class.
      *
-     * @param FileLocator         $fileLocator
+     * @param array               $dataSource
+     * @param string              $collectionClass
      * @param SerializerInterface $serializer
      */
     public function setUp(
-        FileLocator         $fileLocator,
+        array               $dataSource,
+        $collectionClass,
         SerializerInterface $serializer
     ) {
-        $this->fileLocator = $fileLocator;
-        $this->serializer  = $serializer;
-    }
-
-    /**
-     * define source file for given repository.
-     *
-     * @param string $sourceFile
-     * @param string $collectionClass
-     */
-    public function setSource($sourceFile, $collectionClass)
-    {
-        $this->sourceFile      = $sourceFile;
-        $this->collectionClass = $collectionClass;
-
         if (empty($collectionClass) || !class_exists($collectionClass)) {
             throw new InvalidArgumentException(sprintf(
                 'You must provide a valid class name, "%s" given.',
@@ -53,46 +36,51 @@ trait FixturesRepositoryTrait
             ));
         }
 
-        return $this;
+        $reflect = new ReflectionClass($collectionClass);
+        if (!$reflect->isSubclassOf('Majora\Framework\Model\EntityCollection')) {
+            throw new InvalidArgumentException(sprintf(
+                'You must provide a "Majora\Framework\Model\EntityCollection" class name, "%s" given.',
+                $collectionClass
+            ));
+        }
+
+        $this->data = $serializer->deserialize(
+            $dataSource, $collectionClass, 'array'
+        );
+
+        $this->data->indexBy('id');
     }
 
     /**
-     * load repository data from source.
-     *
-     * @throws RuntimeException If not initialized properly
+     * asserts data source provided.
      */
-    private function loadData()
+    private function assertDataLoaded()
     {
-        if (!$this->fileLocator || !$this->serializer) {
+        if (!$this->data instanceof EntityCollection) {
             throw new RuntimeException(sprintf(
                 '%s methods cannot be used, it hasnt been initialize through setUp() method.',
                 __CLASS__
             ));
         }
-
-        $this->data = $this->serializer->deserialize(
-            $this->fileLocator->locate($this->sourceFile),
-            $this->collectionClass,
-            'yaml'
-        );
     }
 
     /**
      * {@inheritDoc}
+     *
      * @see LoaderInterface::retrieveAll()
      */
     public function retrieveAll(array $filters = array(), $limit = null, $offset = null)
     {
-        $this->loadData();
+        $this->assertDataLoaded();
 
         $result = $this->data;
         if (!empty($filters)) {
             $result = $result->search($filters);
         }
         if ($offset) {
-            $result = $result->slice($offset, $limit);
+            $result = $result->cslice($offset, $limit);
         }
-        if ($limit) {
+        if ($limit && !$offset) {
             $result = $result->chunk($limit);
         }
 
@@ -101,34 +89,37 @@ trait FixturesRepositoryTrait
 
     /**
      * {@inheritDoc}
+     *
      * @see LoaderInterface::retrieve()
      */
     public function retrieve($id)
     {
-        $this->loadData();
+        $this->assertDataLoaded();
 
-        return;
+        return $this->data->get($id);
     }
 
     /**
      * {@inheritDoc}
+     *
      * @see RepositoryInterface::persist()
      */
     public function persist(CollectionableInterface $entity)
     {
-        $this->loadData();
+        $this->assertDataLoaded();
 
-        return;
+        $this->data->set($entity->getId(), $entity);
     }
 
     /**
      * {@inheritDoc}
+     *
      * @see RepositoryInterface::remove()
      */
     public function remove(CollectionableInterface $entity)
     {
-        $this->loadData();
+        $this->assertDataLoaded();
 
-        return;
+        $this->data->remove($entity->getId());
     }
 }

@@ -26,8 +26,8 @@
         </service>
 
         <!-- App kernel modifier -->
-        <service id="majora.generator.update_kernel_modifier" class="Majora\Bundle\GeneratorBundle\Generator\ContentModifier\UpdateKernelModifier" public="false">
-            <tag name="majora.generator.content_modifier" alias="update_kernel" />
+        <service id="majora.generator.update_kernel_modifier" class="Majora\Bundle\GeneratorBundle\Generator\ContentModifier\RegisterBundleModifier" public="false">
+            <tag name="majora.generator.content_modifier" alias="register_bundle" />
             <argument>%kernel.root_dir%/AppKernel.php</argument>
             <argument type="service" id="logger" />
         </service>

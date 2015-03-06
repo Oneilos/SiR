@@ -9,4 +9,10 @@ namespace Majora\Framework\Model;
 interface CollectionableInterface
     extends SerializableInterface
 {
+    /**
+     * return object id.
+     *
+     * @return integer
+     */
+    public function getId();
 }

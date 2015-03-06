@@ -2,7 +2,6 @@
 
 namespace SirSdk\Component\MajoraNamespace\Domain\Api;
 
-
 /**
  * MajoraEntity domain implementation using API.
  *
