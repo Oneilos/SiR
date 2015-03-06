@@ -22,7 +22,9 @@ class SerializerCompilerPass implements CompilerPassInterface
 
         $handlerReferences = [];
         foreach ($handlersDef as $id => $attributes) {
-            $handlerReferences[$attributes[0]['format']] = new Reference($id);
+            foreach ($attributes as $attribute) {
+                $handlerReferences[$attribute['format']] = new Reference($id);
+            }
         }
 
         $serializer->replaceArgument(0, $handlerReferences);

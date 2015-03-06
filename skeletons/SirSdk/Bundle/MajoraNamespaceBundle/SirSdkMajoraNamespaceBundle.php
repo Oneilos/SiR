@@ -1,5 +1,5 @@
 <?php
-// majora_generator.content_modifier: sir_update_app_bundle
+// majora_generator.content_modifier: sir_register_bundle
 
 
 namespace SirSdk\Bundle\MajoraNamespaceBundle;

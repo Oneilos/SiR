@@ -3,6 +3,7 @@
 namespace Majora\Framework\Model;
 
 use BadMethodCallException;
+use InvalidArgumentException;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -43,7 +44,7 @@ class EntityCollection
     public function fromArray(array $data)
     {
         throw new BadMethodCallException(sprintf('%s() method has to be defined in %s class.',
-            __CLASS__, get_class($this)
+            __FUNCTION__, get_class($this)
         ));
     }
 
@@ -100,8 +101,35 @@ class EntityCollection
      *
      * @return EntityCollection
      */
-    public function slice($offset, $length = null)
+    public function cslice($offset, $length = null)
     {
-        return new self(parent::slice($offset, $length));
+        return new self($this->slice($offset, $length));
+    }
+
+    /**
+     * index collection by given object field.
+     *
+     * @param string $field
+     *
+     * @return EntityCollection
+     */
+    public function indexBy($field)
+    {
+        $elements = $this->all();
+        $this->clear();
+
+        foreach ($elements as $element) {
+            $method = sprintf('get%s', ucfirst($field));
+            if (!is_callable(array($element, $method))) {
+                throw new InvalidArgumentException(sprintf(
+                    'Cannot index %s elements on "%s" field. At least one element doesnt implements %s() method.',
+                    get_class($this), $field, $method
+                ));
+            }
+
+            $this->set($element->$method(), $element);
+        }
+
+        return $this;
     }
 }

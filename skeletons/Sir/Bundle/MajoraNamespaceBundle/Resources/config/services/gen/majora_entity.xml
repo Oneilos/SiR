@@ -47,10 +47,10 @@
                  parent="majora.fixtures_repository.abstract"
                  public="false"
         >
-            <call method="setSource"> <!-- parent class data source -->
-                <argument>@SirMajoraNamespaceBundle/Resources/fixtures/majora_entity.yml</argument>
-                <argument>SirSdk\Component\MajoraNamespace\Model\MajoraEntityCollection</argument>
-            </call>
+            <tag name="majora.fixtures_repository"
+                 collection="SirSdk\Component\MajoraNamespace\Model\MajoraEntityCollection"
+                 source-file="@SirMajoraNamespaceBundle/Resources/fixtures/majora_entity.yml"
+            />
         </service>
 
     </services>

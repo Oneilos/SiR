@@ -35,10 +35,7 @@
                  class="Majora\Framework\Repository\Fixtures\AbstractFixturesRepository"
                  abstract="true" public="false"
         >
-            <call method="setUp">
-                <argument type="service" id="file_locator" />
-                <argument type="service" id="serializer" />
-            </call>
+
         </service>
 
         <!-- Majora base doctrine repository definition -->

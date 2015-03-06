@@ -16,7 +16,7 @@ coding_style:
     php:
         spaces:
             before_parentheses:
-                function_declaration: true
+                function_declaration: false
                 closure_definition: true
             around_operators:
                 concatenation: false

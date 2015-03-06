@@ -77,7 +77,7 @@ class FileGenerator
      *
      * @param string $templateFileContent
      *
-     * @return array(alias => array)
+     * @return array<alias, array>
      */
     protected function getMetadata($templateFileContent)
     {
