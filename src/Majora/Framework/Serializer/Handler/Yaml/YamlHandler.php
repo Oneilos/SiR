@@ -1,9 +1,8 @@
 <?php
 
-namespace Majora\Framework\Serializer\Yaml;
+namespace Majora\Framework\Serializer\Handler\Yaml;
 
-use Majora\Framework\Serializer\Collection\CollectionHandler;
-use Majora\Framework\Serializer\FormatHandlerInterface;
+use Majora\Framework\Serializer\Handler\Collection\CollectionHandler;
 use Symfony\Component\Yaml\Yaml;
 
 /**

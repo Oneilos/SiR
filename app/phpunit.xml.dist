@@ -8,10 +8,13 @@
          bootstrap="bootstrap.php.cache"
 >
     <testsuites>
-        <testsuite name="Project Test Suite">
-            <directory>../src/*/*Bundle/Tests</directory>
-            <directory>../src/*/Bundle/*Bundle/Tests</directory>
-            <directory>../src/*Bundle/Tests</directory>
+        <testsuite name="Sir Project Test Suite">
+            <directory>../src/Sir*/Bundle/*Bundle/Tests</directory>
+            <directory>../src/Sir*/Component/*/Tests</directory>
+        </testsuite>
+        <testsuite name="Majora Project Test Suite">
+            <directory>../src/Majora/Bundle/*Bundle/Tests</directory>
+            <directory>../src/Majora/Framework/*/Tests</directory>
         </testsuite>
     </testsuites>
 
@@ -22,13 +25,15 @@
     -->
 
     <filter>
-        <whitelist>
+        <whitelist
+            processUncoveredFilesFromWhitelist="true"
+            addUncoveredFilesFromWhitelist="true"
+        >
             <directory>../src</directory>
             <exclude>
-                <directory>../src/*/*Bundle/Resources</directory>
-                <directory>../src/*/*Bundle/Tests</directory>
-                <directory>../src/*/Bundle/*Bundle/Resources</directory>
                 <directory>../src/*/Bundle/*Bundle/Tests</directory>
+                <directory>../src/*/Component/*/Tests</directory>
+                <directory>../src/Majora/Framework/*/Tests</directory>
             </exclude>
         </whitelist>
     </filter>

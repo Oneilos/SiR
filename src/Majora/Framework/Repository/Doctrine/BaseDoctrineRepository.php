@@ -1,6 +1,6 @@
 <?php
 
-namespace Majora\Framework\Repository\Api;
+namespace Majora\Framework\Repository\Doctrine;
 
 use Doctrine\ORM\EntityRepository;
 use Majora\Framework\Repository\RepositoryInterface;

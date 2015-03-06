@@ -11,14 +11,14 @@ class MajoraEntityCollection
     extends EntityCollection
 {
     /**
-     * @see SerializableInterface::fromArray()
+     * @see SerializableInterface::deserialize()
      */
-    public function fromArray(array $data)
+    public function deserialize(array $data)
     {
         $this->clear();
         $entities = array_map(
             function (array $majoraEntityData) {
-                return (new MajoraEntity())->fromArray($majoraEntityData);
+                return (new MajoraEntity())->deserialize($majoraEntityData);
             },
             $data
         );

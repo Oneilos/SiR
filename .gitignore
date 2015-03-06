@@ -37,9 +37,7 @@
 Gemfile.lock
 .cap_tasks~
 
-# Propel directories
-*/propel/sql/*
-src/*/Bundle/*Bundle/Model/map/*
-src/*/Bundle/*Bundle/Model/om/*
-src/*/Workflow/*Bundle/Model/map/*
-src/*/Workflow/*Bundle/Model/om/*
+# coverages
+/web/atoum
+/web/tests-coverage
+

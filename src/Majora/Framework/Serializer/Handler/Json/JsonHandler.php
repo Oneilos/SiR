@@ -2,8 +2,8 @@
 
 namespace Majora\Framework\Serializer\Json;
 
-use Majora\Framework\Serializer\Collection\CollectionHandler;
-use Majora\Framework\Serializer\Json\Exception\JsonDeserializationException;
+use Majora\Framework\Serializer\Handler\Collection\CollectionHandler;
+use Majora\Framework\Serializer\Handler\Json\Exception\JsonDeserializationException;
 
 /**
  * Handler implementation creating and using json.

@@ -31,7 +31,8 @@ class MajoraSerializer
     public function serialize($data, $format, array $context = array())
     {
         if (!isset($this->handlers[$format])) {
-            throw new BadMethodCallException(sprintf('Unsupported format "%s", only [%s] are'.
+            throw new BadMethodCallException(sprintf(
+                'Unsupported format "%s", only [%s] are',
                 $format, implode(', ', array_keys($this->handlers))
             ));
         }
@@ -50,7 +51,8 @@ class MajoraSerializer
     public function deserialize($data, $type, $format, array $context = array())
     {
         if (!isset($this->handlers[$format])) {
-            throw new BadMethodCallException(sprintf('Unsupported format "%s", only [%s] are'.
+            throw new BadMethodCallException(sprintf(
+                'Unsupported format "%s", only [%s] are',
                 $format, implode(', ', array_keys($this->handlers))
             ));
         }

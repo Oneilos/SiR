@@ -12,6 +12,8 @@ checks:
 filter:
     paths:
         - 'src/*'
+    excluded_paths:
+        - Tests/*
 coding_style:
     php:
         spaces:
@@ -31,5 +33,5 @@ coding_style:
                 true_false_null: lower
 tools:
     external_code_coverage:
-        timeout: 120
+        timeout: 600
         runs: 3

@@ -4,7 +4,7 @@ namespace SirSdk\Component\MajoraNamespace\Model;
 
 use Majora\Framework\Model\CollectionableInterface;
 use Majora\Framework\Model\CollectionableTrait;
-use Majora\Framework\Model\SerializableTrait;
+use Majora\Framework\Serializer\Model\SerializableTrait;
 
 /**
  * MajoraEntity model class.

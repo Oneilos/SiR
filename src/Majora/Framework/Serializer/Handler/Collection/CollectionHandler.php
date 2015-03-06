@@ -1,9 +1,9 @@
 <?php
 
-namespace Majora\Framework\Serializer\Collection;
+namespace Majora\Framework\Serializer\Handler\Collection;
 
-use Majora\Framework\Model\SerializableInterface;
-use Majora\Framework\Serializer\FormatHandlerInterface;
+use Majora\Framework\Serializer\Handler\FormatHandlerInterface;
+use Majora\Framework\Serializer\Model\SerializableInterface;
 
 /**
  * Handler implementation creating and using arrays.
@@ -16,11 +16,10 @@ class CollectionHandler
      */
     public function serialize($data, $scope)
     {
-        if ($data instanceof SerializableInterface) {
-            return $data->toArray($scope);
-        }
-
-        return (array) $data;
+        return $data instanceof SerializableInterface ?
+            $data->serialize($scope) :
+            (array) $data
+        ;
     }
 
     /**
@@ -35,7 +34,7 @@ class CollectionHandler
         $object = new $output();
 
         return $object instanceof SerializableInterface ?
-            $object->fromArray($data) :
+            $object->deserialize($data) :
             $object
         ;
     }
