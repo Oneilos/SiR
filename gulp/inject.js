@@ -2,18 +2,17 @@
 
 var gulp = require('gulp');
 
-var paths = gulp.paths;
-
 var $ = require('gulp-load-plugins')();
 
 var wiredep = require('wiredep').stream;
 
 gulp.task('inject', ['styles'], function () {
+  var paths = gulp.paths;
 
   var injectStyles = gulp.src([
     paths.tmp + '/serve/{app,components}/**/*.css',
     '!' + paths.tmp + '/serve/app/vendor.css'
-  ], { read: false });
+  ], {read: false});
 
   var injectScripts = gulp.src([
     paths.src + '/{app,components}/**/*.js',
@@ -27,7 +26,7 @@ gulp.task('inject', ['styles'], function () {
   };
 
   var wiredepOptions = {
-    directory: 'bower_components',
+    cwd: paths.root,
     exclude: [/foundation\.js/, /foundation\.css/, /bootstrap\.css/, /foundation\.css/]
   };
 
@@ -36,5 +35,4 @@ gulp.task('inject', ['styles'], function () {
     .pipe($.inject(injectScripts, injectOptions))
     .pipe(wiredep(wiredepOptions))
     .pipe(gulp.dest(paths.tmp + '/serve'));
-
 });

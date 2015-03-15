@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('dextR')
-  .controller('NavbarCtrl', function ($scope) {
+  .controller('NavbarCtrl', ['$scope', function ($scope) {
     $scope.date = new Date();
-  });
+  }]);

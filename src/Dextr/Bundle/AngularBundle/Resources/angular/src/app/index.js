@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dextR', ['ngAnimate', 'ngRoute', 'mm.foundation'])
-  .config(function ($routeProvider) {
+  .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'app/main/main.html',
@@ -10,5 +10,5 @@ angular.module('dextR', ['ngAnimate', 'ngRoute', 'mm.foundation'])
       .otherwise({
         redirectTo: '/'
       });
-  })
+  }])
 ;
