@@ -1,9 +1,16 @@
+<!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
         <title>{% block title 'SiR platform' %}</title>
+        <meta name="viewport" content="initial-scale=1">
     </head>
     <body>
         <div class="container">
+            <header class="contain-to-grid sticky">
+                <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: large">
+                </nav>
+            </header>
             <header>
                 <h1>{% block header 'Sir platform' %}</h1>
                 <nav>{% block main_nav '' %}</nav>
@@ -15,5 +22,10 @@
                 {% block footer '' %}
             </footer>
         </div>
+        <!-- build:js(src) scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="" ></script>
+        <!-- endbower -->
+        <!-- endbuild -->
     </body>
 </html>

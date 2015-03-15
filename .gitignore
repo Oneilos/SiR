@@ -7,6 +7,7 @@
 .idea/*
 .DS_*
 /nbproject/*
+npm-debug.log
 
 # symfony
 /web/bundles/
