@@ -1,6 +1,6 @@
 <?php
 
-namespace Majora\Framework\Model;
+namespace Majora\Framework\Serializer\Model;
 
 /**
  * Interface to implements on all
@@ -15,12 +15,12 @@ interface SerializableInterface extends ScopableInterface
      *    return array(
      *        'id'        => $this->getId(),
      *        'firstname' => $this->getFirstname(),
-     *        'skills'    => $this->getSkills()->toArray()
+     *        'skills'    => $this->getSkills()->serialize()
      *    );
      *
      * @return array
      */
-    public function toArray($scope = 'default');
+    public function serialize($scope = 'default');
 
     /**
      * hydrate model from an array.
@@ -29,5 +29,5 @@ interface SerializableInterface extends ScopableInterface
      *
      * @return self
      */
-    public function fromArray(array $objectData);
+    public function deserialize(array $objectData);
 }

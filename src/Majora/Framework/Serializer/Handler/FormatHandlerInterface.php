@@ -1,6 +1,6 @@
 <?php
 
-namespace Majora\Framework\Serializer;
+namespace Majora\Framework\Serializer\Handler;
 
 /**
  * Interface to implement on format handlers.

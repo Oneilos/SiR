@@ -1,6 +1,6 @@
 <?php
 
-namespace Majora\Framework\Model;
+namespace Majora\Framework\Serializer\Model;
 
 /**
  * Interface to implements on all

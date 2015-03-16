@@ -1,6 +1,6 @@
 <?php
 
-namespace Majora\Framework\Serializer\Json\Exception;
+namespace Majora\Framework\Serializer\Handler\Json\Exception;
 
 use InvalidArgumentException;
 

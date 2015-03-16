@@ -35,8 +35,12 @@ install-test:
 
 test: install-test install-dextr install-huntr install-linkr build
 
-run-test:
-	phpunit -c app
+run-phpunit:
+	./bin/phpunit -c app --coverage-html web/tests-coverage
+	echo "\nCoverage report : \n\033[1;32m http://api.sir.dev/tests-coverage/index.html\033[0m\n"
+
+run-atoum:
+	./bin/atoum -c app/.atoum.php -bf app/.bootstrap.atoum.php
 
 #
 # Sir install

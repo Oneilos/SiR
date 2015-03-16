@@ -3,8 +3,9 @@
 namespace Majora\Framework\Model;
 
 use BadMethodCallException;
-use InvalidArgumentException;
 use Doctrine\Common\Collections\ArrayCollection;
+use InvalidArgumentException;
+use Majora\Framework\Serializer\Model\SerializableInterface;
 
 /**
  * Base class for entity aggregation collection.
@@ -14,34 +15,22 @@ class EntityCollection
     implements SerializableInterface
 {
     /**
-     * return all elements.
-     *
-     * @return array
+     * @see SerializableInterface::serialize()
      */
-    public function all()
-    {
-        return parent::toArray();
-    }
-
-    /**
-     * return all collection to arrays.
-     *
-     * @return array
-     */
-    public function toArray($scope = 'default')
+    public function serialize($scope = 'default')
     {
         return array_values(array_map(
             function (SerializableInterface $entity) use ($scope) {
-                return $entity->toArray($scope);
+                return $entity->serialize($scope);
             },
-            $this->all()
+            $this->toArray()
         ));
     }
 
     /**
-     * @see SerializableInterface::fromArray()
+     * @see SerializableInterface::deserialize()
      */
-    public function fromArray(array $data)
+    public function deserialize(array $data)
     {
         throw new BadMethodCallException(sprintf('%s() method has to be defined in %s class.',
             __FUNCTION__, get_class($this)
@@ -91,7 +80,7 @@ class EntityCollection
      */
     public function chunk($length)
     {
-        $chunkedData = array_chunk($this->all(), $length, true);
+        $chunkedData = array_chunk($this->toArray(), $length, true);
 
         return new self(empty($chunkedData) ? array() : $chunkedData[0]);
     }
