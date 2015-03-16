@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dextR')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', ['$scope', function ($scope) {
     $scope.awesomeThings = [
       {
         'title': 'AngularJS',
@@ -67,4 +67,4 @@ angular.module('dextR')
     angular.forEach($scope.awesomeThings, function(awesomeThing) {
       awesomeThing.rank = Math.random();
     });
-  });
+  }]);

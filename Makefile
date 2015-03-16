@@ -72,32 +72,41 @@ build-sir:
 #
 # DextR
 #
-dextr: install-dextr clean-dextr build-dextr
+dextr: install-dextr build-dextr
 
 install-dextr:
+	gulp install-dextr
 
 clean-dextr:
+	gulp clean-dextr
 
 build-dextr:
+	gulp build-dextr
 
 #
 # HuntR
 #
-huntr: install-huntr clean-huntr build-huntr
+huntr: install-huntr build-huntr
 
 install-huntr:
+	gulp install-huntr
 
 clean-huntr:
+	gulp clean-huntr
 
 build-huntr:
+	gulp build-huntr
 
 #
 # LinkR
 #
-linkr: install-linkr clean-linkr build-huntr
+linkr: install-linkr build-huntr
 
 install-linkr:
+	gulp install-linkr
 
 clean-linkr:
+	gulp clean-linkr
 
 build-linkr:
+	gulp build-linkr
