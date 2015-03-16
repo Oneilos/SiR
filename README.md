@@ -7,16 +7,25 @@ Distribution centralisée des composants du système SiR, adaptés à la gestion
 
 # Install (Vagrant)
 ```bash
-# On local
+cd your_workspace
+mkdir lv
+cd lv
 git clone git@github.com:LinkValue/SiR.git
-cd SiR/
-make install
-vagrant up --provision
+git clone git@github.com:Nyxis/vagrant-nginx-php5.6-mysql.git vagrant
+cd vagrant
+vagrant up
 vagrant ssh
+cd /var/www/SiR
+make init
+make install
+```
 
-# On Vagrant Box
-cd /var/www/SiR/
-make all
+Attention : Ne pas oublier d'ajouter les hosts ci dessous à la machine locale :
+```
+192.168.100.50 linkr.sir.dev
+192.168.100.50 huntr.sir.dev
+192.168.100.50 dextr.sir.dev
+192.168.100.50 api.sir.dev
 ```
 
 # Run tests
@@ -24,6 +33,7 @@ make all
 # On Vagrant Box
 cd /var/www/SiR/
 make test
+make run-phpunit
 ```
 
 [1]: http://link-value.fr/
