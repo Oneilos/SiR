@@ -3,10 +3,10 @@
 namespace Majora\Framework\Loader;
 
 use Doctrine\Common\Collections\Collection;
-use Majora\Framework\Model\SerializableInterface;
-use Majora\Framework\Repository\RepositoryInterface;
-use RuntimeException;
 use InvalidArgumentException;
+use Majora\Framework\Repository\RepositoryInterface;
+use Majora\Framework\Serializer\Model\SerializableInterface;
+use RuntimeException;
 
 /**
  * Base trait for loaders.

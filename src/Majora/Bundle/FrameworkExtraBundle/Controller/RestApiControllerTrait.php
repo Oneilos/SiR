@@ -13,16 +13,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 trait RestApiControllerTrait
 {
-    /**
-     * @return Symfony\Component\DependencyInjection\ContainerInterface
-     */
-    public function getContainer()
-    {
-        return property_exists($this, 'container') ?
-            $this->container :
-            null
-        ;
-    }
+    protected $container;
 
     /**
      * Extract available query filter from request.
@@ -55,13 +46,13 @@ trait RestApiControllerTrait
      */
     protected function retrieveOr404($entityId, $loaderId)
     {
-        if (!$this->getContainer()->has($loaderId)) {
+        if (!$this->container->has($loaderId)) {
             throw new NotFoundHttpException(sprintf('Unknow required loader : "%s"',
                 $loaderId
             ));
         }
 
-        if (!$entity = $this->getContainer()->get($loaderId)->retrieve($entityId)) {
+        if (!$entity = $this->container->get($loaderId)->retrieve($entityId)) {
             throw $this->createRest404($entityId, $loaderId);
         }
 
@@ -80,7 +71,7 @@ trait RestApiControllerTrait
     {
         return new NotFoundHttpException(sprintf('Entity with id "%s" not found%s.',
             $entityId,
-            $this->getContainer()->get('service_container')->getParameter('kernel.debug') ?
+            $this->container->get('service_container')->getParameter('kernel.debug') ?
                 sprintf(' : (looked into "%s")', $loaderId) :
                 ''
         ));
@@ -101,7 +92,7 @@ trait RestApiControllerTrait
         if ($data !== null) {
             $data = is_string($data) ?
                 $data :
-                $this->getContainer()->get('serializer')->serialize(
+                $this->container->get('serializer')->serialize(
                     $data, 'json', empty($scope) ? array() : array('scope' => $scope)
                 )
             ;
@@ -169,14 +160,14 @@ trait RestApiControllerTrait
     protected function submitJsonData(Request $request, FormInterface $form)
     {
         $data = $this->extractFormData(
-            $this->getContainer()->get('serializer')
+            $this->container->get('serializer')
                 ->deserialize($request->getContent(), 'array'),
             $form
         );
 
         $form->submit($data);
         if (!$valid = $form->isValid()) {
-            $this->getContainer()->get('logger')->notice(
+            $this->container->get('logger')->notice(
                 'Invalid form submitted',
                 ['errors' => $form->getErrors(), 'data' => $data]
             );
@@ -184,6 +175,11 @@ trait RestApiControllerTrait
 
         return $valid;
     }
+
+    /**
+     * @see Symfony\Bundle\FrameworkBundle\Controller\Controller::createForm()
+     */
+    abstract public function createForm($type, $data = null, array $options = array());
 
     /**
      * Removes additional data that hasn't been defined in the form.

@@ -14,6 +14,11 @@ use ReflectionMethod;
 trait SerializableTrait
 {
     /**
+     * @see SerializableInterface::getScopes()
+     */
+    abstract public function getScopes();
+
+    /**
      * @see SerializableInterface::serialize()
      */
     public function serialize($scope = 'default')

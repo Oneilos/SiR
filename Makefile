@@ -10,6 +10,10 @@ init:
 	test -f bin/insight || wget http://get.insight.sensiolabs.com/insight.phar -O bin/insight
 	php bin/insight self-update
 	php bin/insight projects -n --user-uuid=88ce8329-0632-4b1d-a1de-f9793f84cd28 --api-token=3dd4d1f4c84bf5933bb331f13780b60cbd12bac6b1422d1caacfe0fd8326c2a7
+	npm install --save
+	test -L bin/gulp && rm -f bin/gulp || echo "" > /dev/null
+	cd bin && ln -fs ../node_modules/.bin/gulp
+	./bin/gulp -v
 
 all: install clean build
 	echo "Project Sir is built !"
@@ -75,13 +79,13 @@ build-sir:
 dextr: install-dextr build-dextr
 
 install-dextr:
-	gulp install-dextr
+	./bin/gulp install-dextr
 
 clean-dextr:
-	gulp clean-dextr
+	./bin/gulp clean-dextr
 
 build-dextr:
-	gulp build-dextr
+	./bin/gulp build-dextr
 
 #
 # HuntR
@@ -89,13 +93,13 @@ build-dextr:
 huntr: install-huntr build-huntr
 
 install-huntr:
-	gulp install-huntr
+	./bin/gulp install-huntr
 
 clean-huntr:
-	gulp clean-huntr
+	./bin/gulp clean-huntr
 
 build-huntr:
-	gulp build-huntr
+	./bin/gulp build-huntr
 
 #
 # LinkR
@@ -103,10 +107,10 @@ build-huntr:
 linkr: install-linkr build-huntr
 
 install-linkr:
-	gulp install-linkr
+	./bin/gulp install-linkr
 
 clean-linkr:
-	gulp clean-linkr
+	./bin/gulp clean-linkr
 
 build-linkr:
-	gulp build-linkr
+	./bin/gulp build-linkr
