@@ -104,7 +104,7 @@ class EntityCollection
      */
     public function indexBy($field)
     {
-        $elements = $this->all();
+        $elements = $this->toArray();
         $this->clear();
 
         foreach ($elements as $element) {

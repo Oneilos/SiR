@@ -10,15 +10,15 @@ use BadMethodCallException;
  */
 class BroadcastableEvent extends Event implements BroadcastableEventInterface
 {
-    private $name;
+    private $originName;
     private $isBroadcasted = false;
 
     /**
      * @see BroadcastableEventInterface::setOriginName()
      */
-    public function setOriginName($name)
+    public function setOriginName($originName)
     {
-        $this->name = $name;
+        $this->originName = $originName;
     }
 
     /**
@@ -28,7 +28,7 @@ class BroadcastableEvent extends Event implements BroadcastableEventInterface
      */
     public function getOriginName()
     {
-        return $this->name;
+        return $this->originName;
     }
 
     /**
