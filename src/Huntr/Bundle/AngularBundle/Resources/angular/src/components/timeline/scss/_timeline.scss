@@ -1,0 +1,114 @@
+@import 'foundation/components/global';
+
+//
+// @variables
+//
+$color-base-timeline: $iron !default;
+
+$border-radius-timeline: 3px;
+$spacing-timeline: 1em;
+
+$width-line-timeline: 4px;
+$position-line-timeline: 20%;
+$gutter-timeline: 2%;
+
+$size-bullet-timeline: 12px;
+$position-top-bullet-timeline: 30px;
+
+$color-background-content: $white;
+$padding-content-timeline: 10px;
+$border-radius-content-timeline: 3px;
+$shadow-content-timeline: 0 2px 1px hsla(0,0%,0%,.075);
+
+// We use this mixin to create a container around our breadcrumbs
+@mixin timeline-container {
+  position: relative;
+  padding: $spacing-timeline 0;
+
+  &:before {
+    content: '';
+    width: $width-line-timeline;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: $position-line-timeline;
+    margin-left: -$width-line-timeline/2;
+    background: $color-base-timeline;
+  }
+}
+@mixin timeline-step {
+    position: relative;
+    margin-bottom: $spacing-timeline;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: $position-top-bullet-timeline;
+      left: $position-line-timeline;
+      width: $size-bullet-timeline;
+      height: $size-bullet-timeline;
+      margin-left: -($size-bullet-timeline / 2);
+      border: solid ($width-line-timeline / 2)+1 $color-base-timeline;
+      border-radius: 100%;
+      background: $white;
+    }
+}
+@mixin timeline-info {
+  width: $position-line-timeline - $gutter-timeline;
+  position: relative;
+  margin-right: $gutter-timeline;
+  padding: 0 $padding-content-timeline $padding-content-timeline;
+  text-align: right;
+
+  .picture {
+    vertical-align: bottom;
+    border: solid 2px $white;
+    box-shadow: 0 0 0 2px $primary-color;
+    border-radius: 100%;
+  }
+  .user {
+    display: block;
+  }
+  time {
+    display: block;
+    font-size: .8rem;
+  }
+}
+@mixin timeline-content {
+  width: 100% - $position-line-timeline - $gutter-timeline;
+  position: relative;
+  margin-left: $gutter-timeline;
+  padding: $padding-content-timeline;
+  background: $color-background-content;
+  border-radius: $border-radius-content-timeline;
+  box-shadow: $shadow-content-timeline;
+
+  &:before {
+    @include css-triangle(5px, $white, right);
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 31px;
+    right: 100%;
+  }
+}
+
+@include exports("timeline") {
+  .timeline {
+    @include timeline-container;
+
+    .step {
+      @include timeline-step;
+    }
+    .info {
+      @include timeline-info;
+    }
+    .content {
+      @include timeline-content;
+    }
+  }
+}

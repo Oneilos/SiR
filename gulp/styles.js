@@ -8,7 +8,8 @@ gulp.task('styles', function () {
   var paths = gulp.paths;
 
   var sassOptions = {
-    style: 'expanded'
+    style: 'expanded',
+    includePaths: [paths.bower + '/foundation/scss', paths.src + '/**/scss']
   };
 
   var injectFiles = gulp.src([

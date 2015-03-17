@@ -1,6 +1,3 @@
-body {
-  background-color: #eee;
-}
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -20,6 +17,7 @@ body {
     width: 50px;
   }
 }
+@import 'settings_override';
 @import '../components/timeline/scss/timeline';
 // injector
 // endinjector

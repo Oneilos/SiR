@@ -4,34 +4,56 @@
       <div class="info left">
         <img class="picture" src="http://placehold.it/30x30/0eafff/ffffff.png" />
         <a href class="user">
-          <span class="name">User Name</span>
+          <span class="name">Username</span>
         </a>
         <time datetime="1426418045">15 mars 2015</time>
       </div>
       <div class="content left">
-        <div class="row">
-          <div class="large-4 columns">
-            <label>Input Label
-              <input type="text" placeholder="large-4.columns" />
-            </label>
-          </div>
-          <div class="large-4 columns">
-            <label>Input Label
-              <input type="text" placeholder="large-4.columns" />
-            </label>
-          </div>
-          <div class="large-4 columns">
-            <div class="row collapse">
-              <label>Input Label</label>
-              <div class="small-9 columns">
-                <input type="text" placeholder="small-9.columns" />
-              </div>
-              <div class="small-3 columns">
-                <span class="postfix">.com</span>
-              </div>
+        <form action="">
+          <div class="row">
+            <div class="large-12 columns">
+              <label>Source de sélection
+                <div class="row collapse">
+                  <div class="small-3 large-2 columns">
+                    <span class="prefix">http://</span>
+                  </div>
+                  <div class="small-9 large-10 columns">
+                    <input type="url">
+                  </div>
+                </div>
+              </label>
             </div>
           </div>
-        </div>
+          <div class="row">
+            <div class="large-6 columns">
+              <label>Nom
+                <input type="text" placeholder="" />
+              </label>
+            </div>
+            <div class="large-6 columns">
+              <label>Prénom
+                <input type="text" placeholder="" />
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-4 columns">
+              <label>Téléphone fixe
+                <input type="tel" placeholder="+33 (0)1 ..." />
+              </label>
+            </div>
+            <div class="large-4 columns">
+              <label>Téléphone mobile
+                <input type="tel" placeholder="+33 (0)6 ..." />
+              </label>
+            </div>
+            <div class="large-4 columns">
+              <label>Email
+                <input type="email" placeholder="...@..." />
+              </label>
+            </div>
+          </div>
+        </form>
       </div>
     </section>
   </section>
