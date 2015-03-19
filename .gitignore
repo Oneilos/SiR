@@ -41,3 +41,6 @@ Gemfile.lock
 /web/atoum
 /web/tests-coverage
 
+# Apache files
+*.htaccess
+
