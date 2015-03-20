@@ -1,3 +1,31 @@
-$body-bg: #eee;
+$primary-color-lv: #77787b;
+$third-color-lv: #96a4b5;
 
+$second-color-lv--lighter: #31668E;  /* Main Primary color */
+$second-color-lv--light: #78A2C2;
+$second-color-lv: #4B7BA0;
+$second-color-lv--dark: #1B517B;
+$second-color-lv--darker: #0D3D62;
+
+$second-color-lv-chromatic1: #3E3E9A;  /* Main Secondary color (1) */
+$second-color-lv-chromatic1: #8585CB;
+$second-color-lv-chromatic1: #5A5AAF;
+$second-color-lv-chromatic1: #272786;
+$second-color-lv-chromatic1: #16166B;
+
+$second-color-lv-chromatic2--lighter: #DDB642;  /* Main Ssecondary color (2) */
+$second-color-lv-chromatic2--light: #FFE598;
+$second-color-lv-chromatic2: #F9D66B;
+$second-color-lv-chromatic2--dark: #BF9720;
+$second-color-lv-chromatic2--darker: #98750A;
+
+$second-color-lv-complement--lighter: #DD9B42; /* Main Complement color */
+$second-color-lv-complement--light: #FFD398;
+$second-color-lv-complement: #F9BD6B;
+$second-color-lv-complement--dark: #BF7B20;
+$second-color-lv-complement--darker: #985C0A;
+
+$body-bg: #eee;
+$topbar-bg-color: $third-color-lv;
+$topbar-bg: $topbar-bg-color;
 @import 'foundation/components/global';

@@ -1,22 +1,20 @@
-@import 'foundation/components/global';
-
 //
 // @variables
 //
 $color-base-timeline: $iron !default;
 
-$border-radius-timeline: 3px;
-$spacing-timeline: 1em;
+$spacing-timeline: rem-calc(16);
+
+$size-bullet-timeline: 40px;
+$size-arrow-timeline: 5px;
+$position-top-bullet-timeline: 0;
 
 $width-line-timeline: 4px;
-$position-line-timeline: 20%;
-$gutter-timeline: 2%;
-
-$size-bullet-timeline: 12px;
-$position-top-bullet-timeline: 30px;
+$position-line-timeline: 25%;
+$position-line-timeline-medium: 15%;
+$gutter-timeline: $size-bullet-timeline / 2 + 20px;
 
 $color-background-content: $white;
-$padding-content-timeline: 10px;
 $border-radius-content-timeline: 3px;
 $shadow-content-timeline: 0 2px 1px hsla(0,0%,0%,.075);
 
@@ -34,81 +32,115 @@ $shadow-content-timeline: 0 2px 1px hsla(0,0%,0%,.075);
     left: $position-line-timeline;
     margin-left: -$width-line-timeline/2;
     background: $color-base-timeline;
+
+    @media #{$medium-up} {
+      left: $position-line-timeline-medium;
+    }
   }
 }
 @mixin timeline-step {
-    position: relative;
-    margin-bottom: $spacing-timeline;
+  max-width: 100%;
+  position: relative;
+  margin-bottom: $spacing-timeline;
 
-    &:last-child {
-      margin-bottom: 0;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: $position-top-bullet-timeline;
+    left: $position-line-timeline;
+    width: $size-bullet-timeline;
+    height: $size-bullet-timeline;
+    margin-left: -$size-bullet-timeline / 2;
+    border: solid $width-line-timeline $color-base-timeline;
+    font-size: rem-calc(25);
+    text-align: center;
+    color: $color-base-timeline;
+    border-radius: 100%;
+    background: $white;
+
+    // CC from foundation-icons
+    font-family: "foundation-icons";
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1.3;
+    -webkit-font-smoothing: antialiased;
+    text-decoration: inherit;
+
+    @media #{$medium-up} {
+      left: $position-line-timeline-medium;
     }
-    &:before {
-      content: '';
-      display: block;
-      position: absolute;
-      top: $position-top-bullet-timeline;
-      left: $position-line-timeline;
-      width: $size-bullet-timeline;
-      height: $size-bullet-timeline;
-      margin-left: -($size-bullet-timeline / 2);
-      border: solid ($width-line-timeline / 2)+1 $color-base-timeline;
-      border-radius: 100%;
-      background: $white;
-    }
+  }
 }
 @mixin timeline-info {
-  width: $position-line-timeline - $gutter-timeline;
+  width: $position-line-timeline;
   position: relative;
-  margin-right: $gutter-timeline;
-  padding: 0 $padding-content-timeline $padding-content-timeline;
+  padding-right: $gutter-timeline;
   text-align: right;
 
-  .picture {
-    vertical-align: bottom;
-    border: solid 2px $white;
-    box-shadow: 0 0 0 2px $primary-color;
-    border-radius: 100%;
-  }
   .user {
     display: block;
   }
   time {
     display: block;
-    font-size: .8rem;
+    font-size: rem-calc(14);
+  }
+
+  @media #{$medium-up} {
+    width: $position-line-timeline-medium;
   }
 }
 @mixin timeline-content {
-  width: 100% - $position-line-timeline - $gutter-timeline;
-  position: relative;
-  margin-left: $gutter-timeline;
-  padding: $padding-content-timeline;
-  background: $color-background-content;
-  border-radius: $border-radius-content-timeline;
-  box-shadow: $shadow-content-timeline;
+  width: 100% - $position-line-timeline;
+  padding-left: $gutter-timeline;
 
-  &:before {
-    @include css-triangle(5px, $white, right);
-    width: 0;
-    height: 0;
-    position: absolute;
-    top: 31px;
-    right: 100%;
+  .inner {
+    margin: 0 0 $spacing-timeline;
+    padding: $spacing-timeline 0 0;
+    background: $color-background-content;
+    border-radius: $border-radius-content-timeline;
+    box-shadow: $shadow-content-timeline;
+    position: relative;
+
+    &:before {
+      @include css-triangle($size-arrow-timeline, $white, right);
+      position: absolute;
+      top: $size-bullet-timeline / 2 - $size-arrow-timeline;
+      right: 100%;
+    }
+  }
+
+  @media #{$medium-up} {
+    width: 100% - $position-line-timeline-medium;
   }
 }
 
 @include exports("timeline") {
+  .timeline-actions {
+    margin-top: $spacing-timeline;
+  }
   .timeline {
     @include timeline-container;
 
     .step {
       @include timeline-step;
-    }
-    .info {
-      @include timeline-info;
-    }
-    .content {
-      @include timeline-content;
+
+      .info {
+        @include timeline-info;
+      }
+      .content {
+        @include timeline-content;
+      }
+      .actions {
+        @media #{$medium-up} {
+          padding-left: $spacing-timeline;
+        }
+      }
     }
   }
 }

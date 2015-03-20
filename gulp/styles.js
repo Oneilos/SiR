@@ -9,7 +9,7 @@ gulp.task('styles', function () {
 
   var sassOptions = {
     style: 'expanded',
-    includePaths: [paths.bower + '/foundation/scss', paths.src + '/**/scss']
+    includePaths: [paths.bower + '/foundation/scss', paths.bower + '/foundation-icon-fonts/', paths.src + '/**/scss']
   };
 
   var injectFiles = gulp.src([
