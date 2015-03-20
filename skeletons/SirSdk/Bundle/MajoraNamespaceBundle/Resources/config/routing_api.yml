@@ -2,7 +2,7 @@
 # majora_generator.content_modifier: sir_update_routing
 
 # MajoraEntity Api
-majora_entity_rest_api:
+majora_entity_gen_rest_api:
     resource: "@SirSdkMajoraNamespaceBundle/Resources/config/routing/gen/majora_entity_api.yml"
     prefix:   /majora_entitys
 majora_entity_rest_api:
