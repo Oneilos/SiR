@@ -1,6 +1,3 @@
-Sir: init-dev
-	echo "Project Sir ready to use !"
-
 init:
 	test -d bin/ || mkdir bin/
 	test -f bin/composer || curl -sS https://getcomposer.org/installer | php -- --install-dir=bin --filename=composer
@@ -11,22 +8,21 @@ init:
 	php bin/insight self-update
 	php bin/insight projects -n --user-uuid=88ce8329-0632-4b1d-a1de-f9793f84cd28 --api-token=3dd4d1f4c84bf5933bb331f13780b60cbd12bac6b1422d1caacfe0fd8326c2a7
 	npm install
-	test -L bin/gulp && rm -f bin/gulp || echo "" > /dev/null
-	cd bin && ln -fs ../node_modules/.bin/gulp
-	./bin/gulp -v
+	gulp -v
+	echo "Project Sir ready to use !"
 
 all: install clean build
 	echo "Project Sir is built !"
 
-install: install-sir install-dextr install-huntr install-linkr clean
+install: install-sir install-dextr install-huntr install-linkr
 
 clean: clean-sir clean-dextr clean-huntr clean-linkr
 
 build: clean build-sir build-dextr build-huntr build-linkr
 
 fixer:
-	php bin/php-cs-fixer fix src --level=symfony || echo "" > /dev/null
-	php bin/php-cs-fixer fix skeletons --level=symfony || echo "" > /dev/null
+	php bin/php-cs-fixer fix src --level=symfony || true
+	php bin/php-cs-fixer fix skeletons --level=symfony || true
 
 #
 # Tests, travis
@@ -47,7 +43,7 @@ run-atoum:
 	./bin/atoum -c app/.atoum.php -bf app/.bootstrap.atoum.php
 
 #
-# Sir install
+# SiR
 #
 sir: install-sir clean-sir build-sir
 
@@ -58,7 +54,7 @@ install-sir:
 clean-sir:
 	rm -rf app/cache/*
 	rm -rf app/logs/*
-	test -d /dev/shm/sir && rm -rf /dev/shm/sir || echo "" > /dev/null
+	test -d /dev/shm/sir && rm -rf /dev/shm/sir || true
 	rm -rf vendor/composer/autoload*
 	rm app/bootstrap.php.cache
 	./bin/composer dump-autoload
@@ -68,10 +64,10 @@ clean-sir:
 
 build-sir:
 	php app/console doctrine:migrations:diff
-	php app/console doctrine:database:drop --force || echo "" > /dev/null
-	php app/console doctrine:database:create
+	php app/console doctrine:database:drop --force || true
+	php app/console doctrine:database:create || true
 	php app/console doctrine:migrations:migrate -n
-	php app/console doctrine:fixtures:load -n -q || echo "" > /dev/null
+	php app/console doctrine:fixtures:load -n -q || true
 
 #
 # DextR
@@ -79,13 +75,13 @@ build-sir:
 dextr: install-dextr build-dextr
 
 install-dextr:
-	./bin/gulp install-dextr
+	gulp install-dextr
 
 clean-dextr:
-	./bin/gulp clean-dextr
+	gulp clean-dextr
 
 build-dextr:
-	./bin/gulp build-dextr
+	gulp build-dextr
 
 #
 # HuntR
@@ -93,13 +89,13 @@ build-dextr:
 huntr: install-huntr build-huntr
 
 install-huntr:
-	./bin/gulp install-huntr
+	gulp install-huntr
 
 clean-huntr:
-	./bin/gulp clean-huntr
+	gulp clean-huntr
 
 build-huntr:
-	./bin/gulp build-huntr
+	gulp build-huntr
 
 #
 # LinkR
@@ -107,10 +103,10 @@ build-huntr:
 linkr: install-linkr build-huntr
 
 install-linkr:
-	./bin/gulp install-linkr
+	gulp install-linkr
 
 clean-linkr:
-	./bin/gulp clean-linkr
+	gulp clean-linkr
 
 build-linkr:
-	./bin/gulp build-linkr
+	gulp build-linkr
