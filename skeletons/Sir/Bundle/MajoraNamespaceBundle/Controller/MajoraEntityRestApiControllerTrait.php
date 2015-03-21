@@ -51,7 +51,7 @@ trait MajoraEntityRestApiControllerTrait
     public function cgetAction(ParamFetcherInterface $paramFetcher, Request $request)
     {
         return $this->createJsonResponse(
-            $this->get('sir.majora_entity.loader')->retrieveAll(
+            $this->container->get('sir.majora_entity.loader')->retrieveAll(
                 $this->extractQueryFilter($request),
                 $paramFetcher->get('limit'),
                 $paramFetcher->get('offset')
@@ -107,7 +107,7 @@ trait MajoraEntityRestApiControllerTrait
     {
         $majoraEntity = new MajoraEntity();
 
-        $form = $this->get('form.factory')->create(
+        $form = $this->container->get('form.factory')->create(
             new MajoraEntityType(),
             $majoraEntity
         );
@@ -118,7 +118,7 @@ trait MajoraEntityRestApiControllerTrait
             );
         }
 
-        $this->get('sir.majora_entity.domain')->create($majoraEntity);
+        $this->container->get('sir.majora_entity.domain')->create($majoraEntity);
 
         return $this->createJsonResponse(
             $majoraEntity
@@ -148,7 +148,7 @@ trait MajoraEntityRestApiControllerTrait
     {
         $majoraEntity = $this->retrieveOr404($id, 'sir.majora_entity.loader');
 
-        $form = $this->get('form.factory')->create(
+        $form = $this->container->get('form.factory')->create(
             new MajoraEntityType(),
             $majoraEntity,
             array('method' => 'PUT')
@@ -160,7 +160,7 @@ trait MajoraEntityRestApiControllerTrait
             );
         }
 
-        $this->get('sir.majora_entity.domain')->update($majoraEntity);
+        $this->container->get('sir.majora_entity.domain')->edit($majoraEntity);
 
         return $this->createJsonNoContentResponse();
     }
@@ -186,7 +186,7 @@ trait MajoraEntityRestApiControllerTrait
     {
         $majoraEntity = $this->retrieveOr404($id, 'sir.majora_entity.loader');
 
-        $this->get('sir.majora_entity.domain')->delete($majoraEntity);
+        $this->container->get('sir.majora_entity.domain')->delete($majoraEntity);
 
         return $this->createJsonNoContentResponse();
     }

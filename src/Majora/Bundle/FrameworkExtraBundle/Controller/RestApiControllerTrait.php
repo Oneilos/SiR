@@ -2,19 +2,22 @@
 
 namespace Majora\Bundle\FrameworkExtraBundle\Controller;
 
+use Majora\Framework\Serializer\Handler\Json\Exception\JsonDeserializationException;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Base class for REST APIs entity controllers traits.
+ *
+ * @property ContainerInterface $container
  */
 trait RestApiControllerTrait
 {
-    protected $container;
-
     /**
      * Extract available query filter from request.
      *
@@ -159,11 +162,15 @@ trait RestApiControllerTrait
      */
     protected function submitJsonData(Request $request, FormInterface $form)
     {
-        $data = $this->extractFormData(
-            $this->container->get('serializer')
-                ->deserialize($request->getContent(), 'array'),
-            $form
-        );
+        $data = json_decode($request->getContent(), true);
+
+        if (null === $data) {
+            throw new JsonDeserializationException(sprintf(
+                'Invalid json data, error %s : %s',
+                json_last_error(),
+                json_last_error_msg()
+            ));
+        }
 
         $form->submit($data);
         if (!$valid = $form->isValid()) {
@@ -180,54 +187,4 @@ trait RestApiControllerTrait
      * @see Symfony\Bundle\FrameworkBundle\Controller\Controller::createForm()
      */
     abstract public function createForm($type, $data = null, array $options = array());
-
-    /**
-     * Removes additional data that hasn't been defined in the form.
-     *
-     * @param array         $data
-     * @param FormInterface $form
-     *
-     * @return array
-     */
-    protected function extractFormData(array $data, FormInterface $form)
-    {
-        $return       = array();
-        $formChildren = $form->all();
-
-        foreach ($formChildren as $formKey => $formChild) {
-            if (!isset($data[$formKey])) {
-                continue;
-            }
-
-            if (!is_array($data[$formKey])) {
-                $return[$formKey] = $data[$formKey];
-                continue;
-            }
-
-            reset($data[$formKey]);
-            if (is_string(key($data[$formKey]))) {
-                $return[$formKey] = $this->extractFormData(
-                    $data[$formKey],
-                    $formChild
-                );
-
-                continue;
-            }
-
-            $formOptions = $formChild->getConfig()->getOptions();
-            if (empty($formOptions['type'])) {
-                $return[$formKey] = $data[$formKey];
-                continue;
-            }
-
-            foreach ($data[$formKey] as $dataKey => $childData) {
-                $return[$formKey][$dataKey] = $this->extractFormData(
-                    $childData,
-                    $this->createForm($formOptions['type'])
-                );
-            }
-        }
-
-        return $return;
-    }
 }

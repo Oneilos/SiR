@@ -67,9 +67,12 @@ trait LoaderTrait
      */
     private function cleanFilters(array $filters)
     {
+        /** @var SerializableInterface $entity */
+        $entity = new $this->entityClass();
+
         return array_intersect_key(
             $filters,
-            array_flip(array_keys((new $this->entityClass())->toArray()))
+            array_flip(array_keys($entity->serialize()))
         );
     }
 

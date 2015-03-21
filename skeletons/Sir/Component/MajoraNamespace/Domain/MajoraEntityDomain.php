@@ -2,7 +2,7 @@
 
 namespace Sir\Component\MajoraNamespace\Domain;
 
-use Majora\Framework\Domain\AbstractDomain;
+use Majora\Framework\Domain\BaseDomain;
 use SirSdk\Component\MajoraNamespace\Domain\MajoraEntityDomainInterface;
 use SirSdk\Component\MajoraNamespace\Repository\MajoraEntityRepositoryInterface;
 
@@ -15,7 +15,7 @@ use SirSdk\Component\MajoraNamespace\Repository\MajoraEntityRepositoryInterface;
  * @see MajoraEntityDomainTrait::delete(MajoraEntity $majoraEntity)
  */
 class MajoraEntityDomain
-    extends AbstractDomain
+    extends BaseDomain
     implements MajoraEntityDomainInterface
 {
     use MajoraEntityDomainTrait;

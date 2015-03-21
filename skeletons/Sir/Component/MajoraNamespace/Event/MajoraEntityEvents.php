@@ -15,7 +15,7 @@ final class MajoraEntityEvents
     /**
      * event fired when a majora_entity is updated.
      */
-    const SIR_MAJORA_ENTITY_UPDATED = 'sir.majora_entity.updated';
+    const SIR_MAJORA_ENTITY_EDITED = 'sir.majora_entity.edited';
 
     /**
      * event fired when a majora_entity is deleted.

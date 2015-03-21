@@ -13,12 +13,12 @@
         <service id="serializer" alias="majora.serializer" />
 
         <!-- Json serialization handler -->
-        <service id="majora.serialization_handler.json" class="Majora\Framework\Serializer\Json\JsonHandler" public="false">
+        <service id="majora.serialization_handler.json" class="Majora\Framework\Serializer\Handler\Json\JsonHandler" public="false">
             <tag name="majora.serialization_handler" format="json" />
         </service>
 
         <!-- Array serialization handler -->
-        <service id="majora.serialization_handler.array" class="Majora\Framework\Serializer\Collection\CollectionHandler" public="false">
+        <service id="majora.serialization_handler.array" class="Majora\Framework\Serializer\Handler\Collection\CollectionHandler" public="false">
             <tag name="majora.serialization_handler" format="array" />
         </service>
 

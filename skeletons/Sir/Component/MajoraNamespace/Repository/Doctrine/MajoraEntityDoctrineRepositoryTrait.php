@@ -3,13 +3,13 @@
 
 namespace Sir\Component\MajoraNamespace\Repository\Doctrine;
 
-use Majora\Framework\Repository\Api\DoctrineRepositoryTrait;
+use Majora\Framework\Repository\Doctrine\DoctrineRepositoryTrait;
 use SirSdk\Component\MajoraNamespace\Model\MajoraEntity;
 
 /**
  * MajoraEntity repository trait for Doctrine.
  */
-trait MajoraEntityDoctrineTrait
+trait MajoraEntityDoctrineRepositoryTrait
 {
     use DoctrineRepositoryTrait;
 

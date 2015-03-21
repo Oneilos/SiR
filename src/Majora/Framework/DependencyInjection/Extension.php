@@ -14,7 +14,7 @@ abstract class Extension extends SymfonyExtension
     /**
      * register base majora service aliases.
      *
-     * @param ContainerBuilder $containerBuilder
+     * @param ContainerBuilder $container
      * @param string           $entity
      * @param array            $config
      */
