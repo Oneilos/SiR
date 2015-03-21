@@ -10,7 +10,7 @@ init:
 	test -f bin/insight || wget http://get.insight.sensiolabs.com/insight.phar -O bin/insight
 	php bin/insight self-update
 	php bin/insight projects -n --user-uuid=88ce8329-0632-4b1d-a1de-f9793f84cd28 --api-token=3dd4d1f4c84bf5933bb331f13780b60cbd12bac6b1422d1caacfe0fd8326c2a7
-	npm install --save
+	npm install
 	test -L bin/gulp && rm -f bin/gulp || echo "" > /dev/null
 	cd bin && ln -fs ../node_modules/.bin/gulp
 	./bin/gulp -v
