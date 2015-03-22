@@ -1,6 +1,6 @@
 <div class="sticky">
-  <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: large">
-    <section class="top-bar-section">
+  <top-bar>
+    <top-bar-section>
       <ul class="left">
         <li class="has-dropdown">
           <a href>HuntR</a>
@@ -11,21 +11,27 @@
           </ul>
         </li>
         <li class="divider"></li>
+        <li class="top-bar-breadcrumbs">
+          <span><a href="#">HuntR</a></span>
+          <span class="unavailable"><a>Candidat</a></span>
+          <span class="current"><a>Process</a></span>
+        </li>
       </ul>
       <ul class="right">
         <li class="divider"></li>
         <li>
           <a href="#">Elodie</a>
         </li>
+        <li class="divider"></li>
         <li>
           <a href="#"><i class="fi-power"></i></a>
         </li>
       </ul>
-    </section>
-  </nav>
+    </top-bar-section>
+  </top-bar>
 </div>
-<ul class="breadcrumbs">
-  <li><a href="#">HuntR</a></li>
-  <li class="unavailable"><a>Candidat</a></li>
-  <li class="current"><a>Process</a></li>
-</ul>
+<aside class="right-off-canvas-menu">
+  <ul class="off-canvas-list">
+    <li><a href="#">Right Sidebar</a></li>
+  </ul>
+</aside>

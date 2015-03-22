@@ -18,7 +18,9 @@
   }
 }
 @import 'settings_override';
+@import 'foundation/components/global';
 @import '../components/timeline/scss/timeline';
+@import '../components/navbar/scss/navbar';
 @import 'skin_lv';
 // injector
 // endinjector

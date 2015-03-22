@@ -1,31 +1,30 @@
 $primary-color-lv: #77787b;
 $third-color-lv: #96a4b5;
 
-$second-color-lv--lighter: #31668E;  /* Main Primary color */
-$second-color-lv--light: #78A2C2;
-$second-color-lv: #4B7BA0;
-$second-color-lv--dark: #1B517B;
-$second-color-lv--darker: #0D3D62;
+$color_linkValue: #3A607C;  /* Main Primary color */
+$color_linkValue--lighter: #8DA6B9;
+$color_linkValue--light: #5E7E97;
+$color_linkValue--dark: #1F4562;
+$color_linkValue--darker: #0B2C45;
 
-$second-color-lv-chromatic1: #3E3E9A;  /* Main Secondary color (1) */
-$second-color-lv-chromatic1: #8585CB;
-$second-color-lv-chromatic1: #5A5AAF;
-$second-color-lv-chromatic1: #272786;
-$second-color-lv-chromatic1: #16166B;
+$color_linValue__secondary: #C16C53;  /* Main Secondary color (1) */
+$color_linValue__secondary--lighter: #FFCDBF;
+$color_linValue__secondary--light: #EAA18B;
+$color_linValue__secondary--dark: #98422A;
+$color_linValue__secondary--darker: #6C200A;
 
-$second-color-lv-chromatic2--lighter: #DDB642;  /* Main Ssecondary color (2) */
-$second-color-lv-chromatic2--light: #FFE598;
-$second-color-lv-chromatic2: #F9D66B;
-$second-color-lv-chromatic2--dark: #BF9720;
-$second-color-lv-chromatic2--darker: #98750A;
+$color_linkValue__ternary: #3B885F;  /* Main Secondary color (2) */
+$color_linkValue__ternary--lighter: #94C5AB;
+$color_linkValue__ternary--light: #62A682;
+$color_linkValue__ternary--dark: #1D6C42;
+$color_linkValue__ternary--darker: #074C27;
 
-$second-color-lv-complement--lighter: #DD9B42; /* Main Complement color */
-$second-color-lv-complement--light: #FFD398;
-$second-color-lv-complement: #F9BD6B;
-$second-color-lv-complement--dark: #BF7B20;
-$second-color-lv-complement--darker: #985C0A;
+$color_linkValue__complementary: #C19253; /* Main Complement color */
+$color_linkValue__complementary--lighter: #FFE4BF;
+$color_linkValue__complementary--light: #EAC28B;
+$color_linkValue__complementary--dark: #98692A;
+$color_linkValue__complementary--darker: #6C420A;
 
-$body-bg: #eee;
-$topbar-bg-color: $third-color-lv;
-$topbar-bg: $topbar-bg-color;
-@import 'foundation/components/global';
+$body-bg: #f5f5f5;
+$tabbar-bg: hsla(0,0%,0%,0);
+$tabbar-menu-icon-color: $primary-color-lv;

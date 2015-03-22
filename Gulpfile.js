@@ -6,7 +6,7 @@ gulp.paths = {};
 
 var bundles = ['Dextr', 'Huntr', 'Linkr'], paths = {
   src: 'src',
-  bower: 'bower_components',
+  components: 'bower_components',
   dist: '../public',
   tmp: '.tmp',
   e2e: 'e2e',

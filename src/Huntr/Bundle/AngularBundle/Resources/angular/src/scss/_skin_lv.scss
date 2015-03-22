@@ -1,0 +1,48 @@
+.timeline {
+  .step {
+    &.source {
+      &::before {
+        content: "\f133";
+        background: $color_linkValue;
+        border-color: transparent;
+        color: $white;
+      }
+      &::after {
+        background: $color_linkValue;
+      }
+    }
+    &.prequal {
+      &::before {
+        content: "\f1f8";
+        background: $color_linkValue__ternary--light;
+        border-color: transparent;
+        color: $white;
+      }
+      &::after {
+        background: $color_linkValue__ternary--light;
+      }
+    }
+    &.fp {
+      &::before {
+        content: "\f128";
+        background: $color_linkValue__complementary;
+        border-color: transparent;
+        color: $white;
+      }
+      &::after {
+        background: $color_linkValue__complementary;
+      }
+    }
+    &.propa{
+      &::before {
+        content: "\f146";
+        background: $color_linValue__secondary--dark;
+        border-color: transparent;
+        color: $white;
+      }
+      &::after {
+        background: $color_linValue__secondary--dark;
+      }
+    }
+  }
+}

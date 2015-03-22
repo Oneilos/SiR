@@ -1,0 +1,25 @@
+@import 'foundation/components/breadcrumbs';
+
+.top-bar .top-bar-breadcrumbs {
+  padding: 0 20px;
+  border: none;
+  background: none;
+
+  > span {
+    @include crumbs;
+
+    a {
+      display: inline;
+      padding: 0 !important;
+
+      &:hover,
+      &:focus {
+        background: none!important;
+        color: inherit;
+      }
+    }
+    &.current a {
+      color: $white;
+    }
+  }
+}
