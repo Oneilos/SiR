@@ -123,11 +123,13 @@ class FileGenerator
     /**
      * run content modifiers on given file content
      *
-     * @param  string $fileContent
-     * @param  array  $modifiers
+     * @param  string      $fileContent
+     * @param  SplFileInfo $templateFile
+     * @param  array       $modifiers
+     * @param  Inflector   $inflector
      * @return string
      */
-    public function modify($fileContent, array $modifiers)
+    public function modify($fileContent, SplFileInfo $templateFile, array $modifiers, Inflector $inflector)
     {
         foreach ($modifiers as $modifierAlias) {
             if (($modifier = $this->contentModifiers->get($modifierAlias))
@@ -181,7 +183,9 @@ class FileGenerator
                 $generatedFilePath,
                 $this->modify(
                     $inflector->translate($fileContent),
-                    $metadata['content_modifier']
+                    $templateFile,
+                    $metadata['content_modifier'],
+                    $inflector
                 )
             );
 
