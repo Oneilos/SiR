@@ -38,7 +38,6 @@ Gemfile.lock
 .cap_tasks~
 
 # coverages
-/web/atoum
 /web/tests-coverage
 
 # Apache files
