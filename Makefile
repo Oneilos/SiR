@@ -27,20 +27,17 @@ fixer:
 #
 # Tests, travis
 #
+test: install-test install-dextr install-huntr install-linkr build
+
 install-test:
 	./bin/composer install --prefer-dist --no-scripts
 	cp app/config/parameters.yml.dist app/config/parameters.yml
 	./bin/composer dump-autoload
 	./bin/composer run-script setup-bootstrap -vv
 
-test: install-test install-dextr install-huntr install-linkr build
-
-run-phpunit:
+run-test:
 	./bin/phpunit -c app --coverage-html web/tests-coverage
 	echo "\nCoverage report : \n\033[1;32m http://api.sir.dev/tests-coverage/index.html\033[0m\n"
-
-run-atoum:
-	./bin/atoum -c app/.atoum.php -bf app/.bootstrap.atoum.php
 
 #
 # SiR

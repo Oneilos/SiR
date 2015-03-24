@@ -3,10 +3,8 @@
 namespace Majora\Bundle\FrameworkExtraBundle\Controller;
 
 use Majora\Framework\Serializer\Handler\Json\Exception\JsonDeserializationException;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
