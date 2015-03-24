@@ -84,7 +84,7 @@ class FileGenerator
         $regex                = '/majora_generator\.([a-z0-9_]+)\:\s*([\w]+)/';
         $templateFileMetadata = array(
             'force_generation' => false,
-            'content_modifier' => array()
+            'content_modifier' => array(),
         );
 
         if (!preg_match_all($regex, $templateFileContent, $matches, PREG_SET_ORDER)) {
@@ -105,7 +105,7 @@ class FileGenerator
     }
 
     /**
-     * generate dest dir
+     * generate dest dir.
      *
      * @param string $destDirPath
      */
@@ -121,12 +121,13 @@ class FileGenerator
     }
 
     /**
-     * run content modifiers on given file content
+     * run content modifiers on given file content.
      *
-     * @param  string      $fileContent
-     * @param  SplFileInfo $templateFile
-     * @param  array       $modifiers
-     * @param  Inflector   $inflector
+     * @param string      $fileContent
+     * @param SplFileInfo $templateFile
+     * @param array       $modifiers
+     * @param Inflector   $inflector
+     *
      * @return string
      */
     public function modify($fileContent, SplFileInfo $templateFile, array $modifiers, Inflector $inflector)
@@ -176,7 +177,7 @@ class FileGenerator
 
             // contents needs to be updated ?
             if ($alreadyGenerated && $modifyContent) {
-                $fileContent = (new SplFileInfo($generatedFilePath,'', ''))->getContents();
+                $fileContent = (new SplFileInfo($generatedFilePath, '', ''))->getContents();
             }
 
             $this->filesystem->dumpFile(

@@ -1,6 +1,6 @@
 <?php
 
-namespace Majora\Framework\Serializer\Json;
+namespace Majora\Framework\Serializer\Handler\Json;
 
 use Majora\Framework\Serializer\Handler\Collection\CollectionHandler;
 use Majora\Framework\Serializer\Handler\Json\Exception\JsonDeserializationException;

@@ -2,6 +2,7 @@
 
 namespace Majora\Framework\DependencyInjection;
 
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 
 /**
@@ -18,7 +19,7 @@ class MajoraConfiguration
      *
      * @param string $entity
      *
-     * @return TreeBuilder
+     * @return ArrayNodeDefinition
      */
     protected function createEntitySection($entity)
     {

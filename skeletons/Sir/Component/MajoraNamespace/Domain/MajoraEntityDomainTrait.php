@@ -17,7 +17,7 @@ use Sir\Component\MajoraNamespace\Event\MajoraEntityEvents;
  * @see DomainTrait::assertEntityIsValid()
  * @see DomainTrait::fireEvent()
  */
-class MajoraEntityDomainTrait
+trait MajoraEntityDomainTrait
 {
     use DomainTrait;
 

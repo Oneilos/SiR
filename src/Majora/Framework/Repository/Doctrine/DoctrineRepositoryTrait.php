@@ -2,6 +2,9 @@
 
 namespace Majora\Framework\Repository\Doctrine;
 
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 use Majora\Framework\Model\CollectionableInterface;
 
 /**

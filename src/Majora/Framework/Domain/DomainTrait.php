@@ -15,7 +15,7 @@ trait DomainTrait
      * @param object $entity
      * @param string $scope
      *
-     * @throws Exception If given object is invalid on given scope
+     * @throws \Exception If given object is invalid on given scope
      */
     protected function assertEntityIsValid($entity, $scope = null)
     {
