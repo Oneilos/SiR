@@ -3,7 +3,6 @@
 namespace Majora\Framework\Serializer\Tests\Model;
 
 use PHPUnit_Framework_TestCase;
-use StdClass;
 
 /**
  * Test class for serializable trait.
@@ -115,7 +114,7 @@ class SerializableTraitTest
                 array('id' => 70, 'mock3' => array('ganon' => 'dorf')),
                 (new SerializableMock1())
                     ->setId(70)
-                    ->setMock3(new StdClass()),
+                    ->setMock3(new \StdClass()),
             ),
 
             // tests with unsupported hinting

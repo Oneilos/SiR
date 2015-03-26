@@ -4,7 +4,6 @@ namespace Majora\Framework\Serializer\Tests\Model;
 
 use Majora\Framework\Serializer\Model\SerializableInterface;
 use Majora\Framework\Serializer\Model\SerializableTrait;
-use StdClass;
 
 class SerializableMock1
     implements SerializableInterface
@@ -84,7 +83,7 @@ class SerializableMock1
         return $this->mock3;
     }
 
-    public function setMock3(StdClass $mock3)
+    public function setMock3(\StdClass $mock3)
     {
         $this->mock3 = $mock3;
 

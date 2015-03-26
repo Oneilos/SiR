@@ -1,0 +1,10 @@
+# majora_generator.content_modifier: sir_api_routing
+# majora_generator.content_modifier: sir_update_routing
+
+# Partner Api
+partner_gen_rest_api:
+    resource: "@SirSdkPartnerBundle/Resources/config/routing/gen/partner_api.yml"
+    prefix:   /partners
+partner_rest_api:
+    resource: "@SirSdkPartnerBundle/Resources/config/routing/partner_api.yml"
+    prefix:   /partners

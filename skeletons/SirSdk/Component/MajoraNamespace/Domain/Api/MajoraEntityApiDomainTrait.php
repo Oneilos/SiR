@@ -1,6 +1,5 @@
 <?php
-// majora_generator.force_generation: true
-
+/* majora_generator.force_generation: true */
 
 namespace SirSdk\Component\MajoraNamespace\Domain\Api;
 
@@ -10,7 +9,6 @@ use SirSdk\Component\MajoraNamespace\Repository\Api\MajoraEntityApiRepository;
 
 /**
  * MajoraEntity domain API traits.
- *
  *
  * @see DomainTrait::assertEntityIsValid($entity, $scope = null)
  * @see DomainTrait::fireEvent($eventName, Event $event)

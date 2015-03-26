@@ -1,0 +1,35 @@
+# majora_generator.force_generation: true
+
+api_rest_get_partner:
+    path: '/{id}'
+    defaults:
+        _controller: 'SirPartnerBundle:PartnerRestApi:get'
+        entity: SirSdk\Component\Partner\Model\Partner
+    methods: [GET]
+
+api_rest_cget_partner:
+    path: '/'
+    defaults:
+        _controller: 'SirPartnerBundle:PartnerRestApi:cget'
+        entity: SirSdk\Component\Partner\Model\Partner
+        collection: SirSdk\Component\Partner\Model\PartnerCollection
+    methods: [GET]
+
+api_rest_post_partner:
+    path: '/'
+    defaults:
+        _controller: 'SirPartnerBundle:PartnerRestApi:post'
+        entity: SirSdk\Component\Partner\Model\Partner
+    methods: [POST]
+
+api_rest_put_partner:
+    path: '/{id}'
+    defaults:
+        _controller: 'SirPartnerBundle:PartnerRestApi:put'
+    methods: [PUT]
+
+api_rest_delete_partner:
+    path: '/{id}'
+    defaults:
+        _controller: 'SirPartnerBundle:PartnerRestApi:delete'
+    methods: [DELETE]

@@ -2,9 +2,6 @@
 
 namespace Majora\Framework\Serializer\Model;
 
-use InvalidArgumentException;
-use ReflectionMethod;
-
 /**
  * Implements a generic serializable trait.
  *
@@ -25,7 +22,7 @@ trait SerializableTrait
     {
         $scopes = $this->getScopes();
         if (!isset($scopes[$scope])) {
-            throw new InvalidArgumentException(sprintf(
+            throw new \InvalidArgumentException(sprintf(
                 'Invalid scope for %s object, only [%s] supported, "%s" given.',
                 __CLASS__,
                 implode(', ', array_keys($scopes)),
@@ -99,7 +96,7 @@ trait SerializableTrait
     {
         foreach ($data as $property => $value) {
             if (!property_exists($this, $property)) {
-                throw new InvalidArgumentException(sprintf(
+                throw new \InvalidArgumentException(sprintf(
                     'Try to set "%s" property on a %s object which doesnt exists.',
                     $property,
                     get_class($this)
@@ -119,7 +116,7 @@ trait SerializableTrait
             }
 
             // extract setter class from type hinting
-            $reflectionMethod = new ReflectionMethod(get_class($this), $setter);
+            $reflectionMethod = new \ReflectionMethod(get_class($this), $setter);
             $parameters       = $reflectionMethod->getParameters();
             $setParameter     = $parameters[0];
 

@@ -2,12 +2,9 @@
 
 namespace Majora\Framework\Repository\Fixtures;
 
-use InvalidArgumentException;
 use Majora\Framework\Model\CollectionableInterface;
 use Majora\Framework\Model\EntityCollection;
-use RuntimeException;
 use Symfony\Component\Serializer\SerializerInterface;
-use ReflectionClass;
 
 /**
  * Base trait for fixtures repository.
@@ -30,15 +27,15 @@ trait FixturesRepositoryTrait
         SerializerInterface $serializer
     ) {
         if (empty($collectionClass) || !class_exists($collectionClass)) {
-            throw new InvalidArgumentException(sprintf(
+            throw new \InvalidArgumentException(sprintf(
                 'You must provide a valid class name, "%s" given.',
                 $collectionClass
             ));
         }
 
-        $reflect = new ReflectionClass($collectionClass);
+        $reflect = new \ReflectionClass($collectionClass);
         if (!$reflect->isSubclassOf('Majora\Framework\Model\EntityCollection')) {
-            throw new InvalidArgumentException(sprintf(
+            throw new \InvalidArgumentException(sprintf(
                 'You must provide a "Majora\Framework\Model\EntityCollection" class name, "%s" given.',
                 $collectionClass
             ));
@@ -57,7 +54,7 @@ trait FixturesRepositoryTrait
     private function assertDataLoaded()
     {
         if (!$this->data instanceof EntityCollection) {
-            throw new RuntimeException(sprintf(
+            throw new \RuntimeException(sprintf(
                 '%s methods cannot be used, it hasnt been initialize through setUp() method.',
                 __CLASS__
             ));

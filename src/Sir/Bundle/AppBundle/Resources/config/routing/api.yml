@@ -1,0 +1,4 @@
+
+# Partner bundle routing
+partner_api_routing:
+    resource: "@SirSdkPartnerBundle/Resources/config/routing_api.yml"

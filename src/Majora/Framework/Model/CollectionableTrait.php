@@ -3,7 +3,6 @@
 namespace Majora\Framework\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use InvalidArgumentException;
 
 /**
  * Trait for collectionable objects.
@@ -24,7 +23,7 @@ trait CollectionableTrait
         $data = $data ?: array();
 
         if (!is_array($data) && !$data instanceof ArrayCollection) {
-            throw new InvalidArgumentException('Can transform only ArrayCollections or arrays.');
+            throw new \InvalidArgumentException('Can transform only ArrayCollections or arrays.');
         }
 
         return is_object($data) && get_class($data) == $collectionClass ?

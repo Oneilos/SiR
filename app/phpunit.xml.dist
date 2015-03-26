@@ -8,13 +8,13 @@
          bootstrap="bootstrap.php.cache"
 >
     <testsuites>
-        <testsuite name="Sir Project Test Suite">
-            <directory>../src/Sir*/Bundle/*Bundle/Tests</directory>
+        <testsuite name="sir_project">
+            <directory>../src/Majora/Framework/*/Tests</directory>
             <directory>../src/Sir*/Component/*/Tests</directory>
         </testsuite>
-        <testsuite name="Majora Project Test Suite">
-            <directory>../src/Majora/Bundle/*Bundle/Tests</directory>
-            <directory>../src/Majora/Framework/*/Tests</directory>
+        <testsuite name="skeletons">
+            <directory>../skeletons/Sir*/Bundle/*Bundle/Tests</directory>
+            <directory>../skeletons/Sir*/Component/*/Tests</directory>
         </testsuite>
     </testsuites>
 
@@ -31,7 +31,7 @@
         >
             <directory>../src</directory>
             <exclude>
-                <directory>../src/*/Bundle/*Bundle/Tests</directory>
+                <directory>../src/*/Bundle</directory>
                 <directory>../src/*/Component/*/Tests</directory>
                 <directory>../src/Majora/Framework/*/Tests</directory>
             </exclude>
