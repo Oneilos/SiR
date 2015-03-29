@@ -18,7 +18,7 @@ install: install-sir install-dextr install-huntr install-linkr
 
 clean: clean-sir clean-dextr clean-huntr clean-linkr
 
-build: clean build-sir build-dextr build-huntr build-linkr
+build: build-sir build-dextr build-huntr build-linkr
 
 fixer:
 	php bin/php-cs-fixer fix src --level=symfony || true
@@ -35,8 +35,8 @@ install-test:
 	./bin/composer dump-autoload
 	./bin/composer run-script setup-bootstrap -vv
 
-run-test:
-	./bin/phpunit -c app --coverage-html web/tests-coverage
+run-tests:
+	./bin/phpunit -c app --testsuite sir_project --coverage-html web/tests-coverage
 	echo "\nCoverage report : \n\033[1;32m http://api.sir.dev/tests-coverage/index.html\033[0m\n"
 
 #
@@ -64,6 +64,10 @@ build-sir:
 	php app/console doctrine:database:drop --force || true
 	php app/console doctrine:database:create || true
 	php app/console doctrine:migrations:migrate -n
+
+	# all Majora generated bundle and components
+	php app/console majora:generate Partner Partner -vv
+
 	php app/console doctrine:fixtures:load -n -q || true
 
 #

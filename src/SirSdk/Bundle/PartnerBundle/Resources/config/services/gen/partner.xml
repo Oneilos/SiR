@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+
+<!-- majora_generator.force_generation: true -->
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <!-- Partner domain -->
+        <service id="sir.partner.api_domain"
+                 class="SirSdk\Component\Partner\Domain\Api\PartnerApiDomain"
+                 parent="majora.domain.abstract"
+                 public="false"
+        >
+            <argument type="service" id="sir.partner.repository" />
+        </service>
+
+        <!-- Partner api loader -->
+        <service id="sir.partner.api_loader"
+                 class="SirSdk\Component\Partner\Loader\Api\PartnerApiLoader"
+                 parent="majora.loader.abstract"
+                 public="false"
+        >
+            <call method="setUp"> <!-- parent class setUp -->
+                <argument type="service" id="sir.partner.api_repository" />
+                <argument>SirSdk\Component\Partner\Model\Partner</argument>
+                <argument>SirSdk\Component\Partner\Model\PartnerCollection</argument>
+            </call>
+        </service>
+
+        <!-- Partner api repository -->
+        <service id="sir.partner.api_repository"
+                 class="SirSdk\Component\Partner\Repository\Api\PartnerApiRepository"
+                 parent="majora.api_repository.abstract"
+                 public="false"
+        >
+            <argument>partner</argument>
+        </service>
+
+    </services>
+
+</container>

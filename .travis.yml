@@ -11,6 +11,6 @@ before_script:
   - make init; make test
 
 script:
-  - phpunit -c app --coverage-text --coverage-clover=coverage.clover
+  - phpunit -c app --testsuite sir_project --coverage-text --coverage-clover=coverage.clover
   - wget https://scrutinizer-ci.com/ocular.phar
   - php ocular.phar code-coverage:upload --format=php-clover coverage.clover

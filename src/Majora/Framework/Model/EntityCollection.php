@@ -2,9 +2,7 @@
 
 namespace Majora\Framework\Model;
 
-use BadMethodCallException;
 use Doctrine\Common\Collections\ArrayCollection;
-use InvalidArgumentException;
 use Majora\Framework\Serializer\Model\SerializableInterface;
 
 /**
@@ -32,7 +30,7 @@ class EntityCollection
      */
     public function deserialize(array $data)
     {
-        throw new BadMethodCallException(sprintf('%s() method has to be defined in %s class.',
+        throw new \BadMethodCallException(sprintf('%s() method has to be defined in %s class.',
             __FUNCTION__, get_class($this)
         ));
     }
@@ -110,7 +108,7 @@ class EntityCollection
         foreach ($elements as $element) {
             $method = sprintf('get%s', ucfirst($field));
             if (!is_callable(array($element, $method))) {
-                throw new InvalidArgumentException(sprintf(
+                throw new \InvalidArgumentException(sprintf(
                     'Cannot index %s elements on "%s" field. At least one element doesnt implements %s() method.',
                     get_class($this), $field, $method
                 ));

@@ -3,10 +3,8 @@
 namespace Majora\Framework\Loader;
 
 use Doctrine\Common\Collections\Collection;
-use InvalidArgumentException;
 use Majora\Framework\Repository\RepositoryInterface;
 use Majora\Framework\Serializer\Model\SerializableInterface;
-use RuntimeException;
 
 /**
  * Base trait for loaders.
@@ -35,7 +33,7 @@ trait LoaderTrait
 
         $entity = new $entityClass();
         if (!$entity instanceof SerializableInterface) {
-            throw new InvalidArgumentException(
+            throw new \InvalidArgumentException(
                 'You must provide a Majora\Framework\Model\SerializableInterface class name.'
             );
         }
@@ -52,7 +50,7 @@ trait LoaderTrait
             return;
         }
 
-        throw new RuntimeException(sprintf(
+        throw new \RuntimeException(sprintf(
             '%s methods cannot be used, it hasnt been initialize through setUp() method.',
             __CLASS__
         ));

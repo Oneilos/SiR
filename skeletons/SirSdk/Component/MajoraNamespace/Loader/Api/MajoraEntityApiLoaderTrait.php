@@ -1,4 +1,5 @@
 <?php
+/* majora_generator.force_generation: true */
 
 namespace SirSdk\Component\MajoraNamespace\Loader\Api;
 

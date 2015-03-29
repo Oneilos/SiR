@@ -2,7 +2,7 @@
 
 namespace Sir\Component\MajoraNamespace\Repository\Doctrine;
 
-use Doctrine\ORM\EntityRepository;
+use Majora\Framework\Repository\Doctrine\BaseDoctrineRepository;
 use Majora\Framework\Repository\RepositoryInterface;
 use SirSdk\Component\MajoraNamespace\Repository\MajoraEntityRepositoryInterface;
 
@@ -10,7 +10,7 @@ use SirSdk\Component\MajoraNamespace\Repository\MajoraEntityRepositoryInterface;
  * MajoraEntity repository implementation using Doctrine.
  */
 class MajoraEntityDoctrineRepository
-    extends EntityRepository
+    extends BaseDoctrineRepository
     implements MajoraEntityRepositoryInterface, RepositoryInterface
 {
     use MajoraEntityDoctrineRepositoryTrait;

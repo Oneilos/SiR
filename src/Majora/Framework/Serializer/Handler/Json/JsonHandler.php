@@ -29,7 +29,8 @@ class JsonHandler
             throw new JsonDeserializationException(sprintf(
                 'Invalid json data, error %s : %s',
                 json_last_error(),
-                json_last_error_msg()
+                function_exists('json_last_error_msg') ? // php 5.4 compatibility
+                    json_last_error_msg() : 'error message unavailable'
             ));
         }
 

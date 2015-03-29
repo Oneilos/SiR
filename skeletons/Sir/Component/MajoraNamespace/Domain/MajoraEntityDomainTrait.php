@@ -13,7 +13,6 @@ use Sir\Component\MajoraNamespace\Event\MajoraEntityEvents;
 /**
  * MajoraEntity domain use cases auto generated trait.
  *
- *
  * @see DomainTrait::assertEntityIsValid()
  * @see DomainTrait::fireEvent()
  */

@@ -5,7 +5,6 @@ namespace Majora\Framework\Tests\Serializer;
 use Majora\Framework\Serializer\MajoraSerializer;
 use PHPUnit_Framework_TestCase;
 use Prophecy\Argument;
-use StdClass;
 
 /**
  * Unit test class for MajoraSerializer.php.
@@ -24,7 +23,7 @@ class MajoraSerializerTest
     public function testSerializeWithoutHandlers()
     {
         $serializer = new MajoraSerializer(array());
-        $serializer->serialize(new StdClass(), 'test');
+        $serializer->serialize(new \StdClass(), 'test');
     }
 
     /**

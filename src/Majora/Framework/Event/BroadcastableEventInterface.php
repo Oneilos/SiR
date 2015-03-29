@@ -24,7 +24,7 @@ interface BroadcastableEventInterface
     /**
      * return event related data.
      *
-     * @return object
+     * @return array
      */
     public function getData();
 

@@ -18,7 +18,9 @@ trait MajoraEntityDoctrineRepositoryTrait
      */
     public function save(MajoraEntity $majoraEntity)
     {
-        $this->persist($majoraEntity);
+        $em = $this->getEntityManager();
+        $em->persist($majoraEntity);
+        $em->flush();
 
         return $majoraEntity;
     }
@@ -28,7 +30,9 @@ trait MajoraEntityDoctrineRepositoryTrait
      */
     public function delete(MajoraEntity $majoraEntity)
     {
-        $this->remove($majoraEntity);
+        $em = $this->getEntityManager();
+        $em->remove($majoraEntity);
+        $em->flush();
 
         return $majoraEntity;
     }

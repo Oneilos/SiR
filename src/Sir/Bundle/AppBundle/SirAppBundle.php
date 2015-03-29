@@ -23,12 +23,14 @@ class SirAppBundle extends Bundle
     private static function getSirBundles()
     {
         return array(
+            new \Sir\Bundle\PartnerBundle\SirPartnerBundle(),
         );
     }
 
     private static function getSirSdkBundles()
     {
         return array(
+            new \SirSdk\Bundle\PartnerBundle\SirSdkPartnerBundle(),
         );
     }
 }

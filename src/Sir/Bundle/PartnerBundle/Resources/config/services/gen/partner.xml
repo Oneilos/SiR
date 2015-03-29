@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+
+<!-- majora_generator.force_generation: true -->
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <!-- Partner domain -->
+        <service id="sir.partner.default_domain"
+                 class="Sir\Component\Partner\Domain\PartnerDomain"
+                 parent="majora.domain.abstract"
+                 public="false"
+        >
+            <argument type="service" id="sir.partner.repository" />
+        </service>
+
+        <!-- Partner loader -->
+        <service id="sir.partner.default_loader"
+                 class="Sir\Component\Partner\Loader\PartnerLoader"
+                 parent="majora.loader.abstract"
+                 public="false"
+        >
+            <call method="setUp"> <!-- parent class setUp -->
+                <argument type="service" id="sir.partner.repository" />
+                <argument>SirSdk\Component\Partner\Model\Partner</argument>
+                <argument>SirSdk\Component\Partner\Model\PartnerCollection</argument>
+            </call>
+        </service>
+
+        <!-- Partner doctrine repository -->
+        <service id="sir.partner.doctrine_repository"
+                 class="Sir\Component\Partner\Repository\Doctrine\PartnerDoctrineRepository"
+                 parent="majora.doctrine_repository.abstract"
+                 factory-service="doctrine" factory-method="getRepository"
+                 public="false"
+        >
+            <argument>Sir:Partner</argument>
+            <argument>sir</argument>
+        </service>
+
+        <!-- Partner fixtures repository -->
+        <service id="sir.partner.fixtures_repository"
+                 class="Sir\Component\Partner\Repository\Fixtures\PartnerFixturesRepository"
+                 parent="majora.fixtures_repository.abstract"
+                 public="false"
+        >
+            <tag name="majora.fixtures_repository"
+                 collection="SirSdk\Component\Partner\Model\PartnerCollection"
+                 source-file="@SirPartnerBundle/Resources/fixtures/partner.yml"
+            />
+        </service>
+
+    </services>
+
+</container>
